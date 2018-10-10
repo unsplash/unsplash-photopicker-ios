@@ -22,6 +22,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
+        searchBar.delegate = self
         searchBar.placeholder = NSLocalizedString("Search photos", comment: "")
         return searchBar
     }()
@@ -72,7 +73,15 @@ class UnsplashPhotoPickerViewController: UIViewController {
     // MARK: - Actions
 
     @objc private func cancelBarButtonTapped(sender: AnyObject?) {
+        searchBar.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
 
+}
+
+// MARK: - UISearchBarDelegate
+extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
 }
