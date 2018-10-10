@@ -73,6 +73,8 @@ class PhotoView: UIView {
         imageDataTask?.resume()
     }
 
+    // MARK: - Utility
+
     class func view(with photo: UnsplashPhoto) -> PhotoView? {
         guard let photoView = nib.instantiate(withOwner: nil, options: nil).first as? PhotoView else {
             return nil
