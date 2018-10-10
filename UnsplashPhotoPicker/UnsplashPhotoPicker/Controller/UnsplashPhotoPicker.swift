@@ -10,7 +10,11 @@ import UIKit
 
 public class UnsplashPhotoPicker: UINavigationController {
 
+    // MARK: - Properties
+
     private let photoPickerViewController: UnsplashPhotoPickerViewController
+
+    // MARK: - Lifetime
 
     public init() {
         self.photoPickerViewController = UnsplashPhotoPickerViewController()
@@ -21,6 +25,8 @@ public class UnsplashPhotoPicker: UINavigationController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - View Life Cycle
 
     override public func viewDidLoad() {
         super.viewDidLoad()
