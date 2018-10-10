@@ -23,6 +23,11 @@
 		23A0D22A216D8AD600BEAE05 /* UnsplashRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A0D224216D8AD600BEAE05 /* UnsplashRequest.swift */; };
 		23A0D22B216D8AD600BEAE05 /* GetCollectionPhotosRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A0D225216D8AD600BEAE05 /* GetCollectionPhotosRequest.swift */; };
 		23A0D22C216D8AD600BEAE05 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A0D226216D8AD600BEAE05 /* NetworkRequest.swift */; };
+		23A0D235216D901400BEAE05 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A0D230216D901400BEAE05 /* PhotoView.swift */; };
+		23A0D236216D901400BEAE05 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A0D231216D901400BEAE05 /* PhotoCell.swift */; };
+		23A0D237216D901400BEAE05 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A0D232216D901400BEAE05 /* PagingView.swift */; };
+		23A0D238216D901400BEAE05 /* PhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A0D233216D901400BEAE05 /* PhotoView.xib */; };
+		23A0D239216D901400BEAE05 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A0D234216D901400BEAE05 /* GradientView.swift */; };
 		23B683C0216BF83200CAA546 /* UnsplashPhotoPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 23B683BE216BF83200CAA546 /* UnsplashPhotoPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		23B683CD216BF86800CAA546 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B683CC216BF86800CAA546 /* AppDelegate.swift */; };
 		23B683CF216BF86800CAA546 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B683CE216BF86800CAA546 /* ViewController.swift */; };
@@ -49,6 +54,11 @@
 		23A0D224216D8AD600BEAE05 /* UnsplashRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashRequest.swift; sourceTree = "<group>"; };
 		23A0D225216D8AD600BEAE05 /* GetCollectionPhotosRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCollectionPhotosRequest.swift; sourceTree = "<group>"; };
 		23A0D226216D8AD600BEAE05 /* NetworkRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		23A0D230216D901400BEAE05 /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		23A0D231216D901400BEAE05 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		23A0D232216D901400BEAE05 /* PagingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
+		23A0D233216D901400BEAE05 /* PhotoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoView.xib; sourceTree = "<group>"; };
+		23A0D234216D901400BEAE05 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		23B683BB216BF83200CAA546 /* UnsplashPhotoPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UnsplashPhotoPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B683BE216BF83200CAA546 /* UnsplashPhotoPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnsplashPhotoPicker.h; sourceTree = "<group>"; };
 		23B683BF216BF83200CAA546 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -131,6 +141,18 @@
 			path = Operations;
 			sourceTree = "<group>";
 		};
+		23A0D22F216D901400BEAE05 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				23A0D234216D901400BEAE05 /* GradientView.swift */,
+				23A0D232216D901400BEAE05 /* PagingView.swift */,
+				23A0D231216D901400BEAE05 /* PhotoCell.swift */,
+				23A0D230216D901400BEAE05 /* PhotoView.swift */,
+				23A0D233216D901400BEAE05 /* PhotoView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		23B683B1216BF83200CAA546 = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +182,7 @@
 				23A0D1F4216D7E5A00BEAE05 /* Models */,
 				23A0D220216D8AD600BEAE05 /* Operations */,
 				23A0D201216D806800BEAE05 /* Utils */,
+				23A0D22F216D901400BEAE05 /* Views */,
 			);
 			path = UnsplashPhotoPicker;
 			sourceTree = "<group>";
@@ -276,6 +299,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23A0D238216D901400BEAE05 /* PhotoView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,16 +322,20 @@
 			files = (
 				23A0D227216D8AD600BEAE05 /* ConcurrentOperation.swift in Sources */,
 				23A0D1FD216D7E9B00BEAE05 /* UnsplashPhoto.swift in Sources */,
+				23A0D239216D901400BEAE05 /* GradientView.swift in Sources */,
 				23A0D22C216D8AD600BEAE05 /* NetworkRequest.swift in Sources */,
+				23A0D235216D901400BEAE05 /* PhotoView.swift in Sources */,
 				23A0D1FE216D7E9B00BEAE05 /* UnsplashUser.swift in Sources */,
 				23A0D21C216D825B00BEAE05 /* Configuration.swift in Sources */,
 				23A0D228216D8AD600BEAE05 /* SearchPhotosRequest.swift in Sources */,
 				23A0D22B216D8AD600BEAE05 /* GetCollectionPhotosRequest.swift in Sources */,
 				23A0D20B216D806800BEAE05 /* Dictionary+Extensions.swift in Sources */,
 				23A0D1F3216D74C800BEAE05 /* UnsplashPhotoPicker.swift in Sources */,
+				23A0D236216D901400BEAE05 /* PhotoCell.swift in Sources */,
 				23A0D208216D806800BEAE05 /* KeyedDecodingContainer+Extensions.swift in Sources */,
 				23A0D209216D806800BEAE05 /* UIColor+Extensions.swift in Sources */,
 				23A0D22A216D8AD600BEAE05 /* UnsplashRequest.swift in Sources */,
+				23A0D237216D901400BEAE05 /* PagingView.swift in Sources */,
 				23A0D1F1216D74B000BEAE05 /* UnsplashPhotoPickerViewController.swift in Sources */,
 				23A0D229216D8AD600BEAE05 /* UnsplashPagedRequest.swift in Sources */,
 				23A0D1FB216D7E9B00BEAE05 /* UnsplashPhotoExif.swift in Sources */,
