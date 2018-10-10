@@ -12,8 +12,8 @@ enum PhotosDataSourceFactory: PagedDataSourceFactory {
     case search(query: String)
     case collection(identifier: String)
 
-    var dataSource: PagedDataSource<UnsplashPhoto> {
-        return PagedDataSource<UnsplashPhoto>(with: self)
+    var dataSource: PagedDataSource {
+        return PagedDataSource(with: self)
     }
 
     func initialCursor() -> UnsplashPagedRequest.Cursor {

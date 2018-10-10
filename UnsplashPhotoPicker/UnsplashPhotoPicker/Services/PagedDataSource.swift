@@ -14,12 +14,12 @@ protocol PagedDataSourceFactory {
 }
 
 protocol PagedDataSourceObserver: AnyObject {
-    func dataSourceWillStartFetching<T>(_ dataSource: PagedDataSource<T>)
-    func dataSource<T>(_ dataSource: PagedDataSource<T>, didFetch items: [T])
-    func dataSource<T>(_ dataSource: PagedDataSource<T>, fetchDidFailWithError error: Error)
+    func dataSourceWillStartFetching(_ dataSource: PagedDataSource)
+    func dataSource(_ dataSource: PagedDataSource, didFetch items: [UnsplashPhoto])
+    func dataSource(_ dataSource: PagedDataSource, fetchDidFailWithError error: Error)
 }
 
-class PagedDataSource<T> {
+class PagedDataSource {
 
     enum DataSourceError: Error {
         case dataSourceIsFetching
@@ -30,12 +30,12 @@ class PagedDataSource<T> {
             case .dataSourceIsFetching:
                 return "The data source is already fetching."
             case .wrongItemsType(let returnedItems):
-                return "The request return the wrong item type. Expecting \([T].self), got \(returnedItems.self)."
+                return "The request return the wrong item type. Expecting \([UnsplashPhoto].self), got \(returnedItems.self)."
             }
         }
     }
 
-    fileprivate(set) var items = [T]()
+    fileprivate(set) var items = [UnsplashPhoto]()
     private(set) var error: Error?
     private let factory: PagedDataSourceFactory
     private var cursor: UnsplashPagedRequest.Cursor
@@ -58,7 +58,7 @@ class PagedDataSource<T> {
         error = nil
     }
 
-    func fetchNextPage(completion: (([T]?, Error?) -> Void)?) {
+    func fetchNextPage(completion: (([UnsplashPhoto]?, Error?) -> Void)?) {
         if isFetching {
             fetchDidComplete(withItems: nil, error: DataSourceError.dataSourceIsFetching, completion: completion)
             return
@@ -83,7 +83,7 @@ class PagedDataSource<T> {
                 return
             }
 
-            guard let items = request.items as? [T] else {
+            guard let items = request.items as? [UnsplashPhoto] else {
                 self.isFetching = false
                 self.fetchDidComplete(withItems: nil, error: DataSourceError.wrongItemsType(request.items), completion: completion)
                 return
@@ -119,7 +119,7 @@ class PagedDataSource<T> {
 
     // MARK: - Private
 
-    private func fetchDidComplete(withItems items: [T]?, error: Error?, completion: (([T]?, Error?) -> Void)?) {
+    private func fetchDidComplete(withItems items: [UnsplashPhoto]?, error: Error?, completion: (([UnsplashPhoto]?, Error?) -> Void)?) {
         self.error = error
 
         iterateObservers { (observer) in

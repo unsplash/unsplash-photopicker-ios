@@ -44,7 +44,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         return collectionView
     }()
 
-    var dataSource: PagedDataSource<UnsplashPhoto>! {
+    var dataSource: PagedDataSource! {
         didSet {
             if let oldValue = oldValue {
                 oldValue.cancelFetch()
@@ -212,21 +212,21 @@ extension UnsplashPhotoPickerViewController: UISearchResultsUpdating {
 
 // MARK: - PagedDataSourceObserver
 extension UnsplashPhotoPickerViewController: PagedDataSourceObserver {
-    func dataSourceWillStartFetching<T>(_ dataSource: PagedDataSource<T>) {
+    func dataSourceWillStartFetching(_ dataSource: PagedDataSource) {
         if dataSource.items.count == 0 {
             spinner.startAnimating()
         }
     }
 
-    func dataSource<T>(_ dataSource: PagedDataSource<T>, didFetch items: [T]) {
-        guard let newPhotos = items as? [UnsplashPhoto], newPhotos.count > 0 else {
+    func dataSource(_ dataSource: PagedDataSource, didFetch items: [UnsplashPhoto]) {
+        guard items.count > 0 else {
             DispatchQueue.main.async {
                 self.spinner.stopAnimating()
             }
             return
         }
 
-        let newPhotosCount = newPhotos.count
+        let newPhotosCount = items.count
         let startIndex = self.dataSource.items.count - newPhotosCount
         let endIndex = startIndex + newPhotosCount
         var newIndexPaths = [IndexPath]()
@@ -247,7 +247,7 @@ extension UnsplashPhotoPickerViewController: PagedDataSourceObserver {
         }
     }
 
-    func dataSource<T>(_ dataSource: PagedDataSource<T>, fetchDidFailWithError error: Error) {}
+    func dataSource(_ dataSource: PagedDataSource, fetchDidFailWithError error: Error) {}
 }
 
 // MARK: - UICollectionViewDataSource
