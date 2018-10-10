@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		230FF290216EC60D0020BEA3 /* UnsplashPhotoPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 23B683BB216BF83200CAA546 /* UnsplashPhotoPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		23A0D1F1216D74B000BEAE05 /* UnsplashPhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A0D1F0216D74B000BEAE05 /* UnsplashPhotoPickerViewController.swift */; };
 		23A0D1F3216D74C800BEAE05 /* UnsplashPhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A0D1F2216D74C800BEAE05 /* UnsplashPhotoPicker.swift */; };
 		23A0D1FB216D7E9B00BEAE05 /* UnsplashPhotoExif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A0D1F5216D7E9A00BEAE05 /* UnsplashPhotoExif.swift */; };
@@ -44,6 +45,30 @@
 		23B683D7216BF86900CAA546 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23B683D5216BF86900CAA546 /* LaunchScreen.storyboard */; };
 		23B683DD216BF87400CAA546 /* UnsplashPhotoPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B683BB216BF83200CAA546 /* UnsplashPhotoPicker.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		230FF291216EC60D0020BEA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 23B683B2216BF83200CAA546 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 23B683BA216BF83200CAA546;
+			remoteInfo = UnsplashPhotoPicker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		230FF293216EC60D0020BEA3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				230FF290216EC60D0020BEA3 /* UnsplashPhotoPicker.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		23A0D1F0216D74B000BEAE05 /* UnsplashPhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashPhotoPickerViewController.swift; sourceTree = "<group>"; };
@@ -278,10 +303,12 @@
 				23B683C6216BF86800CAA546 /* Sources */,
 				23B683C7216BF86800CAA546 /* Frameworks */,
 				23B683C8216BF86800CAA546 /* Resources */,
+				230FF293216EC60D0020BEA3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				230FF292216EC60D0020BEA3 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -394,6 +421,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		230FF292216EC60D0020BEA3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 23B683BA216BF83200CAA546 /* UnsplashPhotoPicker */;
+			targetProxy = 230FF291216EC60D0020BEA3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		23B683D0216BF86800CAA546 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -466,7 +501,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -524,7 +559,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -594,6 +629,7 @@
 		23B683DA216BF86900CAA546 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S6N94M49FE;
@@ -612,6 +648,7 @@
 		23B683DB216BF86900CAA546 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S6N94M49FE;
