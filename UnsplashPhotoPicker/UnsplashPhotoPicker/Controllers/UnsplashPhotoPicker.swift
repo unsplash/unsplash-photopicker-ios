@@ -8,11 +8,18 @@
 
 import UIKit
 
+public protocol UnsplashPhotoPickerDelegate: class {
+    func unsplashPhotoPicker(_ photoPicker: UnsplashPhotoPicker, didSelectPhotos photos: [UnsplashPhoto])
+    func unsplashPhotoPickerDidCancel(_ photoPicker: UnsplashPhotoPicker)
+}
+
 public class UnsplashPhotoPicker: UINavigationController {
 
     // MARK: - Properties
 
     private let photoPickerViewController: UnsplashPhotoPickerViewController
+
+    public weak var photoPickerDelegate: UnsplashPhotoPickerDelegate?
 
     // MARK: - Lifetime
 
@@ -22,6 +29,8 @@ public class UnsplashPhotoPicker: UINavigationController {
         self.photoPickerViewController = UnsplashPhotoPickerViewController()
 
         super.init(nibName: nil, bundle: nil)
+
+        photoPickerViewController.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -30,11 +39,26 @@ public class UnsplashPhotoPicker: UINavigationController {
 
     // MARK: - View Life Cycle
 
-    override public func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationBar.isTranslucent = false
         viewControllers = [photoPickerViewController]
     }
 
+}
+
+// MARK: - UnsplashPhotoPickerViewControllerDelegate
+extension UnsplashPhotoPicker: UnsplashPhotoPickerViewControllerDelegate {
+    func unsplashPhotoPickerViewController(_ viewController: UnsplashPhotoPickerViewController, didSelectPhotos photos: [UnsplashPhoto]) {
+        dismiss(animated: true, completion: nil)
+
+        photoPickerDelegate?.unsplashPhotoPicker(self, didSelectPhotos: photos)
+    }
+
+    func unsplashPhotoPickerViewControllerDidCancel(_ viewController: UnsplashPhotoPickerViewController) {
+        dismiss(animated: true, completion: nil)
+
+        photoPickerDelegate?.unsplashPhotoPickerDidCancel(self)
+    }
 }

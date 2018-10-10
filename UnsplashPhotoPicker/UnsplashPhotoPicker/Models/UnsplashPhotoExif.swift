@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct UnsplashPhotoExif: Codable {
+public struct UnsplashPhotoExif: Codable {
 
-    let aperture: String
-    let exposureTime: String
-    let focalLength: String
-    let iso: String
-    let make: String
-    let model: String
+    public let aperture: String
+    public let exposureTime: String
+    public let focalLength: String
+    public let iso: String
+    public let make: String
+    public let model: String
 
     private enum CodingKeys: String, CodingKey {
         case aperture

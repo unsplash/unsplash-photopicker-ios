@@ -8,9 +8,9 @@
 
 import UIKit
 
-struct UnsplashPhoto: Codable {
+public struct UnsplashPhoto: Codable {
 
-    enum URLKind: String, Codable {
+    public enum URLKind: String, Codable {
         case raw
         case full
         case regular
@@ -18,24 +18,24 @@ struct UnsplashPhoto: Codable {
         case thumb
     }
 
-    enum LinkKind: String, Codable {
+    public enum LinkKind: String, Codable {
         case own = "self"
         case html
         case download
         case downloadLocation = "download_location"
     }
 
-    let identifier: String
-    let height: Int
-    let width: Int
-    let color: UIColor?
-    let exif: UnsplashPhotoExif?
-    let user: UnsplashUser
-    let urls: [URLKind: URL]
-    let links: [LinkKind: URL]
-    let likesCount: Int
-    let downloadsCount: Int?
-    let viewsCount: Int?
+    public let identifier: String
+    public let height: Int
+    public let width: Int
+    public let color: UIColor?
+    public let exif: UnsplashPhotoExif?
+    public let user: UnsplashUser
+    public let urls: [URLKind: URL]
+    public let links: [LinkKind: URL]
+    public let likesCount: Int
+    public let downloadsCount: Int?
+    public let viewsCount: Int?
 
     private enum CodingKeys: String, CodingKey {
         case identifier = "id"
@@ -51,7 +51,7 @@ struct UnsplashPhoto: Codable {
         case viewsCount = "views"
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         identifier = try container.decode(String.self, forKey: .identifier)
         height = try container.decode(Int.self, forKey: .height)
@@ -66,7 +66,7 @@ struct UnsplashPhoto: Codable {
         viewsCount = try? container.decode(Int.self, forKey: .viewsCount)
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(identifier, forKey: .identifier)
         try container.encode(height, forKey: .height)

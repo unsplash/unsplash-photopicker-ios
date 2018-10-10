@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol UnsplashPhotoPickerViewControllerDelegate: class {
+    func unsplashPhotoPickerViewController(_ viewController: UnsplashPhotoPickerViewController, didSelectPhotos photos: [UnsplashPhoto])
+    func unsplashPhotoPickerViewControllerDidCancel(_ viewController: UnsplashPhotoPickerViewController)
+}
+
 class UnsplashPhotoPickerViewController: UIViewController {
 
     // MARK: - Properties
@@ -54,6 +59,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
             dataSource?.addObserver(self)
         }
     }
+    weak var delegate: UnsplashPhotoPickerViewControllerDelegate?
     var showsUsernames = true
     var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
     lazy var layout = WaterfallLayout(with: self)
@@ -144,7 +150,8 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     @objc private func cancelBarButtonTapped(sender: AnyObject?) {
         searchController.searchBar.resignFirstResponder()
-        dismiss(animated: true, completion: nil)
+
+        delegate?.unsplashPhotoPickerViewControllerDidCancel(self)
     }
 
 //    func setTopInset(_ topInset: CGFloat) {
@@ -300,6 +307,10 @@ extension UnsplashPhotoPickerViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard collectionView.hasActiveDrag == false else { return }
+
+        guard let photo = photo(at: indexPath) else { return }
+
+        delegate?.unsplashPhotoPickerViewController(self, didSelectPhotos: [photo])
     }
 }
 

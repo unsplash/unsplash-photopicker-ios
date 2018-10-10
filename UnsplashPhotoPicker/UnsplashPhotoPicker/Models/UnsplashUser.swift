@@ -8,28 +8,28 @@
 
 import Foundation
 
-struct UnsplashUser: Codable {
+public struct UnsplashUser: Codable {
 
     static var current: UnsplashUser?
 
-    enum ProfileImageSize: String, Codable {
+    public enum ProfileImageSize: String, Codable {
         case small
         case medium
         case large
     }
 
-    let identifier: String
-    let username: String
-    let firstName: String?
-    let lastName: String?
-    let name: String?
-    let profileImage: [ProfileImageSize: URL]
-    let bio: String?
-    let location: String?
-    let portfolioURL: URL?
-    let totalCollections: Int
-    let totalLikes: Int
-    let totalPhotos: Int
+    public let identifier: String
+    public let username: String
+    public let firstName: String?
+    public let lastName: String?
+    public let name: String?
+    public let profileImage: [ProfileImageSize: URL]
+    public let bio: String?
+    public let location: String?
+    public let portfolioURL: URL?
+    public let totalCollections: Int
+    public let totalLikes: Int
+    public let totalPhotos: Int
 
     private enum CodingKeys: String, CodingKey {
         case identifier = "id"
@@ -62,7 +62,7 @@ struct UnsplashUser: Codable {
         totalPhotos = try container.decode(Int.self, forKey: .totalPhotos)
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(identifier, forKey: .identifier)
         try container.encode(username, forKey: .username)
@@ -104,7 +104,7 @@ extension UnsplashUser {
 
 // MARK: - Equatable
 extension UnsplashUser: Equatable {
-    static func == (lhs: UnsplashUser, rhs: UnsplashUser) -> Bool {
+    public static func == (lhs: UnsplashUser, rhs: UnsplashUser) -> Bool {
         return lhs.identifier == rhs.identifier
     }
 }
