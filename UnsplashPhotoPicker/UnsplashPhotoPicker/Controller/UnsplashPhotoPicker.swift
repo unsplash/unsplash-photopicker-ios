@@ -16,7 +16,9 @@ public class UnsplashPhotoPicker: UINavigationController {
 
     // MARK: - Lifetime
 
-    public init() {
+    public init(configuration: UnsplashPhotoPickerConfiguration) {
+        Configuration.shared = configuration
+
         self.photoPickerViewController = UnsplashPhotoPickerViewController()
 
         super.init(nibName: nil, bundle: nil)

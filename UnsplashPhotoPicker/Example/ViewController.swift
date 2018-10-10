@@ -12,7 +12,11 @@ import UnsplashPhotoPicker
 class ViewController: UIViewController {
 
     @IBAction func presentUnsplashPhotoPicker(sender: AnyObject?) {
-        let unsplashPhotoPicker = UnsplashPhotoPicker()
+        let configuration = UnsplashPhotoPickerConfiguration(
+            accessKey: "<YOUR_ACCESS_TOKEN>",
+            secretKey: "<YOUR_SECRET_KEY>"
+        )
+        let unsplashPhotoPicker = UnsplashPhotoPicker(configuration: configuration)
 
         present(unsplashPhotoPicker, animated: true, completion: nil)
     }
