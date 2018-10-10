@@ -123,6 +123,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
+        extendedLayoutIncludesOpaqueBars = true
     }
 
     private func setupCollectionView() {
@@ -132,7 +133,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 1.0),
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
