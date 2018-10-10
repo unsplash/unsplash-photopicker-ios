@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import UnsplashPhotoPicker
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
+    @IBAction func presentUnsplashPhotoPicker(sender: AnyObject?) {
+        let unsplashPhotoPicker = UnsplashPhotoPicker()
 
+        present(unsplashPhotoPicker, animated: true, completion: nil)
+    }
 
 }
 
