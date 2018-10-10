@@ -20,11 +20,13 @@ class UnsplashPhotoPickerViewController: UIViewController {
         )
     }()
 
-    private lazy var searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        searchBar.delegate = self
-        searchBar.placeholder = NSLocalizedString("Search photos", comment: "")
-        return searchBar
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.placeholder = NSLocalizedString("Search photos", comment: "")
+        return searchController
     }()
 
     private lazy var spinner = UIActivityIndicatorView()
@@ -75,7 +77,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
         view.backgroundColor = .white
         setupNavigationBar()
-        setupSearchBar()
+        setupSearchController()
         setupCollectionView()
     }
 
@@ -116,15 +118,10 @@ class UnsplashPhotoPickerViewController: UIViewController {
         navigationItem.leftBarButtonItem = cancelBarButtonItem
     }
 
-    private func setupSearchBar() {
-        view.addSubview(searchBar)
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            searchBar.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 1.0),
-            searchBar.leftAnchor.constraint(equalTo: view.leftAnchor),
-            searchBar.rightAnchor.constraint(equalTo: view.rightAnchor)
-        ])
+    private func setupSearchController() {
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
     }
 
     private func setupCollectionView() {
@@ -134,7 +131,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
@@ -144,23 +141,18 @@ class UnsplashPhotoPickerViewController: UIViewController {
     // MARK: - Actions
 
     @objc private func cancelBarButtonTapped(sender: AnyObject?) {
-        searchBar.resignFirstResponder()
+        searchController.searchBar.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
 
 //    func setTopInset(_ topInset: CGFloat) {
 //        layout.topInset = topInset
-//        compactLayout.sectionInset.top = topInset
 //    }
 
     private func reloadLayout() {
         let visibleIndexPaths = collectionView.indexPathsForVisibleItems
 
-        //        if traitCollection.horizontalSizeClass == .regular {
         collectionView.collectionViewLayout = layout
-        //        } else {
-        //            collectionView.collectionViewLayout = compactLayout
-        //        }
 
         if let firstVisibleIndexPath = visibleIndexPaths.first {
             collectionView.scrollToItem(at: firstVisibleIndexPath, at: UICollectionView.ScrollPosition.top, animated: false)
@@ -211,10 +203,10 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
 }
 
-// MARK: - UISearchBarDelegate
-extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+// MARK: - UISearchResultsUpdating
+extension UnsplashPhotoPickerViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+
     }
 }
 
