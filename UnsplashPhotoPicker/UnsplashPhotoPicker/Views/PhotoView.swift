@@ -11,7 +11,7 @@ import os
 
 class PhotoView: UIView {
 
-    static var nib: UINib { return UINib(nibName: "PhotoView", bundle: nil) }
+    static var nib: UINib { return UINib(nibName: "PhotoView", bundle: Bundle(for: PhotoView.self)) }
 
     private var imageDataTask: URLSessionDataTask?
 
