@@ -22,9 +22,9 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = NSLocalizedString("Search photos", comment: "")
         return searchController
     }()
@@ -41,6 +41,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         collectionView.register(PagingView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: PagingView.reuseIdentifier)
         collectionView.contentInsetAdjustmentBehavior = contentInsetAdjustmentBehavior
         collectionView.layoutMargins = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 0.0, right: 16.0)
+        collectionView.backgroundColor = .white
         return collectionView
     }()
 
@@ -203,10 +204,18 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
 }
 
-// MARK: - UISearchResultsUpdating
-extension UnsplashPhotoPickerViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
+// MARK: - UISearchBarDelegate
+extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else { return }
 
+        dataSource = PhotosDataSourceFactory.search(query: text).dataSource
+        refresh()
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        dataSource = PhotosDataSourceFactory.collection(identifier: Configuration.shared.editorialCollectionId).dataSource
+        refresh()
     }
 }
 
