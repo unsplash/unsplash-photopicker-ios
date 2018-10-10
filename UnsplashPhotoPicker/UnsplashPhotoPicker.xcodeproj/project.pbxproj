@@ -80,33 +80,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		23A0D1EF216D748F00BEAE05 /* Controller */ = {
+		23A0D1EF216D748F00BEAE05 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				23A0D1F2216D74C800BEAE05 /* UnsplashPhotoPicker.swift */,
 				23A0D1F0216D74B000BEAE05 /* UnsplashPhotoPickerViewController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		23A0D1F4216D7E5A00BEAE05 /* Model */ = {
+		23A0D1F4216D7E5A00BEAE05 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				23A0D1F7216D7E9A00BEAE05 /* UnsplashPhoto.swift */,
 				23A0D1F5216D7E9A00BEAE05 /* UnsplashPhotoExif.swift */,
 				23A0D1F8216D7E9A00BEAE05 /* UnsplashUser.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		23A0D201216D806800BEAE05 /* Util */ = {
+		23A0D201216D806800BEAE05 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				23A0D205216D806800BEAE05 /* Dictionary+Extensions.swift */,
 				23A0D202216D806800BEAE05 /* KeyedDecodingContainer+Extensions.swift */,
 				23A0D203216D806800BEAE05 /* UIColor+Extensions.swift */,
 			);
-			path = Util;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		23A0D21D216D82CA00BEAE05 /* Configuration */ = {
@@ -118,7 +118,7 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
-		23A0D220216D8AD600BEAE05 /* Operation */ = {
+		23A0D220216D8AD600BEAE05 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
 				23A0D221216D8AD600BEAE05 /* ConcurrentOperation.swift */,
@@ -128,7 +128,7 @@
 				23A0D225216D8AD600BEAE05 /* GetCollectionPhotosRequest.swift */,
 				23A0D222216D8AD600BEAE05 /* SearchPhotosRequest.swift */,
 			);
-			path = Operation;
+			path = Operations;
 			sourceTree = "<group>";
 		};
 		23B683B1216BF83200CAA546 = {
@@ -156,10 +156,10 @@
 				23B683BE216BF83200CAA546 /* UnsplashPhotoPicker.h */,
 				23B683BF216BF83200CAA546 /* Info.plist */,
 				23A0D21D216D82CA00BEAE05 /* Configuration */,
-				23A0D1EF216D748F00BEAE05 /* Controller */,
-				23A0D1F4216D7E5A00BEAE05 /* Model */,
-				23A0D220216D8AD600BEAE05 /* Operation */,
-				23A0D201216D806800BEAE05 /* Util */,
+				23A0D1EF216D748F00BEAE05 /* Controllers */,
+				23A0D1F4216D7E5A00BEAE05 /* Models */,
+				23A0D220216D8AD600BEAE05 /* Operations */,
+				23A0D201216D806800BEAE05 /* Utils */,
 			);
 			path = UnsplashPhotoPicker;
 			sourceTree = "<group>";
