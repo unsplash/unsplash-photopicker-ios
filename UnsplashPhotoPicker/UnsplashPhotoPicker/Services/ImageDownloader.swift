@@ -12,7 +12,7 @@ import os
 class ImageDownloader {
 
     private var imageDataTask: URLSessionDataTask?
-    private let cache = URLCache(memoryCapacity: 50.megabytes, diskCapacity: 100.megabytes, diskPath: "unsplash")
+    private let cache = ImageCache.cache
 
     func downloadPhoto(with url: URL, cachedImage: @escaping ((UIImage?) -> Void), downloadedImage: @escaping ((UIImage?) -> Void)) {
         guard imageDataTask == nil else { return }
@@ -45,9 +45,4 @@ class ImageDownloader {
         imageDataTask?.resume()
     }
 
-}
-
-// MARK: - Int extension
-private extension Int {
-    var megabytes: Int { return self * 1024 * 1024 }
 }

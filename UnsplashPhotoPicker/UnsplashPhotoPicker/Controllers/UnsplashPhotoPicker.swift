@@ -46,19 +46,25 @@ public class UnsplashPhotoPicker: UINavigationController {
         viewControllers = [photoPickerViewController]
     }
 
+    // MARK: - Utility
+
+    private func clearCache() {
+        ImageCache.cache.removeAllCachedResponses()
+    }
+
 }
 
 // MARK: - UnsplashPhotoPickerViewControllerDelegate
 extension UnsplashPhotoPicker: UnsplashPhotoPickerViewControllerDelegate {
     func unsplashPhotoPickerViewController(_ viewController: UnsplashPhotoPickerViewController, didSelectPhotos photos: [UnsplashPhoto]) {
-        dismiss(animated: true, completion: nil)
-
+        clearCache()
         photoPickerDelegate?.unsplashPhotoPicker(self, didSelectPhotos: photos)
+        dismiss(animated: true, completion: nil)
     }
 
     func unsplashPhotoPickerViewControllerDidCancel(_ viewController: UnsplashPhotoPickerViewController) {
-        dismiss(animated: true, completion: nil)
-
+        clearCache()
         photoPickerDelegate?.unsplashPhotoPickerDidCancel(self)
+        dismiss(animated: true, completion: nil)
     }
 }
