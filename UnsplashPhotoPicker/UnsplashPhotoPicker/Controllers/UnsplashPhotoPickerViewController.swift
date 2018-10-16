@@ -34,7 +34,11 @@ class UnsplashPhotoPickerViewController: UIViewController {
         return searchController
     }()
 
-    private lazy var spinner = UIActivityIndicatorView()
+    private lazy var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .gray)
+        spinner.hidesWhenStopped = true
+        return spinner
+    }()
 
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
@@ -86,6 +90,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         setupNavigationBar()
         setupSearchController()
         setupCollectionView()
+        setupSpinner()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -143,6 +148,16 @@ class UnsplashPhotoPickerViewController: UIViewController {
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
+    }
+
+    private func setupSpinner() {
+        view.addSubview(spinner)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            spinner.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor)
         ])
     }
 
