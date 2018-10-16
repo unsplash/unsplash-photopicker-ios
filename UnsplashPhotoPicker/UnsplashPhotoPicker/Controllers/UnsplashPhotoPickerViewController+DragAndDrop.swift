@@ -10,8 +10,6 @@ import UIKit
 
 // MARK: - UICollectionViewDragDelegate
 extension UnsplashPhotoPickerViewController: UICollectionViewDragDelegate {
-    func collectionView(_ collectionView: UICollectionView, dragSessionWillBegin session: UIDragSession) {}
-
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         selectionFeedbackGenerator = UISelectionFeedbackGenerator()
         selectionFeedbackGenerator?.prepare()
