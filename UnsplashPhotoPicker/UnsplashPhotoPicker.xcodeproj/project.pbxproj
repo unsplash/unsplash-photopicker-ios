@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		230FF290216EC60D0020BEA3 /* UnsplashPhotoPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 23B683BB216BF83200CAA546 /* UnsplashPhotoPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2333E0EC21757C52000B1900 /* UnsplashPhotoPickerViewController+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333E0EB21757C52000B1900 /* UnsplashPhotoPickerViewController+UICollectionView.swift */; };
+		2333E0F021758899000B1900 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333E0EF21758899000B1900 /* ImageDownloader.swift */; };
 		23A0D1F1216D74B000BEAE05 /* UnsplashPhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A0D1F0216D74B000BEAE05 /* UnsplashPhotoPickerViewController.swift */; };
 		23A0D1F3216D74C800BEAE05 /* UnsplashPhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A0D1F2216D74C800BEAE05 /* UnsplashPhotoPicker.swift */; };
 		23A0D1FB216D7E9B00BEAE05 /* UnsplashPhotoExif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A0D1F5216D7E9A00BEAE05 /* UnsplashPhotoExif.swift */; };
@@ -73,6 +74,7 @@
 
 /* Begin PBXFileReference section */
 		2333E0EB21757C52000B1900 /* UnsplashPhotoPickerViewController+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnsplashPhotoPickerViewController+UICollectionView.swift"; sourceTree = "<group>"; };
+		2333E0EF21758899000B1900 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		23A0D1F0216D74B000BEAE05 /* UnsplashPhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashPhotoPickerViewController.swift; sourceTree = "<group>"; };
 		23A0D1F2216D74C800BEAE05 /* UnsplashPhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashPhotoPicker.swift; sourceTree = "<group>"; };
 		23A0D1F5216D7E9A00BEAE05 /* UnsplashPhotoExif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashPhotoExif.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 		23A0D23C216D988600BEAE05 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				2333E0EF21758899000B1900 /* ImageDownloader.swift */,
 				23A0D23E216D988600BEAE05 /* PagedDataSource.swift */,
 				23A0D23D216D988600BEAE05 /* PhotosDataSourceFactory.swift */,
 			);
@@ -398,6 +401,7 @@
 				23A0D22B216D8AD600BEAE05 /* GetCollectionPhotosRequest.swift in Sources */,
 				23A0D20B216D806800BEAE05 /* Dictionary+Extensions.swift in Sources */,
 				23A0D1F3216D74C800BEAE05 /* UnsplashPhotoPicker.swift in Sources */,
+				2333E0F021758899000B1900 /* ImageDownloader.swift in Sources */,
 				23A0D236216D901400BEAE05 /* PhotoCell.swift in Sources */,
 				23A0D208216D806800BEAE05 /* KeyedDecodingContainer+Extensions.swift in Sources */,
 				23A0D209216D806800BEAE05 /* UIColor+Extensions.swift in Sources */,

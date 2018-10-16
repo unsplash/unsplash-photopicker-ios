@@ -13,7 +13,7 @@ class PhotoView: UIView {
 
     static var nib: UINib { return UINib(nibName: "PhotoView", bundle: Bundle(for: PhotoView.self)) }
 
-    private var imageDataTask: URLSessionDataTask?
+    private var imageDownloader = ImageDownloader()
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var gradientView: GradientView!
@@ -43,34 +43,29 @@ class PhotoView: UIView {
         imageView.image = nil
     }
 
+    // MARK: - Setup
+
     func configure(with photo: UnsplashPhoto, showsUsername: Bool = true) {
         self.showsUsername = showsUsername
         userNameLabel.text = photo.user.displayName
         imageView.backgroundColor = photo.color
-
         downloadImage(with: photo)
     }
 
     private func downloadImage(with photo: UnsplashPhoto) {
         guard let url = photo.urls[.regular] else { return }
 
-        imageDataTask = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+        imageDownloader.downloadPhoto(with: url, cachedImage: { [weak self] image in
             guard let strongSelf = self else { return }
 
-            strongSelf.imageDataTask = nil
+            strongSelf.imageView.image = image
+        }, downloadedImage: { [weak self] image in
+            guard let strongSelf = self else { return }
 
-            if let error = error { return os_log("%@", log: .default, type: .error, error.localizedDescription) }
-
-            guard let data = data, let image = UIImage(data: data) else { return }
-
-            DispatchQueue.main.async {
-                UIView.transition(with: strongSelf, duration: 0.25, options: [.transitionCrossDissolve], animations: {
-                    strongSelf.imageView.image = image
-                }, completion: nil)
-            }
-        }
-
-        imageDataTask?.resume()
+            UIView.transition(with: strongSelf, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+                strongSelf.imageView.image = image
+            }, completion: nil)
+        })
     }
 
     // MARK: - Utility
