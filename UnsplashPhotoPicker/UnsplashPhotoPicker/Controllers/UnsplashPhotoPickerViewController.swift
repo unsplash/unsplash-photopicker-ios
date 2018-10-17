@@ -72,6 +72,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
             dataSource = editorialDataSource
         }
     }
+    private var searchText: String?
 
     weak var delegate: UnsplashPhotoPickerViewControllerDelegate?
 
@@ -260,14 +261,16 @@ class UnsplashPhotoPickerViewController: UIViewController {
 // MARK: - UISearchBarDelegate
 extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let text = searchBar.text else { return }
+        guard let text = searchBar.text, text != searchText else { return }
 
         dataSource = PhotosDataSourceFactory.search(query: text).dataSource
+        searchText = text
         refresh()
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         dataSource = editorialDataSource
+        searchText = nil
         reloadData()
     }
 }
