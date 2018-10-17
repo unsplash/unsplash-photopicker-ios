@@ -54,10 +54,10 @@ class UnsplashPhotoPickerViewController: UIViewController {
         return collectionView
     }()
 
-    var scrollView: UIScrollView { return collectionView }
-    var contentInsetAdjustmentBehavior: UIScrollView.ContentInsetAdjustmentBehavior = .automatic
+    private var scrollView: UIScrollView { return collectionView }
+    private var contentInsetAdjustmentBehavior: UIScrollView.ContentInsetAdjustmentBehavior = .automatic
     var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
-    lazy var layout = WaterfallLayout(with: self)
+    private lazy var layout = WaterfallLayout(with: self)
     var dataSource: PagedDataSource! {
         didSet {
             if let oldValue = oldValue {
@@ -65,6 +65,11 @@ class UnsplashPhotoPickerViewController: UIViewController {
                 oldValue.removeObserver(self)
             }
             dataSource?.addObserver(self)
+        }
+    }
+    private var editorialDataSource: PagedDataSource! {
+        didSet {
+            dataSource = editorialDataSource
         }
     }
 
@@ -88,6 +93,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         setupSearchController()
         setupCollectionView()
         setupSpinner()
+        setupDataSource()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -134,8 +140,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
     }
 
     private func setupCollectionView() {
-        dataSource = PhotosDataSourceFactory.collection(identifier: Configuration.shared.editorialCollectionId).dataSource
-
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -155,6 +159,10 @@ class UnsplashPhotoPickerViewController: UIViewController {
             spinner.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor)
         ])
+    }
+
+    private func setupDataSource() {
+        editorialDataSource = PhotosDataSourceFactory.collection(identifier: Configuration.shared.editorialCollectionId).dataSource
     }
 
     // MARK: - Actions
@@ -259,8 +267,8 @@ extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        dataSource = PhotosDataSourceFactory.collection(identifier: Configuration.shared.editorialCollectionId).dataSource
-        refresh()
+        dataSource = editorialDataSource
+        reloadData()
     }
 }
 

@@ -35,7 +35,7 @@ class PagedDataSource {
         }
     }
 
-    fileprivate(set) var items = [UnsplashPhoto]()
+    private(set) var items = [UnsplashPhoto]()
     private(set) var error: Error?
     private let factory: PagedDataSourceFactory
     private var cursor: UnsplashPagedRequest.Cursor
