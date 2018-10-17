@@ -70,13 +70,10 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     weak var delegate: UnsplashPhotoPickerViewControllerDelegate?
 
-    private let operationQueue = OperationQueue(with: "com.unsplash.Unsplash.PhotoPicker")
-
     // MARK: - Lifetime
 
     deinit {
         NotificationCenter.default.removeObserver(self)
-        operationQueue.cancelAllOperations()
         dataSource = nil
     }
 
@@ -101,12 +98,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
         } else {
             reloadData()
         }
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        operationQueue.cancelAllOperations()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
