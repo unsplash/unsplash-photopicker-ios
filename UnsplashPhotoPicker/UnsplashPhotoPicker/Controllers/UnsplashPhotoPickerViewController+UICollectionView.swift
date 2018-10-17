@@ -21,7 +21,6 @@ extension UnsplashPhotoPickerViewController: UICollectionViewDataSource {
 
         photoCell.configure(with: photo)
         photoCell.userInfo = photo.identifier
-        photoCell.photoView.showsUsername = showsUsernames
 
         return photoCell
     }

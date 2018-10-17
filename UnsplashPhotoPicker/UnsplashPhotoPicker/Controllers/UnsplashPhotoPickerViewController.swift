@@ -58,7 +58,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
     var contentInsetAdjustmentBehavior: UIScrollView.ContentInsetAdjustmentBehavior = .automatic
     var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
     lazy var layout = WaterfallLayout(with: self)
-
     var dataSource: PagedDataSource! {
         didSet {
             if let oldValue = oldValue {
@@ -68,8 +67,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
             dataSource?.addObserver(self)
         }
     }
-
-    var showsUsernames = true
 
     weak var delegate: UnsplashPhotoPickerViewControllerDelegate?
 
@@ -89,6 +86,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
+        setupNotifications()
         setupNavigationBar()
         setupSearchController()
         setupCollectionView()
@@ -126,6 +124,11 @@ class UnsplashPhotoPickerViewController: UIViewController {
     }
 
     // MARK: - Setup
+
+    private func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
 
     private func setupNavigationBar() {
         title = NSLocalizedString("Unsplash Photo Picker", comment: "")
@@ -225,6 +228,32 @@ class UnsplashPhotoPickerViewController: UIViewController {
         }
 
         return nil
+    }
+
+    // MARK: - Notifications
+
+    @objc func keyboardWillShowNotification(_ notification: Notification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.size,
+            let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {
+                return
+        }
+
+        let bottomInset = keyboardSize.height - view.safeAreaInsets.bottom
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: bottomInset, right: 0.0)
+
+        UIView.animate(withDuration: duration) { [weak self] in
+            self?.collectionView.contentInset = contentInsets
+            self?.collectionView.scrollIndicatorInsets = contentInsets
+        }
+    }
+
+    @objc func keyboardWillHideNotification(_ notification: Notification) {
+        guard let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else { return }
+
+        UIView.animate(withDuration: duration) { [weak self] in
+            self?.collectionView.contentInset = .zero
+            self?.collectionView.scrollIndicatorInsets = .zero
+        }
     }
 
 }
