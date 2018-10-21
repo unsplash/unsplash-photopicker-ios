@@ -14,6 +14,7 @@ class PhotoView: UIView {
     static var nib: UINib { return UINib(nibName: "PhotoView", bundle: Bundle(for: PhotoView.self)) }
 
     private var imageDownloader = ImageDownloader()
+    private var screenScale: CGFloat { return UIScreen.main.scale }
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var gradientView: GradientView!
@@ -53,7 +54,9 @@ class PhotoView: UIView {
     }
 
     private func downloadImage(with photo: UnsplashPhoto) {
-        guard let url = photo.urls[.regular] else { return }
+        guard let regularUrl = photo.urls[.regular] else { return }
+
+        let url = sizedImageURL(from: regularUrl)
 
         imageDownloader.downloadPhoto(with: url, cachedImage: { [weak self] image in
             guard let strongSelf = self else { return }
@@ -66,6 +69,16 @@ class PhotoView: UIView {
                 strongSelf.imageView.image = image
             }, completion: nil)
         })
+    }
+
+    private func sizedImageURL(from url: URL) -> URL {
+        let width: CGFloat = frame.width * screenScale
+        let height: CGFloat = frame.height * screenScale
+
+        return url.appending(queryItems: [
+            URLQueryItem(name: "max-w", value: "\(width)"),
+            URLQueryItem(name: "max-h", value: "\(height)")
+        ])
     }
 
     // MARK: - Utility
