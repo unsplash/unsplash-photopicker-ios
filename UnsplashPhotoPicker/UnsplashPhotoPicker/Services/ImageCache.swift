@@ -9,7 +9,16 @@
 import UIKit
 
 class ImageCache {
-    static let cache = URLCache(memoryCapacity: 50.megabytes, diskCapacity: 100.megabytes, diskPath: "unsplash")
+
+    static let cache = URLCache(
+        memoryCapacity: Configuration.shared.memoryCapacity,
+        diskCapacity: Configuration.shared.diskCapacity,
+        diskPath: "unsplash"
+    )
+
+    static let memoryCapacity: Int = 50.megabytes
+    static let diskCapacity: Int = 100.megabytes
+
 }
 
 private extension Int {
