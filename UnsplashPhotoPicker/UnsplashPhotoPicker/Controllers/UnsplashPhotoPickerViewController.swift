@@ -34,8 +34,9 @@ class UnsplashPhotoPickerViewController: UIViewController {
         return searchController
     }()
 
-    private lazy var spinner: UIActivityIndicatorView = {
+    private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .gray)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.hidesWhenStopped = true
         return spinner
     }()
@@ -47,7 +48,9 @@ class UnsplashPhotoPickerViewController: UIViewController {
         collectionView.dragDelegate = self
         collectionView.dragInteractionEnabled = true
         collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: PhotoCell.reuseIdentifier)
-        collectionView.register(PagingView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: PagingView.reuseIdentifier)
+        collectionView.register(PagingView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier:
+            PagingView.reuseIdentifier)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.contentInsetAdjustmentBehavior = contentInsetAdjustmentBehavior
         collectionView.layoutMargins = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 0.0, right: 16.0)
         collectionView.backgroundColor = .white
@@ -142,7 +145,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     private func setupCollectionView() {
         view.addSubview(collectionView)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 1.0),
@@ -154,7 +156,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     private func setupSpinner() {
         view.addSubview(spinner)
-        spinner.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             spinner.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
@@ -173,10 +174,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
         delegate?.unsplashPhotoPickerViewControllerDidCancel(self)
     }
-
-//    func setTopInset(_ topInset: CGFloat) {
-//        layout.topInset = topInset
-//    }
 
     private func reloadLayout() {
         let visibleIndexPaths = collectionView.indexPathsForVisibleItems

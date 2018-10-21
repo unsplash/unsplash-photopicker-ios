@@ -14,8 +14,12 @@ class PhotoCell: UICollectionViewCell {
 
     var userInfo: Any?
 
-    // swiftlint:disable force_cast
-    let photoView: PhotoView! = (PhotoView.nib.instantiate(withOwner: nil, options: nil).first as! PhotoView)
+    let photoView: PhotoView = {
+        // swiftlint:disable force_cast
+        let photoView = (PhotoView.nib.instantiate(withOwner: nil, options: nil).first as! PhotoView)
+        photoView.translatesAutoresizingMaskIntoConstraints = false
+        return photoView
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,9 +48,8 @@ class PhotoCell: UICollectionViewCell {
 
     private func setupPhotoView() {
         contentView.preservesSuperviewLayoutMargins = true
-        photoView.translatesAutoresizingMaskIntoConstraints = false
-
         contentView.addSubview(photoView)
+
         NSLayoutConstraint.activate([
             photoView.topAnchor.constraint(equalTo: contentView.topAnchor),
             photoView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
