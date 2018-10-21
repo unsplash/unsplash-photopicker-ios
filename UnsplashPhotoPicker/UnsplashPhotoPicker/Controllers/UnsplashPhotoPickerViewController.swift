@@ -185,6 +185,10 @@ class UnsplashPhotoPickerViewController: UIViewController {
         }
     }
 
+    private func scrollToTop() {
+        layout.topInset = 0
+    }
+
     // MARK: - Data
 
     @objc func refresh() {
@@ -263,12 +267,14 @@ extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
         dataSource = PhotosDataSourceFactory.search(query: text).dataSource
         searchText = text
         refresh()
+        scrollToTop()
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         dataSource = editorialDataSource
         searchText = nil
         reloadData()
+        scrollToTop()
     }
 }
 
