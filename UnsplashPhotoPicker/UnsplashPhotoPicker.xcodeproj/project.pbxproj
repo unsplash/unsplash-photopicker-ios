@@ -47,6 +47,7 @@
 		23B683D4216BF86900CAA546 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23B683D3216BF86900CAA546 /* Assets.xcassets */; };
 		23B683D7216BF86900CAA546 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23B683D5216BF86900CAA546 /* LaunchScreen.storyboard */; };
 		23B683DD216BF87400CAA546 /* UnsplashPhotoPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B683BB216BF83200CAA546 /* UnsplashPhotoPicker.framework */; };
+		23C24A71217D3BBC00C03E7B /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C24A70217D3BBC00C03E7B /* EmptyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		23B683D3216BF86900CAA546 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		23B683D6216BF86900CAA546 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		23B683D8216BF86900CAA546 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23C24A70217D3BBC00C03E7B /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 		23A0D22F216D901400BEAE05 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				23C24A70217D3BBC00C03E7B /* EmptyView.swift */,
 				23A0D234216D901400BEAE05 /* GradientView.swift */,
 				23A0D232216D901400BEAE05 /* PagingView.swift */,
 				23A0D231216D901400BEAE05 /* PhotoCell.swift */,
@@ -408,6 +411,7 @@
 				23A0D236216D901400BEAE05 /* PhotoCell.swift in Sources */,
 				23A0D208216D806800BEAE05 /* KeyedDecodingContainer+Extensions.swift in Sources */,
 				23A0D209216D806800BEAE05 /* UIColor+Extensions.swift in Sources */,
+				23C24A71217D3BBC00C03E7B /* EmptyView.swift in Sources */,
 				23A0D244216D9C4B00BEAE05 /* UnsplashPhotoPickerViewController+DragAndDrop.swift in Sources */,
 				23A0D22A216D8AD600BEAE05 /* UnsplashRequest.swift in Sources */,
 				23A0D237216D901400BEAE05 /* PagingView.swift in Sources */,

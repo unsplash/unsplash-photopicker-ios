@@ -34,15 +34,9 @@ class UnsplashPhotoPickerViewController: UIViewController {
         return searchController
     }()
 
-    private let spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .gray)
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.hidesWhenStopped = true
-        return spinner
-    }()
-
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.dragDelegate = self
@@ -50,15 +44,26 @@ class UnsplashPhotoPickerViewController: UIViewController {
         collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: PhotoCell.reuseIdentifier)
         collectionView.register(PagingView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier:
             PagingView.reuseIdentifier)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.contentInsetAdjustmentBehavior = contentInsetAdjustmentBehavior
+        collectionView.contentInsetAdjustmentBehavior = .automatic
         collectionView.layoutMargins = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 0.0, right: 16.0)
         collectionView.backgroundColor = .white
         return collectionView
     }()
 
+    private let spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .gray)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.hidesWhenStopped = true
+        return spinner
+    }()
+
+    private lazy var emptyView: EmptyView = {
+        let view = EmptyView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     private var scrollView: UIScrollView { return collectionView }
-    private var contentInsetAdjustmentBehavior: UIScrollView.ContentInsetAdjustmentBehavior = .automatic
     var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
     private lazy var layout = WaterfallLayout(with: self)
     var dataSource: PagedDataSource! {
@@ -147,7 +152,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 1.0),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
@@ -161,6 +166,25 @@ class UnsplashPhotoPickerViewController: UIViewController {
             spinner.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor)
         ])
+    }
+
+    private func showEmptyView(with state: EmptyViewState) {
+        emptyView.state = state
+
+        guard emptyView.superview == nil else { return }
+
+        view.addSubview(emptyView)
+
+        NSLayoutConstraint.activate([
+            emptyView.topAnchor.constraint(equalTo: view.topAnchor),
+            emptyView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            emptyView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
+    }
+
+    private func hideEmptyView() {
+        emptyView.removeFromSuperview()
     }
 
     private func setupDataSource() {
@@ -206,7 +230,17 @@ class UnsplashPhotoPickerViewController: UIViewController {
     }
 
     func fetchNextItems() {
-        dataSource.fetchNextPage(completion: nil)
+        dataSource.fetchNextPage { [weak self] (photos, error) in
+            DispatchQueue.main.async {
+                if error != nil {
+                    self?.showEmptyView(with: .serverError)
+                } else if photos?.count == 0 {
+                    self?.showEmptyView(with: .noResults)
+                } else {
+                    self?.hideEmptyView()
+                }
+            }
+        }
     }
 
     private func fetchNextItemsIfNeeded() {
@@ -268,13 +302,16 @@ extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
         searchText = text
         refresh()
         scrollToTop()
+        hideEmptyView()
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         dataSource = editorialDataSource
         searchText = nil
+        refresh()
         reloadData()
         scrollToTop()
+        hideEmptyView()
     }
 }
 
@@ -315,5 +352,10 @@ extension UnsplashPhotoPickerViewController: PagedDataSourceObserver {
         }
     }
 
-    func dataSource(_ dataSource: PagedDataSource, fetchDidFailWithError error: Error) {}
+    func dataSource(_ dataSource: PagedDataSource, fetchDidFailWithError error: Error) {
+        DispatchQueue.main.async { [weak self] in
+            let state: EmptyViewState = (error as NSError).code == NSURLErrorNotConnectedToInternet ? .noInternetConnection : .serverError
+            self?.showEmptyView(with: state)
+        }
+    }
 }

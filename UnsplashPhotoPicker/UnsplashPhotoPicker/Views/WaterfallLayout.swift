@@ -18,7 +18,7 @@ class WaterfallLayout: UICollectionViewLayout {
 
     weak var delegate: WaterfallLayoutDelegate?
 
-    var topInset: CGFloat = 0 {
+    var topInset: CGFloat = 16 {
         didSet {
             invalidateLayout()
         }
