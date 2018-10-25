@@ -35,6 +35,7 @@ class WaterfallLayout: UICollectionViewLayout {
 
     private var numberOfColumns: Int {
         guard let collectionView = collectionView else { return 1 }
+
         let numberOfColumns = WaterfallLayout.numberOfColumns(for: collectionView.frame.width)
         return min(numberOfColumns, 3)
     }
@@ -54,6 +55,7 @@ class WaterfallLayout: UICollectionViewLayout {
 
     init(with delegate: WaterfallLayoutDelegate?) {
         self.delegate = delegate
+
         super.init()
     }
 
@@ -70,8 +72,8 @@ class WaterfallLayout: UICollectionViewLayout {
         if !isSingleColumn {
             width -= (collectionView.layoutMargins.left + collectionView.layoutMargins.right)
         }
-        let height = contentHeight
-        return CGSize(width: width, height: height)
+
+        return CGSize(width: width, height: contentHeight)
     }
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
@@ -85,12 +87,14 @@ class WaterfallLayout: UICollectionViewLayout {
                 break
             }
         }
+
         for index in (0 ..< frames.count).reversed() {
             if rect.intersects(frames[index]) {
                 lastFrameIndex = min((index + 1), layoutAttributes.count)
                 break
             }
         }
+
         for index in firstFrameIndex ..< lastFrameIndex {
             let attr = layoutAttributes[index]
             attributes.append(attr)
@@ -140,6 +144,7 @@ class WaterfallLayout: UICollectionViewLayout {
             let y = columnHeights[column]
             return CGPoint(x: x, y: y)
         }
+
         func indexOfNextColumn() -> Int {
             guard let minHeight = columnHeights.min() else {
                 return 0

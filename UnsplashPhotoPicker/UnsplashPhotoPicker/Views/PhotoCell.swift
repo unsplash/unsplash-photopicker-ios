@@ -10,6 +10,8 @@ import UIKit
 
 class PhotoCell: UICollectionViewCell {
 
+    // MARK: - Properties
+
     static let reuseIdentifier = "PhotoCell"
 
     var userInfo: Any?
@@ -20,6 +22,8 @@ class PhotoCell: UICollectionViewCell {
         photoView.translatesAutoresizingMaskIntoConstraints = false
         return photoView
     }()
+
+    // MARK: - Lifetime
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,13 +41,15 @@ class PhotoCell: UICollectionViewCell {
         photoView.prepareForReuse()
     }
 
-    func configure(with photo: UnsplashPhoto) {
-        photoView.configure(with: photo)
-    }
-
     // Override to bypass some expensive layout calculations.
     override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
         return .zero
+    }
+
+    // MARK: - Setup
+
+    func configure(with photo: UnsplashPhoto) {
+        photoView.configure(with: photo)
     }
 
     private func setupPhotoView() {

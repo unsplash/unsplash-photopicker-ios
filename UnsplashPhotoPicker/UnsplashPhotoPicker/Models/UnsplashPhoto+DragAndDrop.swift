@@ -20,6 +20,7 @@ extension UnsplashPhoto {
             guard let photoView = PhotoView.view(with: self) else {
                 return nil
             }
+
             photoView.userNameLabel.isHidden = true
             photoView.layer.cornerRadius = 12
             photoView.frame.size.width = 300

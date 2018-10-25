@@ -10,6 +10,8 @@ import UIKit
 
 class PagingView: UICollectionReusableView {
 
+    // MARK: - Properties
+
     static var height: CGFloat = 44
     static var reuseIdentifier = "PagingView"
 
@@ -29,15 +31,21 @@ class PagingView: UICollectionReusableView {
         }
     }
 
+    // MARK: - Lifetime
+
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         setupSpinner()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+
         setupSpinner()
     }
+
+    // MARK: - Setup
 
     private func setupSpinner() {
         addSubview(spinner)

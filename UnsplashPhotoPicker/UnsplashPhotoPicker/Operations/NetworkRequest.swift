@@ -45,6 +45,10 @@ class NetworkRequest: ConcurrentOperation {
     var type: NetworkRequest.QueryType { return .path }
     var timeoutInterval = 30.0
 
+    private var task: URLSessionDataTask?
+    private var successCodes: CountableRange<Int> = 200..<299
+    private var failureCodes: CountableRange<Int> = 400..<499
+
     // MARK: - Prepare the request
 
     func prepareURLComponents() -> URLComponents? {
@@ -171,11 +175,5 @@ class NetworkRequest: ConcurrentOperation {
     func processResponseData(_ data: Data?) {
         completeOperation()
     }
-
-    // MARK: - Private
-
-    private var task: URLSessionDataTask?
-    private var successCodes: CountableRange<Int> = 200..<299
-    private var failureCodes: CountableRange<Int> = 400..<499
 
 }

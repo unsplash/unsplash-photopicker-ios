@@ -29,6 +29,7 @@ class UnsplashRequest: NetworkRequest {
         guard let apiURL = URL(string: Configuration.shared.apiURL) else {
             return nil
         }
+
         var urlComponents = URLComponents(url: apiURL, resolvingAgainstBaseURL: true)
         urlComponents?.path = endpoint
         return urlComponents

@@ -58,16 +58,16 @@ class PhotoView: UIView {
 
         let url = sizedImageURL(from: regularUrl)
 
-        imageDownloader.downloadPhoto(with: url, cachedImage: { [weak self] image in
+        imageDownloader.downloadPhoto(with: url, completion: { [weak self] (image, isCached) in
             guard let strongSelf = self else { return }
 
-            strongSelf.imageView.image = image
-        }, downloadedImage: { [weak self] image in
-            guard let strongSelf = self else { return }
-
-            UIView.transition(with: strongSelf, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+            if isCached {
                 strongSelf.imageView.image = image
-            }, completion: nil)
+            } else {
+                UIView.transition(with: strongSelf, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+                    strongSelf.imageView.image = image
+                }, completion: nil)
+            }
         })
     }
 

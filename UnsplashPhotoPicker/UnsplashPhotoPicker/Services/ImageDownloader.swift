@@ -14,12 +14,12 @@ class ImageDownloader {
     private var imageDataTask: URLSessionDataTask?
     private let cache = ImageCache.cache
 
-    func downloadPhoto(with url: URL, cachedImage: ((UIImage?) -> Void), downloadedImage: @escaping ((UIImage?) -> Void)) {
+    func downloadPhoto(with url: URL, completion: @escaping ((UIImage?, Bool) -> Void)) {
         guard imageDataTask == nil else { return }
 
         if let cachedResponse = cache.cachedResponse(for: URLRequest(url: url)),
             let image = UIImage(data: cachedResponse.data) {
-            cachedImage(image)
+            completion(image, true)
             return
         }
 
@@ -34,7 +34,7 @@ class ImageDownloader {
             strongSelf.cache.storeCachedResponse(cachedResponse, for: URLRequest(url: url))
 
             DispatchQueue.main.async {
-                downloadedImage(image)
+                completion(image, false)
             }
         }
 
