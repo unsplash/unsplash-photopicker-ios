@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// A struct representing exif informations of a photo from the Unsplash API.
 public struct UnsplashPhotoExif: Codable {
 
     public let aperture: String

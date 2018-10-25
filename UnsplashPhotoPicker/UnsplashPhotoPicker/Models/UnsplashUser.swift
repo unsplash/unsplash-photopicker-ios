@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// A struct representing a user's public profile from the Unsplash API.
 public struct UnsplashUser: Codable {
 
     static var current: UnsplashUser?
