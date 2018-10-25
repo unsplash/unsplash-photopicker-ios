@@ -23,7 +23,7 @@ extension UnsplashPhotoPickerViewController: UICollectionViewDragDelegate {
     }
 
     func dragItems(for session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        guard let photo = self.photo(at: indexPath) else {
+        guard let photo = dataSource.item(at: indexPath.item) else {
             return []
         }
 

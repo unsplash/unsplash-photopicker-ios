@@ -17,7 +17,7 @@ extension UnsplashPhotoPickerViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.reuseIdentifier, for: indexPath)
 
-        guard let photoCell = cell as? PhotoCell, let photo = self.photo(at: indexPath) else { return cell }
+        guard let photoCell = cell as? PhotoCell, let photo = dataSource.item(at: indexPath.item) else { return cell }
 
         photoCell.configure(with: photo)
         photoCell.userInfo = photo.identifier
@@ -48,7 +48,7 @@ extension UnsplashPhotoPickerViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard collectionView.hasActiveDrag == false else { return }
 
-        guard let photo = photo(at: indexPath) else { return }
+        guard let photo = dataSource.item(at: indexPath.item) else { return }
 
         delegate?.unsplashPhotoPickerViewController(self, didSelectPhotos: [photo])
     }
@@ -57,7 +57,7 @@ extension UnsplashPhotoPickerViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension UnsplashPhotoPickerViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let photo = self.photo(at: indexPath) else { return .zero }
+        guard let photo = dataSource.item(at: indexPath.item) else { return .zero }
 
         let width = collectionView.frame.width
         let height = CGFloat(photo.height) * width / CGFloat(photo.width)
@@ -68,7 +68,7 @@ extension UnsplashPhotoPickerViewController: UICollectionViewDelegateFlowLayout 
 // MARK: - WaterfallLayoutDelegate
 extension UnsplashPhotoPickerViewController: WaterfallLayoutDelegate {
     func waterfallLayout(_ layout: WaterfallLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let photo = self.photo(at: indexPath) else { return .zero }
+        guard let photo = dataSource.item(at: indexPath.item) else { return .zero }
 
         return CGSize(width: photo.width, height: photo.height)
     }

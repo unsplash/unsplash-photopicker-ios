@@ -34,8 +34,10 @@ class UnsplashPhotoPickerViewController: UIViewController {
         return searchController
     }()
 
+    private lazy var layout = WaterfallLayout(with: self)
+
     private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -63,9 +65,8 @@ class UnsplashPhotoPickerViewController: UIViewController {
         return view
     }()
 
-    private var scrollView: UIScrollView { return collectionView }
     var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
-    private lazy var layout = WaterfallLayout(with: self)
+
     var dataSource: PagedDataSource! {
         didSet {
             if let oldValue = oldValue {
@@ -75,11 +76,13 @@ class UnsplashPhotoPickerViewController: UIViewController {
             dataSource?.addObserver(self)
         }
     }
+
     private var editorialDataSource: PagedDataSource! {
         didSet {
             dataSource = editorialDataSource
         }
     }
+
     private var searchText: String?
 
     weak var delegate: UnsplashPhotoPickerViewControllerDelegate?
@@ -121,12 +124,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
         coordinator.animate(alongsideTransition: { (_) in
             self.layout.invalidateLayout()
         }, completion: nil)
-    }
-
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-
-        reloadLayout()
     }
 
     // MARK: - Setup
@@ -199,16 +196,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
         delegate?.unsplashPhotoPickerViewControllerDidCancel(self)
     }
 
-    private func reloadLayout() {
-        let visibleIndexPaths = collectionView.indexPathsForVisibleItems
-
-        collectionView.collectionViewLayout = layout
-
-        if let firstVisibleIndexPath = visibleIndexPaths.first {
-            collectionView.scrollToItem(at: firstVisibleIndexPath, at: UICollectionView.ScrollPosition.top, animated: false)
-        }
-    }
-
     private func scrollToTop() {
         layout.topInset = 0
     }
@@ -247,22 +234,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
         if dataSource.items.count == 0 {
             fetchNextItems()
         }
-    }
-
-    func photo(at indexPath: IndexPath) -> UnsplashPhoto? {
-        guard indexPath.item < dataSource.items.count else {
-            return nil
-        }
-
-        return dataSource.items[indexPath.item]
-    }
-
-    func indexPath(for photo: UnsplashPhoto) -> IndexPath? {
-        for index in 0..<dataSource.items.count where dataSource.items[index].identifier == photo.identifier {
-            return IndexPath(item: index, section: 0)
-        }
-
-        return nil
     }
 
     // MARK: - Notifications

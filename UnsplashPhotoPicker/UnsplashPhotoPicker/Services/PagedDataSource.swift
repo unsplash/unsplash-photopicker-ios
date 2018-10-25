@@ -117,6 +117,14 @@ class PagedDataSource {
         observers.remove(observer)
     }
 
+    func item(at index: Int) -> UnsplashPhoto? {
+        guard index < items.count else {
+            return nil
+        }
+
+        return items[index]
+    }
+
     // MARK: - Private
 
     private func fetchDidComplete(withItems items: [UnsplashPhoto]?, error: Error?, completion: (([UnsplashPhoto]?, Error?) -> Void)?) {
