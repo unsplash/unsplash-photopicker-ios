@@ -23,20 +23,29 @@ class PhotoCell: UICollectionViewCell {
         return photoView
     }()
 
+    override var isSelected: Bool {
+        didSet {
+            isSelected ? displayBorder() : hideBorder()
+        }
+    }
+
     // MARK: - Lifetime
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         setupPhotoView()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+
         setupPhotoView()
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
+
         userInfo = nil
         photoView.prepareForReuse()
     }
@@ -53,6 +62,7 @@ class PhotoCell: UICollectionViewCell {
     }
 
     private func setupPhotoView() {
+        contentView.layer.borderColor = Constants.selectedColor.cgColor
         contentView.preservesSuperviewLayoutMargins = true
         contentView.addSubview(photoView)
 
@@ -62,5 +72,24 @@ class PhotoCell: UICollectionViewCell {
             photoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             photoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
+    }
+
+    private func displayBorder() {
+        contentView.layer.borderWidth = Constants.selectedBorderWidth
+        photoView.alpha = Constants.selectedPhotoViewAlpha
+    }
+
+    private func hideBorder() {
+        contentView.layer.borderWidth = 0.0
+        photoView.alpha = 1.0
+    }
+}
+
+// MARK: - Constants
+private extension PhotoCell {
+    struct Constants {
+        static let selectedColor = UIColor.black
+        static let selectedBorderWidth: CGFloat = 3.0
+        static let selectedPhotoViewAlpha: CGFloat = 0.7
     }
 }

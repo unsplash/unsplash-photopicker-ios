@@ -57,6 +57,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         collectionView.contentInsetAdjustmentBehavior = .automatic
         collectionView.layoutMargins = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 0.0, right: 16.0)
         collectionView.backgroundColor = .white
+        collectionView.allowsMultipleSelection = Configuration.shared.allowsMultipleSelection
         return collectionView
     }()
 
@@ -211,7 +212,15 @@ class UnsplashPhotoPickerViewController: UIViewController {
     @objc private func doneBarButtonTapped(sender: AnyObject?) {
         searchController.searchBar.resignFirstResponder()
 
-        delegate?.unsplashPhotoPickerViewControllerDidCancel(self)
+        let selectedPhotos = collectionView.indexPathsForSelectedItems?.reduce([], { (photos, indexPath) -> [UnsplashPhoto] in
+            var mutablePhotos = photos
+            if let photo = dataSource.item(at: indexPath.item) {
+                mutablePhotos.append(photo)
+            }
+            return mutablePhotos
+        })
+
+        delegate?.unsplashPhotoPickerViewController(self, didSelectPhotos: selectedPhotos ?? [UnsplashPhoto]())
     }
 
     private func scrollToTop() {

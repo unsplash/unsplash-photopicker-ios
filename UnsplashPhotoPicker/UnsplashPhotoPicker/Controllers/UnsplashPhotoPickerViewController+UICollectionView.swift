@@ -46,11 +46,11 @@ extension UnsplashPhotoPickerViewController: UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard collectionView.hasActiveDrag == false else { return }
+        guard let photo = dataSource.item(at: indexPath.item), collectionView.hasActiveDrag == false else { return }
 
-        guard let photo = dataSource.item(at: indexPath.item) else { return }
-
-        delegate?.unsplashPhotoPickerViewController(self, didSelectPhotos: [photo])
+        if !Configuration.shared.allowsMultipleSelection {
+            delegate?.unsplashPhotoPickerViewController(self, didSelectPhotos: [photo])
+        }
     }
 }
 
