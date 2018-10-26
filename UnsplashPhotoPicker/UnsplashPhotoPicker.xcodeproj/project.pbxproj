@@ -48,6 +48,7 @@
 		23B683D7216BF86900CAA546 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23B683D5216BF86900CAA546 /* LaunchScreen.storyboard */; };
 		23B683DD216BF87400CAA546 /* UnsplashPhotoPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B683BB216BF83200CAA546 /* UnsplashPhotoPicker.framework */; };
 		23C24A71217D3BBC00C03E7B /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C24A70217D3BBC00C03E7B /* EmptyView.swift */; };
+		23E9F3EA21829C5C00DFAD93 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E9F3E921829C5C00DFAD93 /* PhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,7 @@
 		23B683D6216BF86900CAA546 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		23B683D8216BF86900CAA546 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23C24A70217D3BBC00C03E7B /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		23E9F3E921829C5C00DFAD93 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 			children = (
 				23B683CC216BF86800CAA546 /* AppDelegate.swift */,
 				23B683CE216BF86800CAA546 /* ViewController.swift */,
+				23E9F3E921829C5C00DFAD93 /* PhotoCollectionViewCell.swift */,
 				23B683D0216BF86800CAA546 /* Main.storyboard */,
 				23B683D3216BF86900CAA546 /* Assets.xcassets */,
 				23B683D5216BF86900CAA546 /* LaunchScreen.storyboard */,
@@ -432,6 +435,7 @@
 			files = (
 				23B683CF216BF86800CAA546 /* ViewController.swift in Sources */,
 				23B683CD216BF86800CAA546 /* AppDelegate.swift in Sources */,
+				23E9F3EA21829C5C00DFAD93 /* PhotoCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

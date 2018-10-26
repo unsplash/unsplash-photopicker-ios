@@ -8,15 +8,17 @@
 
 import UIKit
 import UnsplashPhotoPicker
-import os
 
 class ViewController: UIViewController {
 
     // MARK: - Properties
 
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var collectionView: UICollectionView!
 
-    private var imageDataTask: URLSessionDataTask?
+    private let itemsPerRow: CGFloat = 3
+    private let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
+
+    private var photos = [UnsplashPhoto]()
 
     // MARK: - Action
 
@@ -32,38 +34,49 @@ class ViewController: UIViewController {
         present(unsplashPhotoPicker, animated: true, completion: nil)
     }
 
-    private func downloadPhoto(_ photo: UnsplashPhoto) {
-        guard let url = photo.urls[.regular] else { return }
+}
 
-        imageDataTask = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
-            guard let strongSelf = self else { return }
-
-            strongSelf.imageDataTask = nil
-
-            if let error = error { return os_log("%@", log: .default, type: .error, error.localizedDescription) }
-
-            guard let data = data, let image = UIImage(data: data) else { return }
-
-            DispatchQueue.main.async {
-                UIView.transition(with: strongSelf.imageView, duration: 0.25, options: [.transitionCrossDissolve], animations: {
-                    strongSelf.imageView.image = image
-                }, completion: nil)
-            }
-        }
-
-        imageDataTask?.resume()
+// MARK: - UITableViewDataSource
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return photos.count
     }
 
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCollectionViewCell
+        let photo = photos[indexPath.row]
+        cell.downloadPhoto(photo)
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
+    }
 }
 
 // MARK: - UnsplashPhotoPickerDelegate
 extension ViewController: UnsplashPhotoPickerDelegate {
     func unsplashPhotoPicker(_ photoPicker: UnsplashPhotoPicker, didSelectPhotos photos: [UnsplashPhoto]) {
-        print("Unsplash photo picker did select photos: \(photos)")
+        print("Unsplash photo picker did select \(photos.count) photo(s)")
 
-        guard let photo = photos.first else { return }
+        self.photos = photos
 
-        downloadPhoto(photo)
+        collectionView.reloadData()
     }
 
     func unsplashPhotoPickerDidCancel(_ photoPicker: UnsplashPhotoPicker) {
