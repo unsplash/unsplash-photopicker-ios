@@ -147,6 +147,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         navigationItem.leftBarButtonItem = cancelBarButtonItem
 
         if Configuration.shared.allowsMultipleSelection {
+            doneBarButtonItem.isEnabled = false
             navigationItem.rightBarButtonItem = doneBarButtonItem
         }
     }
@@ -195,6 +196,10 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     private func hideEmptyView() {
         emptyView.removeFromSuperview()
+    }
+
+    func updateDoneButtonState() {
+        doneBarButtonItem.isEnabled = (collectionView.indexPathsForSelectedItems?.count ?? 0) > 0
     }
 
     private func setupDataSource() {
