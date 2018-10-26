@@ -231,7 +231,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
     }
 
     private func scrollToTop() {
-        layout.topInset = 0
+        collectionView.setContentOffset(.zero, animated: false)
     }
 
     // MARK: - Data
@@ -313,6 +313,8 @@ extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        guard searchText != nil else { return }
+
         dataSource = editorialDataSource
         searchText = nil
         refresh()
