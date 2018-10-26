@@ -25,7 +25,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
             return
         }
 
-        imageDataTask = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+        imageDataTask = URLSession.shared.dataTask(with: url) { [weak self] (data, _, error) in
             guard let strongSelf = self else { return }
 
             strongSelf.imageDataTask = nil

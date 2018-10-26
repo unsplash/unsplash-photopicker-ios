@@ -78,7 +78,7 @@ class NetworkRequest: ConcurrentOperation {
         }
     }
 
-    private func prepareBodyRequest(_ url: URL, _ parameters: [String : Any]?) throws -> URLRequest {
+    private func prepareBodyRequest(_ url: URL, _ parameters: [String: Any]?) throws -> URLRequest {
         var mutableRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: timeoutInterval)
         if let parameters = parameters {
             switch format {
@@ -91,7 +91,7 @@ class NetworkRequest: ConcurrentOperation {
         return mutableRequest
     }
 
-    private func preparePathRequest(_ url: URL, _ parameters: [String : Any]?) -> URLRequest {
+    private func preparePathRequest(_ url: URL, _ parameters: [String: Any]?) -> URLRequest {
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
         components.query = urlEncodedParameters(parameters)
         return URLRequest(url: components.url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: timeoutInterval)

@@ -124,6 +124,7 @@ class WaterfallLayout: UICollectionViewLayout {
         return bounds.width != newBounds.width
     }
 
+    // swiftlint:disable function_body_length
     override func prepare() {
         super.prepare()
 
@@ -140,9 +141,9 @@ class WaterfallLayout: UICollectionViewLayout {
 
         var columnHeights = [CGFloat](repeating: topInset, count: numberOfColumns)
         func originForColumn(_ column: Int) -> CGPoint {
-            let x = isSingleColumn ? 0 : collectionView.layoutMargins.left + CGFloat(column) * (columnWidth + itemSpacing)
-            let y = columnHeights[column]
-            return CGPoint(x: x, y: y)
+            let pointX = isSingleColumn ? 0 : collectionView.layoutMargins.left + CGFloat(column) * (columnWidth + itemSpacing)
+            let pointY = columnHeights[column]
+            return CGPoint(x: pointX, y: pointY)
         }
 
         func indexOfNextColumn() -> Int {

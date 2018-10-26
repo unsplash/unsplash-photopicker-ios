@@ -43,9 +43,13 @@ extension ViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCollectionViewCell
-        let photo = photos[indexPath.row]
-        cell.downloadPhoto(photo)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath)
+
+        if let photoCell = cell as? PhotoCollectionViewCell {
+            let photo = photos[indexPath.row]
+            photoCell.downloadPhoto(photo)
+        }
+
         return cell
     }
 }
@@ -83,4 +87,3 @@ extension ViewController: UnsplashPhotoPickerDelegate {
         print("Unsplash photo picker did cancel")
     }
 }
-
