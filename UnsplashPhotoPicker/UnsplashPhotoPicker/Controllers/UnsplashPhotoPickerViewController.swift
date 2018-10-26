@@ -184,6 +184,8 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
         guard emptyView.superview == nil else { return }
 
+        spinner.stopAnimating()
+
         view.addSubview(emptyView)
 
         NSLayoutConstraint.activate([
@@ -250,6 +252,8 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     func fetchNextItems() {
         dataSource.fetchNextPage { [weak self] (photos, error) in
+            guard self?.dataSource.items.count == 0 else { return }
+
             DispatchQueue.main.async {
                 if error != nil {
                     self?.showEmptyView(with: .serverError)
@@ -356,6 +360,8 @@ extension UnsplashPhotoPickerViewController: PagedDataSourceObserver {
     }
 
     func dataSource(_ dataSource: PagedDataSource, fetchDidFailWithError error: Error) {
+        guard dataSource.items.count == 0 else { return }
+
         DispatchQueue.main.async { [weak self] in
             let state: EmptyViewState = (error as NSError).code == NSURLErrorNotConnectedToInternet ? .noInternetConnection : .serverError
             self?.showEmptyView(with: state)
