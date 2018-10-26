@@ -23,7 +23,8 @@ class ViewController: UIViewController {
     @IBAction func presentUnsplashPhotoPicker(sender: AnyObject?) {
         let configuration = UnsplashPhotoPickerConfiguration(
             accessKey: "<YOUR_ACCESS_KEY>",
-            secretKey: "<YOUR_SECRET_KEY>"
+            secretKey: "<YOUR_SECRET_KEY>",
+            allowsMultipleSelection: true
         )
         let unsplashPhotoPicker = UnsplashPhotoPicker(configuration: configuration)
         unsplashPhotoPicker.photoPickerDelegate = self

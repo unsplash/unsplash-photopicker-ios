@@ -25,6 +25,14 @@ class UnsplashPhotoPickerViewController: UIViewController {
         )
     }()
 
+    private lazy var doneBarButtonItem: UIBarButtonItem = {
+        return UIBarButtonItem(
+            barButtonSystemItem: .done,
+            target: self,
+            action: #selector(doneBarButtonTapped(sender:))
+        )
+    }()
+
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
@@ -136,6 +144,10 @@ class UnsplashPhotoPickerViewController: UIViewController {
     private func setupNavigationBar() {
         title = NSLocalizedString("Unsplash Photo Picker", comment: "")
         navigationItem.leftBarButtonItem = cancelBarButtonItem
+
+        if Configuration.shared.allowsMultipleSelection {
+            navigationItem.rightBarButtonItem = doneBarButtonItem
+        }
     }
 
     private func setupSearchController() {
@@ -191,6 +203,12 @@ class UnsplashPhotoPickerViewController: UIViewController {
     // MARK: - Actions
 
     @objc private func cancelBarButtonTapped(sender: AnyObject?) {
+        searchController.searchBar.resignFirstResponder()
+
+        delegate?.unsplashPhotoPickerViewControllerDidCancel(self)
+    }
+
+    @objc private func doneBarButtonTapped(sender: AnyObject?) {
         searchController.searchBar.resignFirstResponder()
 
         delegate?.unsplashPhotoPickerViewControllerDidCancel(self)
