@@ -76,21 +76,15 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
 
-    var dataSource: PagedDataSource! {
+    var dataSource: PagedDataSource {
         didSet {
-            if let oldValue = oldValue {
-                oldValue.cancelFetch()
-                oldValue.removeObserver(self)
-            }
-            dataSource?.addObserver(self)
+            oldValue.cancelFetch()
+            oldValue.removeObserver(self)
+            dataSource.addObserver(self)
         }
     }
 
-    private var editorialDataSource: PagedDataSource! {
-        didSet {
-            dataSource = editorialDataSource
-        }
-    }
+    private let editorialDataSource = PhotosDataSourceFactory.collection(identifier: Configuration.shared.editorialCollectionId).dataSource
 
     private var searchText: String?
 
@@ -98,9 +92,18 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     // MARK: - Lifetime
 
+    init() {
+        self.dataSource = editorialDataSource
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     deinit {
         NotificationCenter.default.removeObserver(self)
-        dataSource = nil
     }
 
     // MARK: - View Life Cycle
@@ -205,7 +208,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
     }
 
     private func setupDataSource() {
-        editorialDataSource = PhotosDataSourceFactory.collection(identifier: Configuration.shared.editorialCollectionId).dataSource
+        dataSource.addObserver(self)
     }
 
     // MARK: - Actions
