@@ -255,8 +255,9 @@ class UnsplashPhotoPickerViewController: UIViewController {
             guard self?.dataSource.items.count == 0 else { return }
 
             DispatchQueue.main.async {
-                if error != nil {
-                    self?.showEmptyView(with: .serverError)
+                if let error = error {
+                    let state: EmptyViewState = (error as NSError).code == NSURLErrorNotConnectedToInternet ? .noInternetConnection : .serverError
+                    self?.showEmptyView(with: state)
                 } else if photos?.count == 0 {
                     self?.showEmptyView(with: .noResults)
                 } else {
@@ -303,7 +304,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
 // MARK: - UISearchBarDelegate
 extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let text = searchBar.text, text != searchText else { return }
+        guard let text = searchBar.text else { return }
 
         dataSource = PhotosDataSourceFactory.search(query: text).dataSource
         searchText = text
@@ -362,11 +363,5 @@ extension UnsplashPhotoPickerViewController: PagedDataSourceObserver {
     }
 
     func dataSource(_ dataSource: PagedDataSource, fetchDidFailWithError error: Error) {
-        guard dataSource.items.count == 0 else { return }
-
-        DispatchQueue.main.async { [weak self] in
-            let state: EmptyViewState = (error as NSError).code == NSURLErrorNotConnectedToInternet ? .noInternetConnection : .serverError
-            self?.showEmptyView(with: state)
-        }
     }
 }
