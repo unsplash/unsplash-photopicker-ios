@@ -39,6 +39,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "search.placeholder".localized()
+        searchController.searchBar.autocapitalizationType = .none
         return searchController
     }()
 
