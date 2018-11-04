@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import os
 
 class PhotoView: UIView {
 

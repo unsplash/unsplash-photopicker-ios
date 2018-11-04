@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import os
 
 class ImageDownloader {
 
@@ -27,8 +26,7 @@ class ImageDownloader {
             guard let strongSelf = self else { return }
             strongSelf.imageDataTask = nil
 
-            if let error = error { return os_log("%@", log: .default, type: .error, error.localizedDescription) }
-            guard let data = data, let response = response, let image = UIImage(data: data) else { return }
+            guard let data = data, let response = response, let image = UIImage(data: data), error == nil else { return }
 
             let cachedResponse = CachedURLResponse(response: response, data: data)
             strongSelf.cache.storeCachedResponse(cachedResponse, for: URLRequest(url: url))
