@@ -50,8 +50,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.dragDelegate = self
-        collectionView.dragInteractionEnabled = true
         collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: PhotoCell.reuseIdentifier)
         collectionView.register(PagingView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier:
             PagingView.reuseIdentifier)
@@ -74,8 +72,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
-    var selectionFeedbackGenerator: UISelectionFeedbackGenerator?
 
     var dataSource: PagedDataSource {
         didSet {
