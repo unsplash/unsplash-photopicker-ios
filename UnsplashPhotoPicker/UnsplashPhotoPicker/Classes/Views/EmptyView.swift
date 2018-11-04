@@ -16,22 +16,22 @@ enum EmptyViewState {
     var title: String {
         switch self {
         case .noResults:
-            return NSLocalizedString("No results", comment: "")
+            return "error.noResults.title".localized()
         case .noInternetConnection:
-            return NSLocalizedString("No Internet Connection", comment: "")
+            return "error.noInternetConnection.title".localized()
         case .serverError:
-            return NSLocalizedString("Server error", comment: "")
+            return "error.serverError.title".localized()
         }
     }
 
     var description: String {
         switch self {
         case .noResults:
-            return NSLocalizedString("Please update your search and try again.", comment: "")
+            return "error.noResults.description".localized()
         case .noInternetConnection:
-            return NSLocalizedString("You must connect to a Wi-Fi or cellular data network to access Unsplash.", comment: "")
+            return "error.noInternetConnection.description".localized()
         case .serverError:
-            return NSLocalizedString("Oops! Something wrong. Please try again.", comment: "")
+            return "error.serverError.description".localized()
         }
     }
 }

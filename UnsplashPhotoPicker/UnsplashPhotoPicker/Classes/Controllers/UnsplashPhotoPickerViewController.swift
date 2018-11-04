@@ -38,7 +38,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = NSLocalizedString("Search photos", comment: "")
+        searchController.searchBar.placeholder = "search.placeholder".localized()
         return searchController
     }()
 
@@ -82,6 +82,10 @@ class UnsplashPhotoPickerViewController: UIViewController {
             oldValue.removeObserver(self)
             dataSource.addObserver(self)
         }
+    }
+
+    var numberOfSelectedPhotos: Int {
+        return collectionView.indexPathsForSelectedItems?.count ?? 0
     }
 
     private let editorialDataSource = PhotosDataSourceFactory.collection(identifier: Configuration.shared.editorialCollectionId).dataSource
@@ -152,7 +156,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
     }
 
     private func setupNavigationBar() {
-        title = NSLocalizedString("Unsplash Photo Picker", comment: "")
+        updateTitle()
         navigationItem.leftBarButtonItem = cancelBarButtonItem
 
         if Configuration.shared.allowsMultipleSelection {
@@ -209,8 +213,12 @@ class UnsplashPhotoPickerViewController: UIViewController {
         emptyView.removeFromSuperview()
     }
 
+    func updateTitle() {
+        title = String.localizedStringWithFormat("title".localized(), numberOfSelectedPhotos)
+    }
+
     func updateDoneButtonState() {
-        doneBarButtonItem.isEnabled = (collectionView.indexPathsForSelectedItems?.count ?? 0) > 0
+        doneBarButtonItem.isEnabled = numberOfSelectedPhotos > 0
     }
 
     private func setupDataSource() {
