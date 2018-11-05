@@ -76,8 +76,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
     var dataSource: PagedDataSource {
         didSet {
             oldValue.cancelFetch()
-            oldValue.removeObserver(self)
-            dataSource.addObserver(self)
+            dataSource.delegate = self
         }
     }
 
@@ -97,6 +96,8 @@ class UnsplashPhotoPickerViewController: UIViewController {
         self.dataSource = editorialDataSource
 
         super.init(nibName: nil, bundle: nil)
+
+        dataSource.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -118,7 +119,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
         setupSearchController()
         setupCollectionView()
         setupSpinner()
-        setupDataSource()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -218,10 +218,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
         doneBarButtonItem.isEnabled = numberOfSelectedPhotos > 0
     }
 
-    private func setupDataSource() {
-        dataSource.addObserver(self)
-    }
-
     // MARK: - Actions
 
     @objc private func cancelBarButtonTapped(sender: AnyObject?) {
@@ -265,20 +261,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
     }
 
     func fetchNextItems() {
-        dataSource.fetchNextPage { [weak self] (photos, error) in
-            guard self?.dataSource.items.count == 0 else { return }
-
-            DispatchQueue.main.async {
-                if let error = error {
-                    let state: EmptyViewState = (error as NSError).code == NSURLErrorNotConnectedToInternet ? .noInternetConnection : .serverError
-                    self?.showEmptyView(with: state)
-                } else if photos?.count == 0 {
-                    self?.showEmptyView(with: .noResults)
-                } else {
-                    self?.hideEmptyView()
-                }
-            }
-        }
+        dataSource.fetchNextPage()
     }
 
     private func fetchNextItemsIfNeeded() {
@@ -339,8 +322,8 @@ extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
     }
 }
 
-// MARK: - PagedDataSourceObserver
-extension UnsplashPhotoPickerViewController: PagedDataSourceObserver {
+// MARK: - PagedDataSourceDelegate
+extension UnsplashPhotoPickerViewController: PagedDataSourceDelegate {
     func dataSourceWillStartFetching(_ dataSource: PagedDataSource) {
         if dataSource.items.count == 0 {
             spinner.startAnimating()
@@ -351,7 +334,9 @@ extension UnsplashPhotoPickerViewController: PagedDataSourceObserver {
         guard items.count > 0 else {
             DispatchQueue.main.async {
                 self.spinner.stopAnimating()
+                self.showEmptyView(with: .noResults)
             }
+
             return
         }
 
@@ -365,6 +350,7 @@ extension UnsplashPhotoPickerViewController: PagedDataSourceObserver {
 
         DispatchQueue.main.async { [unowned self] in
             self.spinner.stopAnimating()
+            self.hideEmptyView()
 
             let hasWindow = self.collectionView.window != nil
             let collectionViewItemCount = self.collectionView.numberOfItems(inSection: 0)
@@ -377,5 +363,10 @@ extension UnsplashPhotoPickerViewController: PagedDataSourceObserver {
     }
 
     func dataSource(_ dataSource: PagedDataSource, fetchDidFailWithError error: Error) {
+        let state: EmptyViewState = (error as NSError).code == NSURLErrorNotConnectedToInternet ? .noInternetConnection : .serverError
+
+        DispatchQueue.main.async {
+            self.showEmptyView(with: state)
+        }
     }
 }

@@ -13,7 +13,7 @@ protocol PagedDataSourceFactory {
     func request(with cursor: UnsplashPagedRequest.Cursor) -> UnsplashPagedRequest
 }
 
-protocol PagedDataSourceObserver: AnyObject {
+protocol PagedDataSourceDelegate: AnyObject {
     func dataSourceWillStartFetching(_ dataSource: PagedDataSource)
     func dataSource(_ dataSource: PagedDataSource, didFetch items: [UnsplashPhoto])
     func dataSource(_ dataSource: PagedDataSource, fetchDidFailWithError error: Error)
@@ -42,7 +42,8 @@ class PagedDataSource {
     private(set) var isFetching = false
     private var canFetchMore = true
     private lazy var operationQueue = OperationQueue(with: "com.unsplash.pagedDataSource")
-    private var observers = NSHashTable<AnyObject>(options: NSPointerFunctions.Options.weakMemory)
+
+    weak var delegate: PagedDataSourceDelegate?
 
     init(with factory: PagedDataSourceFactory) {
         self.factory = factory
@@ -58,20 +59,18 @@ class PagedDataSource {
         error = nil
     }
 
-    func fetchNextPage(completion: (([UnsplashPhoto]?, Error?) -> Void)?) {
+    func fetchNextPage() {
         if isFetching {
-            fetchDidComplete(withItems: nil, error: DataSourceError.dataSourceIsFetching, completion: completion)
+            fetchDidComplete(withItems: nil, error: DataSourceError.dataSourceIsFetching)
             return
         }
 
         if canFetchMore == false {
-            fetchDidComplete(withItems: [], error: nil, completion: completion)
+            fetchDidComplete(withItems: [], error: nil)
             return
         }
 
-        iterateObservers { (observer) in
-            observer.dataSourceWillStartFetching(self)
-        }
+        delegate?.dataSourceWillStartFetching(self)
 
         isFetching = true
 
@@ -79,13 +78,13 @@ class PagedDataSource {
         request.completionBlock = {
             if let error = request.error {
                 self.isFetching = false
-                self.fetchDidComplete(withItems: nil, error: error, completion: completion)
+                self.fetchDidComplete(withItems: nil, error: error)
                 return
             }
 
             guard let items = request.items as? [UnsplashPhoto] else {
                 self.isFetching = false
-                self.fetchDidComplete(withItems: nil, error: DataSourceError.wrongItemsType(request.items), completion: completion)
+                self.fetchDidComplete(withItems: nil, error: DataSourceError.wrongItemsType(request.items))
                 return
             }
 
@@ -98,7 +97,7 @@ class PagedDataSource {
             self.items.append(contentsOf: items)
 
             self.isFetching = false
-            self.fetchDidComplete(withItems: items, error: nil, completion: completion)
+            self.fetchDidComplete(withItems: items, error: nil)
         }
 
         operationQueue.addOperationWithDependencies(request)
@@ -107,14 +106,6 @@ class PagedDataSource {
     func cancelFetch() {
         operationQueue.cancelAllOperations()
         isFetching = false
-    }
-
-    func addObserver(_ observer: PagedDataSourceObserver) {
-        observers.add(observer)
-    }
-
-    func removeObserver(_ observer: PagedDataSourceObserver) {
-        observers.remove(observer)
     }
 
     func item(at index: Int) -> UnsplashPhoto? {
@@ -127,26 +118,14 @@ class PagedDataSource {
 
     // MARK: - Private
 
-    private func fetchDidComplete(withItems items: [UnsplashPhoto]?, error: Error?, completion: (([UnsplashPhoto]?, Error?) -> Void)?) {
+    private func fetchDidComplete(withItems items: [UnsplashPhoto]?, error: Error?) {
         self.error = error
 
-        iterateObservers { (observer) in
-            if let error = error {
-                observer.dataSource(self, fetchDidFailWithError: error)
-            } else {
-                let items = items ?? []
-                observer.dataSource(self, didFetch: items)
-            }
-        }
-
-        completion?(items, error)
-    }
-
-    private func iterateObservers(handler: (PagedDataSourceObserver) -> Void) {
-        for observer in self.observers.allObjects {
-            if let observer = observer as? PagedDataSourceObserver {
-                handler(observer)
-            }
+        if let error = error {
+            delegate?.dataSource(self, fetchDidFailWithError: error)
+        } else {
+            let items = items ?? []
+            delegate?.dataSource(self, didFetch: items)
         }
     }
 
