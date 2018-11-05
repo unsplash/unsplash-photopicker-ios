@@ -308,6 +308,7 @@ extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
         refresh()
         scrollToTop()
         hideEmptyView()
+        updateDoneButtonState()
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -319,6 +320,7 @@ extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
         reloadData()
         scrollToTop()
         hideEmptyView()
+        updateDoneButtonState()
     }
 }
 
