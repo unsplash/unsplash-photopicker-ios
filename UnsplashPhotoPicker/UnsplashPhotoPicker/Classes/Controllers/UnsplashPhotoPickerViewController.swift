@@ -119,6 +119,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         setupSearchController()
         setupCollectionView()
         setupSpinner()
+        setupPeekAndPop()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -187,6 +188,10 @@ class UnsplashPhotoPickerViewController: UIViewController {
             spinner.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor)
         ])
+    }
+
+    private func setupPeekAndPop() {
+        registerForPreviewing(with: self, sourceView: collectionView)
     }
 
     private func showEmptyView(with state: EmptyViewState) {
@@ -370,5 +375,24 @@ extension UnsplashPhotoPickerViewController: PagedDataSourceDelegate {
         DispatchQueue.main.async {
             self.showEmptyView(with: state)
         }
+    }
+}
+
+// MARK: - UIViewControllerPreviewingDelegate
+extension UnsplashPhotoPickerViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = collectionView.indexPathForItem(at: location),
+            let cellAttributes = collectionView.layoutAttributesForItem(at: indexPath),
+            let cell = collectionView.cellForItem(at: indexPath) as? PhotoCell,
+            let image = cell.photoView.imageView.image else {
+                return nil
+        }
+
+        previewingContext.sourceRect = cellAttributes.frame
+
+        return UnsplashPhotoPickerPreviewViewController(image: image)
+    }
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
     }
 }
