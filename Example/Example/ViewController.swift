@@ -9,10 +9,16 @@
 import UIKit
 import UnsplashPhotoPicker
 
+enum SelectionType: Int {
+    case single
+    case multiple
+}
+
 class ViewController: UIViewController {
 
     // MARK: - Properties
 
+    @IBOutlet weak var selectionTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView!
 
     private let itemsPerRow: CGFloat = 3
@@ -23,10 +29,11 @@ class ViewController: UIViewController {
     // MARK: - Action
 
     @IBAction func presentUnsplashPhotoPicker(sender: AnyObject?) {
+        let allowsMultipleSelection = selectionTypeSegmentedControl.selectedSegmentIndex == SelectionType.multiple.rawValue
         let configuration = UnsplashPhotoPickerConfiguration(
             accessKey: "<YOUR_ACCESS_KEY>",
             secretKey: "<YOUR_SECRET_KEY>",
-            allowsMultipleSelection: true
+            allowsMultipleSelection: allowsMultipleSelection
         )
         let unsplashPhotoPicker = UnsplashPhotoPicker(configuration: configuration)
         unsplashPhotoPicker.photoPickerDelegate = self
