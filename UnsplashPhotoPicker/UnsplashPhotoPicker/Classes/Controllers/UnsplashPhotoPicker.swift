@@ -67,11 +67,22 @@ public class UnsplashPhotoPicker: UINavigationController {
         viewControllers = [photoPickerViewController]
     }
 
+    // MARK: - Download tracking
+
+    private func trackDownloads(for photos: [UnsplashPhoto]) {
+        for photo in photos {
+            if let downloadLocationURL = photo.links[.downloadLocation]?.appending(queryItems: [URLQueryItem(name: "client_id", value: Configuration.shared.accessKey)]) {
+                URLSession.shared.dataTask(with: downloadLocationURL).resume()
+            }
+        }
+    }
+
 }
 
 // MARK: - UnsplashPhotoPickerViewControllerDelegate
 extension UnsplashPhotoPicker: UnsplashPhotoPickerViewControllerDelegate {
     func unsplashPhotoPickerViewController(_ viewController: UnsplashPhotoPickerViewController, didSelectPhotos photos: [UnsplashPhoto]) {
+        trackDownloads(for: photos)
         photoPickerDelegate?.unsplashPhotoPicker(self, didSelectPhotos: photos)
         dismiss(animated: true, completion: nil)
     }
