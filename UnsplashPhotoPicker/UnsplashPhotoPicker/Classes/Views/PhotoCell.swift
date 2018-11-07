@@ -23,9 +23,11 @@ class PhotoCell: UICollectionViewCell {
         return photoView
     }()
 
+    private lazy var checkmarkView = CheckmarkView()
+
     override var isSelected: Bool {
         didSet {
-            isSelected ? displayBorder() : hideBorder()
+            updateSelectedState()
         }
     }
 
@@ -33,14 +35,18 @@ class PhotoCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        setupPhotoView()
+        postInit()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        postInit()
+    }
 
+    private func postInit() {
         setupPhotoView()
+        setupCheckmarkView()
+        updateSelectedState()
     }
 
     override func prepareForReuse() {
@@ -48,6 +54,11 @@ class PhotoCell: UICollectionViewCell {
 
         userInfo = nil
         photoView.prepareForReuse()
+    }
+
+    private func updateSelectedState() {
+        photoView.alpha = isSelected ? 0.7 : 1
+        checkmarkView.alpha = isSelected ? 1 : 0
     }
 
     // Override to bypass some expensive layout calculations.
@@ -62,7 +73,6 @@ class PhotoCell: UICollectionViewCell {
     }
 
     private func setupPhotoView() {
-        contentView.layer.borderColor = Constants.selectedColor.cgColor
         contentView.preservesSuperviewLayoutMargins = true
         contentView.addSubview(photoView)
 
@@ -74,22 +84,12 @@ class PhotoCell: UICollectionViewCell {
         ])
     }
 
-    private func displayBorder() {
-        contentView.layer.borderWidth = Constants.selectedBorderWidth
-        photoView.alpha = Constants.selectedPhotoViewAlpha
-    }
-
-    private func hideBorder() {
-        contentView.layer.borderWidth = 0.0
-        photoView.alpha = 1.0
-    }
-}
-
-// MARK: - Constants
-private extension PhotoCell {
-    struct Constants {
-        static let selectedColor = UIColor.black
-        static let selectedBorderWidth: CGFloat = 3.0
-        static let selectedPhotoViewAlpha: CGFloat = 0.7
+    private func setupCheckmarkView() {
+        checkmarkView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(checkmarkView)
+        NSLayoutConstraint.activate([
+            contentView.rightAnchor.constraint(equalToSystemSpacingAfter: checkmarkView.rightAnchor, multiplier: CGFloat(1)),
+            contentView.bottomAnchor.constraint(equalToSystemSpacingBelow: checkmarkView.bottomAnchor, multiplier: CGFloat(1))
+            ])
     }
 }
