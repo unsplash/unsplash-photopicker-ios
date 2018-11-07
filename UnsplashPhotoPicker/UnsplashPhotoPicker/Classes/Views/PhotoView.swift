@@ -33,7 +33,7 @@ class PhotoView: UIView {
         accessibilityIgnoresInvertColors = true
         gradientView.setColors([
             GradientView.Color(color: .clear, location: 0),
-            GradientView.Color(color: UIColor(white: 0, alpha: 0.4), location: 1)
+            GradientView.Color(color: UIColor(white: 0, alpha: 0.5), location: 1)
         ])
     }
 
@@ -41,6 +41,12 @@ class PhotoView: UIView {
         userNameLabel.text = nil
         imageView.backgroundColor = .clear
         imageView.image = nil
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        let fontSize: CGFloat = traitCollection.horizontalSizeClass == .compact ? 10 : 13
+        userNameLabel.font = UIFont.systemFont(ofSize: fontSize)
     }
 
     // MARK: - Setup

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,7 +25,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jb-5S-M9a">
-                    <rect key="frame" x="16" y="635" width="34" height="16"/>
+                    <rect key="frame" x="8" y="643" width="34" height="16"/>
                     <gestureRecognizers/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,13 +38,17 @@
                 <constraint firstAttribute="trailing" secondItem="KxT-2S-csa" secondAttribute="trailing" id="9Uo-5A-Nil"/>
                 <constraint firstAttribute="bottom" secondItem="KxT-2S-csa" secondAttribute="bottom" id="AOo-3b-m51"/>
                 <constraint firstItem="6Kv-0r-W2S" firstAttribute="top" secondItem="Qdd-JF-Vs1" secondAttribute="centerY" id="Aeg-0b-W1D"/>
-                <constraint firstItem="eEU-Be-zNb" firstAttribute="bottom" secondItem="4jb-5S-M9a" secondAttribute="bottom" constant="16" id="JgB-u7-28h"/>
+                <constraint firstItem="eEU-Be-zNb" firstAttribute="bottom" secondItem="4jb-5S-M9a" secondAttribute="bottom" constant="16" id="JgB-u7-28h">
+                    <variation key="widthClass=compact" constant="8"/>
+                </constraint>
                 <constraint firstItem="KxT-2S-csa" firstAttribute="top" secondItem="Qdd-JF-Vs1" secondAttribute="top" id="KT3-b8-CNE"/>
                 <constraint firstItem="eEU-Be-zNb" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4jb-5S-M9a" secondAttribute="trailing" constant="12" id="O3B-iJ-WGb"/>
                 <constraint firstAttribute="bottom" secondItem="6Kv-0r-W2S" secondAttribute="bottom" id="Xrb-sg-Eyy"/>
                 <constraint firstItem="6Kv-0r-W2S" firstAttribute="leading" secondItem="Qdd-JF-Vs1" secondAttribute="leading" id="eUF-Fv-GRH"/>
                 <constraint firstItem="KxT-2S-csa" firstAttribute="leading" secondItem="Qdd-JF-Vs1" secondAttribute="leading" id="iJd-4q-ecn"/>
-                <constraint firstItem="4jb-5S-M9a" firstAttribute="leading" secondItem="eEU-Be-zNb" secondAttribute="leading" constant="16" id="o0l-af-dHx"/>
+                <constraint firstItem="4jb-5S-M9a" firstAttribute="leading" secondItem="eEU-Be-zNb" secondAttribute="leading" constant="16" id="o0l-af-dHx">
+                    <variation key="widthClass=compact" constant="8"/>
+                </constraint>
             </constraints>
             <viewLayoutGuide key="safeArea" id="eEU-Be-zNb"/>
             <connections>
