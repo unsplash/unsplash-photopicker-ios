@@ -41,6 +41,7 @@ class PhotoView: UIView {
         userNameLabel.text = nil
         imageView.backgroundColor = .clear
         imageView.image = nil
+        imageDownloader.cancel()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -64,7 +65,7 @@ class PhotoView: UIView {
         let url = sizedImageURL(from: regularUrl)
 
         imageDownloader.downloadPhoto(with: url, completion: { [weak self] (image, isCached) in
-            guard let strongSelf = self else { return }
+            guard let strongSelf = self, strongSelf.imageDownloader.isCancelled == false else { return }
 
             if isCached {
                 strongSelf.imageView.image = image
