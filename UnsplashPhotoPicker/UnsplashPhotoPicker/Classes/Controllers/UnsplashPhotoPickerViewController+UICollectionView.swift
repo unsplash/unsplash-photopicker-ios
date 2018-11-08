@@ -20,7 +20,6 @@ extension UnsplashPhotoPickerViewController: UICollectionViewDataSource {
         guard let photoCell = cell as? PhotoCell, let photo = dataSource.item(at: indexPath.item) else { return cell }
 
         photoCell.configure(with: photo)
-        photoCell.userInfo = photo.identifier
 
         return photoCell
     }

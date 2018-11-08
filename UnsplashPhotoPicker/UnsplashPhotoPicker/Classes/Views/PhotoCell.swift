@@ -14,8 +14,6 @@ class PhotoCell: UICollectionViewCell {
 
     static let reuseIdentifier = "PhotoCell"
 
-    var userInfo: Any?
-
     let photoView: PhotoView = {
         // swiftlint:disable force_cast
         let photoView = (PhotoView.nib.instantiate(withOwner: nil, options: nil).first as! PhotoView)
@@ -52,7 +50,6 @@ class PhotoCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        userInfo = nil
         photoView.prepareForReuse()
     }
 
