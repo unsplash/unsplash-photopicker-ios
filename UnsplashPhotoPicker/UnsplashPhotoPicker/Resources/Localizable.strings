@@ -13,4 +13,4 @@
 "error.noInternetConnection.title" = "No Internet Connection";
 "error.noInternetConnection.description" = "You must connect to a Wi-Fi or cellular data network to access Unsplash.";
 "error.serverError.title" = "Server error";
-"error.serverError.description" = "Oops! Something wrong. Please try again.";
+"error.serverError.description" = "Oops! Something's wrong. Please try again.";
