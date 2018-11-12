@@ -21,7 +21,9 @@ class PhotoCell: UICollectionViewCell {
         return photoView
     }()
 
-    private lazy var checkmarkView = CheckmarkView()
+    private lazy var checkmarkView: CheckmarkView = {
+        return CheckmarkView()
+    }()
 
     override var isSelected: Bool {
         didSet {
@@ -49,7 +51,6 @@ class PhotoCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-
         photoView.prepareForReuse()
     }
 
@@ -72,7 +73,6 @@ class PhotoCell: UICollectionViewCell {
     private func setupPhotoView() {
         contentView.preservesSuperviewLayoutMargins = true
         contentView.addSubview(photoView)
-
         NSLayoutConstraint.activate([
             photoView.topAnchor.constraint(equalTo: contentView.topAnchor),
             photoView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),

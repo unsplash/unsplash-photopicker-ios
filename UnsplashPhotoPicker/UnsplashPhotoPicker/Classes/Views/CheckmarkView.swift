@@ -13,7 +13,14 @@ class CheckmarkView: UIView {
     override class var layerClass: AnyClass { return CAShapeLayer.self }
     override var intrinsicContentSize: CGSize { return CGSize(width: 24, height: 24) }
 
-    private lazy var checkmark = UIImageView()
+    private lazy var checkmark: UIImageView = {
+        let bundle = Bundle(for: type(of: self))
+        let image = UIImage(named: "checkmark", in: bundle, compatibleWith: nil)
+        let imageView = UIImageView(image: image)
+        imageView.tintColor = .white
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
 
     init() {
         super.init(frame: .zero)
@@ -36,11 +43,6 @@ class CheckmarkView: UIView {
         shapeLayer.shadowOffset = CGSize(width: 0, height: 0)
         shapeLayer.shadowRadius = 1
         shapeLayer.shadowOpacity = 0.25
-
-        let bundle = Bundle(for: type(of: self))
-        checkmark.image = UIImage(named: "checkmark", in: bundle, compatibleWith: nil)
-        checkmark.tintColor = .white
-        checkmark.translatesAutoresizingMaskIntoConstraints = false
 
         addSubview(checkmark)
         NSLayoutConstraint.activate([
