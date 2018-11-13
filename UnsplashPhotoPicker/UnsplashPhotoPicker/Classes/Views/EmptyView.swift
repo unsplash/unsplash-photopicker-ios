@@ -112,7 +112,6 @@ class EmptyView: UIView {
     }
 
     private func setupDescriptionLabel() {
-
         containerView.addSubview(descriptionLabel)
 
         NSLayoutConstraint.activate([

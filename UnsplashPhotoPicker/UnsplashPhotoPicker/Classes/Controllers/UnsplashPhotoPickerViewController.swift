@@ -365,7 +365,7 @@ extension UnsplashPhotoPickerViewController: PagedDataSourceDelegate {
     }
 
     func dataSource(_ dataSource: PagedDataSource, fetchDidFailWithError error: Error) {
-        let state: EmptyViewState = (error as NSError).code == NSURLErrorNotConnectedToInternet ? .noInternetConnection : .serverError
+        let state: EmptyViewState = (error as NSError).isNoInternetConnectionError() ? .noInternetConnection : .serverError
 
         DispatchQueue.main.async {
             self.showEmptyView(with: state)
