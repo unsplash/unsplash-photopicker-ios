@@ -1,6 +1,6 @@
 # Unsplash Photo Picker for iOS
 
-UnsplashPhotoPicker is an iOS UI component that allows you to integrate Unsplash in your app with just a few lines of code.
+UnsplashPhotoPicker is an iOS UI component that allows you to quickly search the Unsplash library for free high-quality photos with just a few lines of code.
 
 - [Description](#description)
 - [Requirements](#requirements)
@@ -23,15 +23,13 @@ UnsplashPhotoPicker is a view controller. You present it to offer your users to 
 - iOS 11.0+
 - Xcode 4.2+
 - Swift 4.1+
-- Unsplash API access key and secret key
+- [Unsplash API Access Key and Secret Key](https://unsplash.com/documentation#registering-your-application)
 
-⚠️ UnsplashPhotoPicker does not work with Objective-C.
+⚠️ UnsplashPhotoPicker is not compatible with Objective-C.
 
 ## Installation
 
 ### Carthage
-
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
 
 You can install Carthage with [Homebrew](https://brew.sh/) using the following command:
 
@@ -121,8 +119,7 @@ protocol UnsplashPhotoPickerDelegate: class {
 
 ### Using the results
 
-
-`UnsplashPhotoPicker` returns an array or `UnsplashPhoto` objects. See [UnsplashPhoto.swift](UnsplashPhotoPicker/UnsplashPhotoPicker/Classes/Models/UnsplashPhoto.swift) for more details.
+`UnsplashPhotoPicker` returns an array of `UnsplashPhoto` objects. See [UnsplashPhoto.swift](UnsplashPhotoPicker/UnsplashPhotoPicker/Classes/Models/UnsplashPhoto.swift) for more details.
 
 ## License
 
