@@ -21,8 +21,8 @@ UnsplashPhotoPicker is a view controller. You present it to offer your users to 
 ## Requirements
 
 - iOS 11.0+
-- Xcode 4.2+
-- Swift 4.1+
+- Xcode 10.0+
+- Swift 4.2+
 - [Unsplash API Access Key and Secret Key](https://unsplash.com/documentation#registering-your-application)
 
 ⚠️ UnsplashPhotoPicker is not compatible with Objective-C.
@@ -31,14 +31,7 @@ UnsplashPhotoPicker is a view controller. You present it to offer your users to 
 
 ### Carthage
 
-You can install Carthage with [Homebrew](https://brew.sh/) using the following command:
-
-```bash
-$ brew update
-$ brew install carthage
-```
-
-To integrate UnsplashPhotoPicker into your Xcode project using Carthage, specify it in your `Cartfile`:
+To integrate UnsplashPhotoPicker into your Xcode project using [Carthage](https://github.com/Carthage/Carthage), specify it in your `Cartfile`:
 
 ```ogdl
 github "unsplash/unsplash-photopicker-ios" ~> 1.0
@@ -48,40 +41,29 @@ Run `carthage update` to build the framework and drag the built `UnsplashPhotoPi
 
 ### CocoaPods
 
-**_Will update once tested._**
+To integrate UnsplashPhotoPicker into your Xcode project using [CocoaPods](https://cocoapods.org), specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '11.0'
+use_frameworks!
+
+target '<Your Target Name>' do
+    pod 'UnsplashPhotoPicker', '~> 1.0'
+end
+```
+
+Then run `pod install`.
 
 ### Git submodule
 
-If you prefer not to use any of the aforementioned dependency managers, you can integrate UnsplashPhotoPicker into your project manually.
-
-- Open up Terminal, `cd` into your top-level project directory, and run the following command **if** your project is not initialized as a git repository:
-
-  ```bash
-  $ git init
-  ```
-
-- Add UnsplashPhotoPicker as a git [submodule](https://git-scm.com/docs/git-submodule) by running the following command:
+If you prefer not to use any of the aforementioned dependency managers, you can integrate UnsplashPhotoPicker into your project manually as a [git submodule](https://git-scm.com/docs/git-submodule) by running the following command in the project's folder:
 
   ```bash
   $ git submodule add https://github.com/unsplash/unsplash-photopicker-ios.git
   ```
 
-- Open the new `unsplash-photopicker-ios` folder, and drag the `UnsplashPhotoPicker.xcodeproj` file into the Project Navigator of your application's Xcode project.
-
-    > It should appear nested underneath your application's blue project icon. Whether it is above or below all the other Xcode groups does not matter.
-
-- Select the `UnsplashPhotoPicker.xcodeproj` in the Project Navigator and verify the deployment target matches that of your application target.
-- Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
-- In the tab bar at the top of that window, open the "General" panel.
-- Click on the `+` button under the "Embedded Binaries" section.
-- You will see two different `UnsplashPhotoPicker.xcodeproj` folders each with two different versions of the `UnsplashPhotoPicker.framework` nested inside a `Products` folder.
-
-    > It does not matter which `Products` folder you choose from, but it does matter whether you choose the top or bottom `UnsplashPhotoPicker.framework`.
-
-- Select the `UnsplashPhotoPicker.framework` for iOS.
-- And that's it!
-
-  > The `UnsplashPhotoPicker.framework` is automatically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
+Drag the `UnsplashPhotoPicker.xcodeproj` file into your Xcode project, then drag the `UnsplashPhotoPicker.framework` to your target's "Embedded Binaries".
 
 ## Usage
 
