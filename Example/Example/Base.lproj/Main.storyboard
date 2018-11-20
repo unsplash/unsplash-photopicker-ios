@@ -13,20 +13,13 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6UJ-k4-kcU">
-                                <rect key="frame" x="81.5" y="40" width="212" height="30"/>
-                                <state key="normal" title="Search for photos on Unsplash"/>
-                                <connections>
-                                    <action selector="presentUnsplashPhotoPickerWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yVL-Lb-OdF"/>
-                                </connections>
-                            </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="N7L-Dz-dFy">
-                                <rect key="frame" x="0.0" y="138" width="375" height="529"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="N7L-Dz-dFy">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7MQ-w9-DmX">
                                     <size key="itemSize" width="50" height="50"/>
@@ -63,28 +56,73 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="yRh-KL-qDS"/>
                                 </connections>
                             </collectionView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="p7g-C3-KA2">
-                                <rect key="frame" x="66" y="90" width="243" height="29"/>
-                                <segments>
-                                    <segment title="Single selection"/>
-                                    <segment title="Multiple selection"/>
-                                </segments>
-                            </segmentedControl>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQe-50-72z">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Nt1-wl-dVC">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="extraLight"/>
+                            </visualEffectView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8pM-m8-mj8">
+                                <rect key="frame" x="0.0" y="543" width="375" height="124"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" id="jt3-4y-jF5">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hZj-1U-YYO">
+                                            <rect key="frame" x="0.0" y="16" width="375" height="92"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="p7g-C3-KA2">
+                                                    <rect key="frame" x="66" y="0.0" width="243" height="29"/>
+                                                    <segments>
+                                                        <segment title="Single selection"/>
+                                                        <segment title="Multiple selection"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6UJ-k4-kcU">
+                                                    <rect key="frame" x="64.5" y="48" width="246" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="so2-mM-cgY"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <state key="normal" title="Search for photos on Unsplash"/>
+                                                    <connections>
+                                                        <action selector="presentUnsplashPhotoPickerWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yVL-Lb-OdF"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="vBL-rR-BH6" firstAttribute="bottom" secondItem="hZj-1U-YYO" secondAttribute="bottom" constant="16" id="D7O-jQ-bKT"/>
+                                        <constraint firstItem="hZj-1U-YYO" firstAttribute="top" secondItem="jt3-4y-jF5" secondAttribute="top" constant="16" id="Mih-xm-AqE"/>
+                                        <constraint firstItem="hZj-1U-YYO" firstAttribute="leading" secondItem="jt3-4y-jF5" secondAttribute="leading" id="U4E-MR-W8s"/>
+                                        <constraint firstAttribute="trailing" secondItem="hZj-1U-YYO" secondAttribute="trailing" id="ft5-PI-Nvp"/>
+                                    </constraints>
+                                    <viewLayoutGuide key="safeArea" id="vBL-rR-BH6"/>
+                                </view>
+                                <blurEffect style="extraLight"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="N7L-Dz-dFy" firstAttribute="top" secondItem="p7g-C3-KA2" secondAttribute="bottom" constant="20" id="2t2-Hc-Ais"/>
-                            <constraint firstItem="6UJ-k4-kcU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="35i-0f-NhR"/>
-                            <constraint firstItem="N7L-Dz-dFy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="C74-hh-bcQ"/>
-                            <constraint firstItem="p7g-C3-KA2" firstAttribute="centerX" secondItem="6UJ-k4-kcU" secondAttribute="centerX" id="IOG-fc-xjU"/>
-                            <constraint firstItem="p7g-C3-KA2" firstAttribute="top" secondItem="6UJ-k4-kcU" secondAttribute="bottom" constant="20" id="MNS-6o-zne"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N7L-Dz-dFy" secondAttribute="trailing" id="SD8-NP-RmS"/>
-                            <constraint firstItem="6UJ-k4-kcU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="tEx-e7-B4l"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="N7L-Dz-dFy" secondAttribute="bottom" id="xpL-xi-XEo"/>
+                            <constraint firstItem="N7L-Dz-dFy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1HW-KH-Dw8"/>
+                            <constraint firstItem="qQe-50-72z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1Qk-4A-KJQ"/>
+                            <constraint firstItem="qQe-50-72z" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="8an-1g-NiB"/>
+                            <constraint firstItem="8pM-m8-mj8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BlE-kG-kbg"/>
+                            <constraint firstItem="N7L-Dz-dFy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="LL2-BQ-yZq"/>
+                            <constraint firstAttribute="trailing" secondItem="8pM-m8-mj8" secondAttribute="trailing" id="cf0-KH-3dE"/>
+                            <constraint firstAttribute="trailing" secondItem="qQe-50-72z" secondAttribute="trailing" id="fkD-pf-ZGz"/>
+                            <constraint firstItem="8pM-m8-mj8" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="h11-Uy-HOH"/>
+                            <constraint firstItem="N7L-Dz-dFy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="lTf-6d-fdf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="qQe-50-72z" secondAttribute="bottom" id="wef-84-wyZ"/>
+                            <constraint firstAttribute="bottom" secondItem="N7L-Dz-dFy" secondAttribute="bottom" id="y1L-wH-tGE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="bottomSheet" destination="8pM-m8-mj8" id="mcj-do-H2v"/>
                         <outlet property="collectionView" destination="N7L-Dz-dFy" id="Y9Y-ME-HzJ"/>
                         <outlet property="selectionTypeSegmentedControl" destination="p7g-C3-KA2" id="f0Q-lN-wra"/>
                     </connections>

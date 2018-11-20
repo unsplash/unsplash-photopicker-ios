@@ -20,11 +20,17 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var selectionTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var bottomSheet: UIView!
 
     private let itemsPerRow: CGFloat = 3
     private let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
 
     private var photos = [UnsplashPhoto]()
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        collectionView.contentInset.bottom = bottomSheet.frame.height
+    }
 
     // MARK: - Action
 
