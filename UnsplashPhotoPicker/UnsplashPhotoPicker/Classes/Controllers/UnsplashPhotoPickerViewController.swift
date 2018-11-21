@@ -104,10 +104,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
     // MARK: - View Life Cycle
 
     override func viewDidLoad() {
@@ -135,6 +131,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
+        // Fix to avoid a retain issue
         searchController.dismiss(animated: true, completion: nil)
     }
 
@@ -143,7 +140,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
         coordinator.animate(alongsideTransition: { (_) in
             self.layout.invalidateLayout()
-        }, completion: nil)
+        })
     }
 
     // MARK: - Setup

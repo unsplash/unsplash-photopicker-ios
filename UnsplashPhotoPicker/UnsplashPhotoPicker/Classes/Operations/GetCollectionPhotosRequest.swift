@@ -58,14 +58,14 @@ class GetCollectionPhotosRequest: UnsplashPagedRequest {
     }
 
     func photosFromResponseData(_ data: Data?) -> [UnsplashPhoto]? {
-        if let data = data {
-            do {
-                return try JSONDecoder().decode([UnsplashPhoto].self, from: data)
-            } catch {
-                self.error = error
-            }
+        guard let data = data else { return nil }
+
+        do {
+            return try JSONDecoder().decode([UnsplashPhoto].self, from: data)
+        } catch {
+            self.error = error
+            return nil
         }
-        return nil
     }
 
 }

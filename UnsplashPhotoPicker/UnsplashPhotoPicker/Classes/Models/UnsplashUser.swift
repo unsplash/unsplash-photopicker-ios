@@ -11,8 +11,6 @@ import Foundation
 /// A struct representing a user's public profile from the Unsplash API.
 public struct UnsplashUser: Codable {
 
-    static var current: UnsplashUser?
-
     public enum ProfileImageSize: String, Codable {
         case small
         case medium

@@ -10,7 +10,7 @@ import Foundation
 
 extension NSError {
     func isNoInternetConnectionError() -> Bool {
-        let noInternetConnectionErrors = [
+        let noInternetConnectionErrorCodes = [
             NSURLErrorNetworkConnectionLost,
             NSURLErrorNotConnectedToInternet,
             NSURLErrorInternationalRoamingOff,
@@ -18,7 +18,7 @@ extension NSError {
             NSURLErrorDataNotAllowed
         ]
 
-        if domain == NSURLErrorDomain && noInternetConnectionErrors.contains(code) {
+        if domain == NSURLErrorDomain && noInternetConnectionErrorCodes.contains(code) {
             return true
         }
 

@@ -158,11 +158,11 @@
 			children = (
 				23A0D205216D806800BEAE05 /* Dictionary+Extensions.swift */,
 				23A0D202216D806800BEAE05 /* KeyedDecodingContainer+Extensions.swift */,
+				2378D553219A731300D76294 /* NSError+Extensions.swift */,
 				23A0D241216D991000BEAE05 /* OperationQueue+Extensions.swift */,
+				231D127F218FB3D7002C5750 /* String+Localization.swift */,
 				23A0D203216D806800BEAE05 /* UIColor+Extensions.swift */,
 				23A0D249216D9D2400BEAE05 /* URL+Extensions.swift */,
-				231D127F218FB3D7002C5750 /* String+Localization.swift */,
-				2378D553219A731300D76294 /* NSError+Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";

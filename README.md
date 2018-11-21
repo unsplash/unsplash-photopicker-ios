@@ -71,7 +71,7 @@ Drag the `UnsplashPhotoPicker.xcodeproj` file into your Xcode project, then drag
 
 ## Usage
 
-❗️Before you get started, you need to register as a developer on our [Developer](https://unsplash.com/developers) portal. Once registered, create a new app to get and **Access Key** and a **Secret Key**.
+❗️Before you get started, you need to register as a developer on our [Developer](https://unsplash.com/developers) portal. Once registered, create a new app to get an **Access Key** and a **Secret Key**.
 
 ### Configuration
 
