@@ -72,32 +72,25 @@ class NetworkRequest: ConcurrentOperation {
 
         switch type {
         case .body:
-            return try prepareBodyRequest(url, parameters)
-        case .path:
-            return preparePathRequest(url, parameters)
-        }
-    }
-
-    private func prepareBodyRequest(_ url: URL, _ parameters: [String: Any]?) throws -> URLRequest {
-        var mutableRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: timeoutInterval)
-        if let parameters = parameters {
-            switch format {
-            case .json:
-                mutableRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
-            case .urlEncoded:
-                mutableRequest.httpBody = urlEncodedParameters(parameters).data(using: .utf8)
+            var mutableRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: timeoutInterval)
+            if let parameters = parameters {
+                switch format {
+                case .json:
+                    mutableRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
+                case .urlEncoded:
+                    mutableRequest.httpBody = queryParameters(parameters, urlEncoded: true).data(using: .utf8)
+                }
             }
+            return mutableRequest
+
+        case .path:
+            var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+            components.query = queryParameters(parameters)
+            return URLRequest(url: components.url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: timeoutInterval)
         }
-        return mutableRequest
     }
 
-    private func preparePathRequest(_ url: URL, _ parameters: [String: Any]?) -> URLRequest {
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
-        components.query = urlEncodedParameters(parameters)
-        return URLRequest(url: components.url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: timeoutInterval)
-    }
-
-    private func urlEncodedParameters(_ parameters: [String: Any]?) -> String {
+    private func queryParameters(_ parameters: [String: Any]?, urlEncoded: Bool = false) -> String {
         var allowedCharacterSet = CharacterSet.alphanumerics
         allowedCharacterSet.insert(charactersIn: ".-_")
 
@@ -105,7 +98,7 @@ class NetworkRequest: ConcurrentOperation {
         parameters?.forEach { key, value in
             let encodedValue: String
             if let value = value as? String {
-                encodedValue = value.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet) ?? ""
+                encodedValue = urlEncoded ? value.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet) ?? "" : value
             } else {
                 encodedValue = "\(value)"
             }
