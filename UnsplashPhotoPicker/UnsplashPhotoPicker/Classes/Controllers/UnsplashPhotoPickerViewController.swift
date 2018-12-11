@@ -35,6 +35,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
+        searchController.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
@@ -86,6 +87,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     private let editorialDataSource = PhotosDataSourceFactory.collection(identifier: Configuration.shared.editorialCollectionId).dataSource
 
+    private var previewingContext: UIViewControllerPreviewing?
     private var searchText: String?
 
     weak var delegate: UnsplashPhotoPickerViewControllerDelegate?
@@ -188,7 +190,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
     }
 
     private func setupPeekAndPop() {
-        registerForPreviewing(with: self, sourceView: collectionView)
+        previewingContext = registerForPreviewing(with: self, sourceView: collectionView)
     }
 
     private func showEmptyView(with state: EmptyViewState) {
@@ -298,6 +300,23 @@ class UnsplashPhotoPickerViewController: UIViewController {
         }
     }
 
+}
+
+// MARK: - UISearchControllerDelegate
+extension UnsplashPhotoPickerViewController: UISearchControllerDelegate {
+    func didPresentSearchController(_ searchController: UISearchController) {
+        if let context = previewingContext {
+            unregisterForPreviewing(withContext: context)
+            previewingContext = searchController.registerForPreviewing(with: self, sourceView: collectionView)
+        }
+    }
+
+    func didDismissSearchController(_ searchController: UISearchController) {
+        if let context = previewingContext {
+            searchController.unregisterForPreviewing(withContext: context)
+            previewingContext = registerForPreviewing(with: self, sourceView: collectionView)
+        }
+    }
 }
 
 // MARK: - UISearchBarDelegate
