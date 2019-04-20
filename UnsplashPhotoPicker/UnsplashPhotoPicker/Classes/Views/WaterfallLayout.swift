@@ -150,7 +150,7 @@ class WaterfallLayout: UICollectionViewLayout {
             guard let minHeight = columnHeights.min() else {
                 return 0
             }
-            return columnHeights.index(where: { $0 == minHeight }) ?? 0
+            return columnHeights.firstIndex(where: { $0 == minHeight }) ?? 0
         }
 
         var numberOfItems = 0
