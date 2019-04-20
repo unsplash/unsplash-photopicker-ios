@@ -243,7 +243,8 @@ class UnsplashPhotoPickerViewController: UIViewController {
     }
 
     private func scrollToTop() {
-        collectionView.setContentOffset(.zero, animated: false)
+        let contentOffset = CGPoint(x: 0, y: -collectionView.safeAreaInsets.top)
+        collectionView.setContentOffset(contentOffset, animated: false)
     }
 
     // MARK: - Data
