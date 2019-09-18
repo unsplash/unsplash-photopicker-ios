@@ -47,6 +47,7 @@
 		23A0D24A216D9D2400BEAE05 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A0D249216D9D2400BEAE05 /* URL+Extensions.swift */; };
 		23B683C0216BF83200CAA546 /* UnsplashPhotoPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 23B683BE216BF83200CAA546 /* UnsplashPhotoPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		23C24A71217D3BBC00C03E7B /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C24A70217D3BBC00C03E7B /* EmptyView.swift */; };
+		A2DA9A072332335A00D10590 /* PhotoSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA9A062332335A00D10590 /* PhotoSearchService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 		23B683BE216BF83200CAA546 /* UnsplashPhotoPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnsplashPhotoPicker.h; sourceTree = "<group>"; };
 		23B683BF216BF83200CAA546 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23C24A70217D3BBC00C03E7B /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		A2DA9A062332335A00D10590 /* PhotoSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 			children = (
 				2333E0F121758AAD000B1900 /* ImageCache.swift */,
 				2333E0EF21758899000B1900 /* ImageDownloader.swift */,
+				A2DA9A062332335A00D10590 /* PhotoSearchService.swift */,
 				23A0D23E216D988600BEAE05 /* PagedDataSource.swift */,
 				23A0D23D216D988600BEAE05 /* PhotosDataSourceFactory.swift */,
 			);
@@ -373,6 +376,7 @@
 				23A0D21C216D825B00BEAE05 /* Configuration.swift in Sources */,
 				23A0D228216D8AD600BEAE05 /* SearchPhotosRequest.swift in Sources */,
 				23A0D22B216D8AD600BEAE05 /* GetCollectionPhotosRequest.swift in Sources */,
+				A2DA9A072332335A00D10590 /* PhotoSearchService.swift in Sources */,
 				23A0D20B216D806800BEAE05 /* Dictionary+Extensions.swift in Sources */,
 				23A0D1F3216D74C800BEAE05 /* UnsplashPhotoPicker.swift in Sources */,
 				2333E0F021758899000B1900 /* ImageDownloader.swift in Sources */,
