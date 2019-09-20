@@ -17,6 +17,14 @@ public struct UnsplashUser: Codable {
         case large
     }
 
+    public enum LinkKind: String, Codable {
+        case `self`
+        case html
+        case photos
+        case likes
+        case portfolio
+    }
+
     public let identifier: String
     public let username: String
     public let firstName: String?
@@ -24,6 +32,7 @@ public struct UnsplashUser: Codable {
     public let name: String?
     public let profileImage: [ProfileImageSize: URL]
     public let bio: String?
+    public let links: [LinkKind: URL]
     public let location: String?
     public let portfolioURL: URL?
     public let totalCollections: Int
@@ -38,6 +47,7 @@ public struct UnsplashUser: Codable {
         case name
         case profileImage = "profile_image"
         case bio
+        case links
         case location
         case portfolioURL = "portfolio_url"
         case totalCollections = "total_collections"
@@ -54,6 +64,7 @@ public struct UnsplashUser: Codable {
         name = try? container.decode(String.self, forKey: .name)
         profileImage = try container.decode([ProfileImageSize: URL].self, forKey: .profileImage)
         bio = try? container.decode(String.self, forKey: .bio)
+        links = try container.decode([LinkKind: URL].self, forKey: .links)
         location = try? container.decode(String.self, forKey: .location)
         portfolioURL = try? container.decode(URL.self, forKey: .portfolioURL)
         totalCollections = try container.decode(Int.self, forKey: .totalCollections)
@@ -70,6 +81,7 @@ public struct UnsplashUser: Codable {
         try container.encode(name, forKey: .name)
         try container.encode(profileImage.convert({ ($0.key.rawValue, $0.value.absoluteString) }), forKey: .profileImage)
         try container.encode(bio, forKey: .bio)
+        try container.encode(links, forKey: .links)
         try container.encode(location, forKey: .location)
         try container.encode(portfolioURL, forKey: .portfolioURL)
         try container.encode(totalCollections, forKey: .totalCollections)
@@ -105,5 +117,19 @@ extension UnsplashUser {
 extension UnsplashUser: Equatable {
     public static func == (lhs: UnsplashUser, rhs: UnsplashUser) -> Bool {
         return lhs.identifier == rhs.identifier
+    }
+}
+
+extension KeyedDecodingContainer {
+    func decode(_ type: [UnsplashUser.LinkKind: URL].Type, forKey key: Key) throws -> [UnsplashUser.LinkKind: URL] {
+        let urlsDictionary = try self.decode([String: String].self, forKey: key)
+        var result = [UnsplashUser.LinkKind: URL]()
+        for (key, value) in urlsDictionary {
+            if let kind = UnsplashUser.LinkKind(rawValue: key),
+                let url = URL(string: value) {
+                result[kind] = url
+            }
+        }
+        return result
     }
 }
