@@ -347,6 +347,15 @@ extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
     }
 }
 
+// MARK: - UIScrollViewDelegate
+extension UnsplashPhotoPickerViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if searchController.searchBar.isFirstResponder {
+            searchController.searchBar.resignFirstResponder()
+        }
+    }
+}
+
 // MARK: - PagedDataSourceDelegate
 extension UnsplashPhotoPickerViewController: PagedDataSourceDelegate {
     func dataSourceWillStartFetching(_ dataSource: PagedDataSource) {
