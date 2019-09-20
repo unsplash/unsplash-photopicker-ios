@@ -32,8 +32,8 @@ UnsplashPhotoPicker is a view controller. You present it to offer your users to 
 ## Requirements
 
 - iOS 11.0+
-- Xcode 10.0+
-- Swift 4.2+
+- Xcode 10.2+
+- Swift 5.0+
 - [Unsplash API Access Key and Secret Key](https://unsplash.com/documentation#registering-your-application)
 
 ⚠️ UnsplashPhotoPicker is not compatible with Objective-C.
