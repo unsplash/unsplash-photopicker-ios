@@ -34,7 +34,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
     }()
 
     private lazy var searchController: UISearchController = {
-        let searchController = UISearchController(searchResultsController: nil)
+        let searchController = UnsplashSearchController(searchResultsController: nil)
         searchController.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
@@ -333,11 +333,11 @@ extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
         updateDoneButtonState()
     }
 
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        guard searchText != nil else { return }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard self.searchText != nil && searchText.isEmpty else { return }
 
         dataSource = editorialDataSource
-        searchText = nil
+        self.searchText = nil
         refresh()
         reloadData()
         scrollToTop()
