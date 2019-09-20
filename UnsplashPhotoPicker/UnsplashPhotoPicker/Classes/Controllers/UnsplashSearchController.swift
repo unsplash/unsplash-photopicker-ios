@@ -12,6 +12,7 @@ class UnsplashSearchController: UISearchController {
     lazy var customSearchBar = CustomSearchBar(frame: CGRect.zero)
 
     override var searchBar: UISearchBar {
+        customSearchBar.showsCancelButton = false
         return customSearchBar
     }
 }
