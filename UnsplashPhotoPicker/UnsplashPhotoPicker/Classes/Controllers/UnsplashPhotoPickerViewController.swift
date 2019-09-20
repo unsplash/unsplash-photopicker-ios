@@ -310,6 +310,7 @@ extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
         refresh()
         scrollToTop()
         hideEmptyView()
+        updateTitle()
         updateDoneButtonState()
     }
 
@@ -322,6 +323,7 @@ extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
         reloadData()
         scrollToTop()
         hideEmptyView()
+        updateTitle()
         updateDoneButtonState()
     }
 }
