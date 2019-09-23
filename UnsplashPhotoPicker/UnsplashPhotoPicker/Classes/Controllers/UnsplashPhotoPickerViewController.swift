@@ -52,8 +52,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: PhotoCell.reuseIdentifier)
-        collectionView.register(PagingView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier:
-            PagingView.reuseIdentifier)
+        collectionView.register(PagingView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: PagingView.reuseIdentifier)
         collectionView.contentInsetAdjustmentBehavior = .automatic
         collectionView.layoutMargins = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 0.0, right: 16.0)
         collectionView.backgroundColor = .white
@@ -118,6 +117,9 @@ class UnsplashPhotoPickerViewController: UIViewController {
         setupCollectionView()
         setupSpinner()
         setupPeekAndPop()
+
+        let trimmedQuery = Configuration.shared.query?.trimmingCharacters(in: .whitespacesAndNewlines)
+        setSearchText(trimmedQuery)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -163,6 +165,9 @@ class UnsplashPhotoPickerViewController: UIViewController {
     }
 
     private func setupSearchController() {
+        let trimmedQuery = Configuration.shared.query?.trimmingCharacters(in: .whitespacesAndNewlines)
+        if let query = trimmedQuery, query.isEmpty == false { return }
+
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
@@ -251,6 +256,16 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     // MARK: - Data
 
+    private func setSearchText(_ text: String?) {
+        if let text = text, text.isEmpty == false {
+            dataSource = PhotosDataSourceFactory.search(query: text).dataSource
+            searchText = text
+        } else {
+            dataSource = editorialDataSource
+            searchText = nil
+        }
+    }
+
     @objc func refresh() {
         guard dataSource.items.isEmpty else { return }
 
@@ -325,8 +340,7 @@ extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.text else { return }
 
-        dataSource = PhotosDataSourceFactory.search(query: text).dataSource
-        searchText = text
+        setSearchText(text)
         refresh()
         scrollToTop()
         hideEmptyView()
@@ -337,8 +351,7 @@ extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard self.searchText != nil && searchText.isEmpty else { return }
 
-        dataSource = editorialDataSource
-        self.searchText = nil
+        setSearchText(nil)
         refresh()
         reloadData()
         scrollToTop()

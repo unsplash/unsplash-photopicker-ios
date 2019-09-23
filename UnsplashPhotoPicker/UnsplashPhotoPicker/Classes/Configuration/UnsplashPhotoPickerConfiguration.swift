@@ -17,6 +17,9 @@ public struct UnsplashPhotoPickerConfiguration {
     /// Your application’s secret key.
     public var secretKey = ""
 
+    /// A search query. When set, hides the search bar and shows results instead of the editorial photos.
+    public var query: String?
+
     /// Controls whether the picker allows multiple or single selection.
     public var allowsMultipleSelection = false
 
@@ -49,11 +52,13 @@ public struct UnsplashPhotoPickerConfiguration {
      */
     public init(accessKey: String,
                 secretKey: String,
+                query: String? = nil,
                 allowsMultipleSelection: Bool = false,
                 memoryCapacity: Int = defaultMemoryCapacity,
                 diskCapacity: Int = defaultDiskCapacity) {
         self.accessKey = accessKey
         self.secretKey = secretKey
+        self.query = query
         self.allowsMultipleSelection = allowsMultipleSelection
         self.memoryCapacity = memoryCapacity
         self.diskCapacity = diskCapacity
