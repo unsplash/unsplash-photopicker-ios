@@ -46,6 +46,7 @@ public struct UnsplashPhotoPickerConfiguration {
 
      - parameter accessKey:               Your application’s access key.
      - parameter secretKey:               Your application’s secret key.
+     - parameter query:                   A search query.
      - parameter allowsMultipleSelection: Controls whether the picker allows multiple or single selection.
      - parameter memoryCapacity:          The memory capacity used by the cache.
      - parameter diskCapacity:            The disk capacity used by the cache.
