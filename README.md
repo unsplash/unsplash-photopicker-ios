@@ -87,6 +87,7 @@ The `UnsplashPhotoPicker` is configured with an instance of `UnsplashPhotoPicker
 ```swift
 UnsplashPhotoPickerConfiguration(accessKey: String,
                                  secretKey: String,
+                                 query: String,
                                  allowsMultipleSelection: Bool,
                                  memoryCapacity: Int,
                                  diskCapacity: Int)
@@ -95,6 +96,7 @@ UnsplashPhotoPickerConfiguration(accessKey: String,
 |-------------------------------|----------|-------------------|---------|
 | **`accessKey`**               | _String_ | Required          | N/A     |
 | **`secretKey`**               | _String_ | Required          | N/A     |
+| **`query`**                   | _String_ | Optional          | `nil`   |
 | **`allowsMultipleSelection`** | _Bool_   | Optional          | `false` |
 | **`memoryCapacity`**          | _Int_    | Optional          | `50`    |
 | **`diskCapacity`**            | _Int_    | Optional          | `100`   |
