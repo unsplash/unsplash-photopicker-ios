@@ -21,15 +21,34 @@ class ViewController: UIViewController {
     @IBOutlet weak var selectionTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var bottomSheet: UIView!
+    @IBOutlet weak var searchQueryTextField: UITextField!
 
     private let itemsPerRow: CGFloat = 3
     private let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
 
     private var photos = [UnsplashPhoto]()
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIApplication.keyboardWillChangeFrameNotification, object: nil)
+    }
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         collectionView.contentInset.bottom = bottomSheet.frame.height
+    }
+
+    @objc func keyboardWillChangeFrame(_ notification: Notification) {
+        guard let endFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+
+        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.3
+        let curveRawValue = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int ?? 0
+        let curve: UIView.AnimationCurve = UIView.AnimationCurve(rawValue: curveRawValue) ?? .easeInOut
+
+        UIViewPropertyAnimator(duration: duration, curve: curve, animations: {
+            self.additionalSafeAreaInsets.bottom = self.view.frame.height - endFrame.origin.y
+            self.view.layoutIfNeeded()
+        }).startAnimation()
     }
 
     // MARK: - Action
@@ -39,6 +58,7 @@ class ViewController: UIViewController {
         let configuration = UnsplashPhotoPickerConfiguration(
             accessKey: "<YOUR_ACCESS_KEY>",
             secretKey: "<YOUR_SECRET_KEY>",
+            query: searchQueryTextField.text,
             allowsMultipleSelection: allowsMultipleSelection
         )
         let unsplashPhotoPicker = UnsplashPhotoPicker(configuration: configuration)
@@ -98,5 +118,13 @@ extension ViewController: UnsplashPhotoPickerDelegate {
 
     func unsplashPhotoPickerDidCancel(_ photoPicker: UnsplashPhotoPicker) {
         print("Unsplash photo picker did cancel")
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
