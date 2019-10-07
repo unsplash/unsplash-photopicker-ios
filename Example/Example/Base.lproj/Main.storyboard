@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +18,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="N7L-Dz-dFy">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7MQ-w9-DmX">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -54,14 +54,6 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="yRh-KL-qDS"/>
                                 </connections>
                             </collectionView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQe-50-72z">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Nt1-wl-dVC">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <blurEffect style="extraLight"/>
-                            </visualEffectView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8pM-m8-mj8">
                                 <rect key="frame" x="0.0" y="486" width="375" height="181"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" id="jt3-4y-jF5">
@@ -108,21 +100,17 @@
                                     </constraints>
                                     <viewLayoutGuide key="safeArea" id="vBL-rR-BH6"/>
                                 </view>
-                                <blurEffect style="extraLight"/>
+                                <blurEffect style="prominent"/>
                             </visualEffectView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="N7L-Dz-dFy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1HW-KH-Dw8"/>
-                            <constraint firstItem="qQe-50-72z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1Qk-4A-KJQ"/>
-                            <constraint firstItem="qQe-50-72z" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="8an-1g-NiB"/>
                             <constraint firstItem="8pM-m8-mj8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BlE-kG-kbg"/>
                             <constraint firstItem="N7L-Dz-dFy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="LL2-BQ-yZq"/>
                             <constraint firstAttribute="trailing" secondItem="8pM-m8-mj8" secondAttribute="trailing" id="cf0-KH-3dE"/>
-                            <constraint firstAttribute="trailing" secondItem="qQe-50-72z" secondAttribute="trailing" id="fkD-pf-ZGz"/>
                             <constraint firstItem="8pM-m8-mj8" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="h11-Uy-HOH"/>
                             <constraint firstItem="N7L-Dz-dFy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="lTf-6d-fdf"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="qQe-50-72z" secondAttribute="bottom" id="wef-84-wyZ"/>
                             <constraint firstAttribute="bottom" secondItem="N7L-Dz-dFy" secondAttribute="bottom" id="y1L-wH-tGE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
