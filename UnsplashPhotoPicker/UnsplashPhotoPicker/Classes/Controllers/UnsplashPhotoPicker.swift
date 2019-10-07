@@ -63,7 +63,6 @@ public class UnsplashPhotoPicker: UINavigationController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationBar.isTranslucent = false
         viewControllers = [photoPickerViewController]
     }
 

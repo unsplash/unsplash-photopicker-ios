@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09555F9B234BD9A6003CD26E /* UIColor+Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09555F9A234BD9A6003CD26E /* UIColor+Application.swift */; };
 		09F278B02193583A000A26A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09F278AF2193583A000A26A4 /* Assets.xcassets */; };
 		09F278B22193589E000A26A4 /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F278B12193589E000A26A4 /* CheckmarkView.swift */; };
 		231D127C218FAEB3002C5750 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 231D127B218FAEB3002C5750 /* Localizable.stringsdict */; };
@@ -51,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09555F9A234BD9A6003CD26E /* UIColor+Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Application.swift"; sourceTree = "<group>"; };
 		09F278AF2193583A000A26A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09F278B12193589E000A26A4 /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
 		231D127B218FAEB3002C5750 /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				2378D553219A731300D76294 /* NSError+Extensions.swift */,
 				23A0D241216D991000BEAE05 /* OperationQueue+Extensions.swift */,
 				231D127F218FB3D7002C5750 /* String+Localization.swift */,
+				09555F9A234BD9A6003CD26E /* UIColor+Application.swift */,
 				23A0D203216D806800BEAE05 /* UIColor+Extensions.swift */,
 				23A0D249216D9D2400BEAE05 /* URL+Extensions.swift */,
 			);
@@ -383,6 +386,7 @@
 				23A0D236216D901400BEAE05 /* PhotoCell.swift in Sources */,
 				23A0D208216D806800BEAE05 /* KeyedDecodingContainer+Extensions.swift in Sources */,
 				23A0D209216D806800BEAE05 /* UIColor+Extensions.swift in Sources */,
+				09555F9B234BD9A6003CD26E /* UIColor+Application.swift in Sources */,
 				23C24A71217D3BBC00C03E7B /* EmptyView.swift in Sources */,
 				23A0D22A216D8AD600BEAE05 /* UnsplashRequest.swift in Sources */,
 				23A0D237216D901400BEAE05 /* PagingView.swift in Sources */,
