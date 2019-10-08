@@ -50,7 +50,7 @@ class EmptyView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.textColor = .black
+        label.textColor = UIColor.photoPicker.titleLabel
         label.font = UIFont.boldSystemFont(ofSize: 24.0)
         label.numberOfLines = 0
         return label
@@ -60,7 +60,7 @@ class EmptyView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.textColor = .gray
+        label.textColor = UIColor.photoPicker.subtitleLabel
         label.font = UIFont.systemFont(ofSize: 16.0)
         label.numberOfLines = 0
         return label
@@ -77,7 +77,7 @@ class EmptyView: UIView {
     init() {
         super.init(frame: .zero)
 
-        backgroundColor = .white
+        backgroundColor = UIColor.photoPicker.background
         setupContainerView()
         setupTitleLabel()
         setupDescriptionLabel()

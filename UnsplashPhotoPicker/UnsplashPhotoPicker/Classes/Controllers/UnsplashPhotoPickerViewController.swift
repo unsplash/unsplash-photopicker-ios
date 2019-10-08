@@ -55,7 +55,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         collectionView.register(PagingView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: PagingView.reuseIdentifier)
         collectionView.contentInsetAdjustmentBehavior = .automatic
         collectionView.layoutMargins = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 0.0, right: 16.0)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor.photoPicker.background
         collectionView.allowsMultipleSelection = Configuration.shared.allowsMultipleSelection
         return collectionView
     }()
@@ -110,7 +110,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.photoPicker.background
         setupNotifications()
         setupNavigationBar()
         setupSearchController()
