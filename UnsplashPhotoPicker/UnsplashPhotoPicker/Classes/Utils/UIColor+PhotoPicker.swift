@@ -1,5 +1,5 @@
 //
-//  UIColor+Application.swift
+//  UIColor+PhotoPicker.swift
 //  UnsplashPhotoPicker
 //
 //  Created by Olivier Collet on 2019-10-07.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ApplicationColors {
+struct PhotoPickerColors {
     var background: UIColor {
         if #available(iOS 13.0, *) { return .systemBackground }
         return .white
@@ -24,5 +24,5 @@ struct ApplicationColors {
 }
 
 extension UIColor {
-    static let application = ApplicationColors()
+    static let photoPicker = PhotoPickerColors()
 }
