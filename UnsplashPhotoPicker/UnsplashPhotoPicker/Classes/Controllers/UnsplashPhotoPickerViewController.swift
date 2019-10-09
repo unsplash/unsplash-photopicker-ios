@@ -127,8 +127,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
         if dataSource.items.count == 0 {
             refresh()
-        } else {
-            reloadData()
         }
     }
 
