@@ -1,8 +1,9 @@
 # Unsplash Photo Picker for iOS
 
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/UnsplashPhotoPicker.svg?style=flat-square)](https://cocoapods.org/pods/UnsplashPhotoPicker)
+[![SPM Compatible](https://img.shields.io/badge/Swift%20Package%20Manager-Compatible-brightgreen)](https://swift.org/package-manager)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
-[![Platform](https://img.shields.io/cocoapods/p/UnsplashPhotoPicker.svg?style=flat-square)](https://alamofire.github.io/Alamofire)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/UnsplashPhotoPicker.svg?style=flat-square)](https://cocoapods.org/pods/UnsplashPhotoPicker)
+[![Platform](https://img.shields.io/cocoapods/p/UnsplashPhotoPicker.svg?style=flat-square)](https://github.com/unsplash/unsplash-photopicker-ios)
 [![License](https://img.shields.io/github/license/unsplash/unsplash-photopicker-ios.svg?style=flat-square)](https://github.com/unsplash/unsplash-photopicker-ios)
 
 UnsplashPhotoPicker is an iOS UI component that allows you to quickly search the Unsplash library for free high-quality photos with just a few lines of code.
@@ -16,6 +17,7 @@ Android photo picker [here](https://github.com/unsplash/unsplash-photopicker-and
 - [Description](#description)
 - [Requirements](#requirements)
 - [Installation](#installation)
+  - [Swift Package Manager](#swift-package-manager)
   - [Carthage](#carthage)
   - [CocoaPods](#cocoapods)
   - [Git submodule](#git-submodule)
@@ -39,6 +41,10 @@ UnsplashPhotoPicker is a view controller. You present it to offer your users to 
 ⚠️ UnsplashPhotoPicker is not compatible with Objective-C.
 
 ## Installation
+
+### Swift Package Manager
+
+To integrate UnsplashPhotoPicker into your Xcode project using [Swift Package Manager](https://swift.org/package-manager/), follow the instructions [here](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app).
 
 ### Carthage
 
