@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0688B9EF25A4B40600D137FD /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0688B9EE25A4B40600D137FD /* Bundle+Extensions.swift */; };
 		09555F9B234BD9A6003CD26E /* UIColor+PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09555F9A234BD9A6003CD26E /* UIColor+PhotoPicker.swift */; };
 		09F278B02193583A000A26A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09F278AF2193583A000A26A4 /* Assets.xcassets */; };
 		09F278B22193589E000A26A4 /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F278B12193589E000A26A4 /* CheckmarkView.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0688B9EE25A4B40600D137FD /* Bundle+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		09555F9A234BD9A6003CD26E /* UIColor+PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+PhotoPicker.swift"; sourceTree = "<group>"; };
 		09F278AF2193583A000A26A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09F278B12193589E000A26A4 /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 		23A0D201216D806800BEAE05 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0688B9EE25A4B40600D137FD /* Bundle+Extensions.swift */,
 				23A0D205216D806800BEAE05 /* Dictionary+Extensions.swift */,
 				23A0D202216D806800BEAE05 /* KeyedDecodingContainer+Extensions.swift */,
 				2378D553219A731300D76294 /* NSError+Extensions.swift */,
@@ -373,6 +376,7 @@
 				23A0D240216D988600BEAE05 /* PagedDataSource.swift in Sources */,
 				23A0D23F216D988600BEAE05 /* PhotosDataSourceFactory.swift in Sources */,
 				2333E0EC21757C52000B1900 /* UnsplashPhotoPickerViewController+UICollectionView.swift in Sources */,
+				0688B9EF25A4B40600D137FD /* Bundle+Extensions.swift in Sources */,
 				2378D554219A731300D76294 /* NSError+Extensions.swift in Sources */,
 				23A0D235216D901400BEAE05 /* PhotoView.swift in Sources */,
 				23A0D1FE216D7E9B00BEAE05 /* UnsplashUser.swift in Sources */,

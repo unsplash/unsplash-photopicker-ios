@@ -6,7 +6,7 @@
 //  Copyright © 2017 Unsplash. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension KeyedDecodingContainer {
     func decode(_ type: UIColor.Type, forKey key: Key) throws -> UIColor {
