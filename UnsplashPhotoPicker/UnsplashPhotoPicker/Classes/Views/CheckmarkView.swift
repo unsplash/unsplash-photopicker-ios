@@ -15,7 +15,12 @@ class CheckmarkView: UIView {
 
     private lazy var checkmark: UIImageView = {
         let bundle = Bundle(for: type(of: self))
-        let image = UIImage(named: "checkmark", in: bundle, compatibleWith: nil)
+        let image: UIImage
+        if #available(iOS 13, *) {
+          image = UIImage(systemName: "checkmark.circle")
+        } else {
+          image = UIImage(named: "checkmark", in: bundle, compatibleWith: nil)
+        }
         let imageView = UIImageView(image: image)
         imageView.tintColor = .white
         imageView.translatesAutoresizingMaskIntoConstraints = false
