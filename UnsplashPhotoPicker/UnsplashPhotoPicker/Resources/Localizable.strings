@@ -6,11 +6,10 @@
   Copyright © 2018 Unsplash. All rights reserved.
 */
 
-"search.placeholder" = "Search photos";
-
-"error.noResults.title" = "No results";
-"error.noResults.description" = "Please update your search and try again.";
-"error.noInternetConnection.title" = "No Internet Connection";
-"error.noInternetConnection.description" = "You must connect to a Wi-Fi or cellular data network to access Unsplash.";
-"error.serverError.title" = "Server error";
-"error.serverError.description" = "Oops! Something's wrong. Please try again.";
+"search.placeholder" = "Поиск фотографий";
+"error.noResults.title" = "Нет результатов";
+"error.noResults.description" = "Пожалуйста, обновите ваш поиск и попробуйте снова.";
+"error.noInternetConnection.title" = "Нет соединения с интернетом";
+"error.noInternetConnection.description" = "Вы должны подключиться к Wi-Fi или сотовой сети передачи данных, чтобы получить доступ к Unsplash.";
+"error.serverError.title" = "Ошибка сервера";
+"error.serverError.description" = "Упппс! Что-то не так. Пожалуйста, попробуйте еще раз.";

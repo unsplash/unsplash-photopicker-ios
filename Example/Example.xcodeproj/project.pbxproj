@@ -3,36 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09329CF9234D2D9E006BD592 /* UnsplashPhotoPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 09329CF8234D2D9E006BD592 /* UnsplashPhotoPicker */; };
 		231D128E218FC2E6002C5750 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D128D218FC2E6002C5750 /* AppDelegate.swift */; };
 		231D1290218FC2E6002C5750 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D128F218FC2E6002C5750 /* ViewController.swift */; };
 		231D1293218FC2E7002C5750 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 231D1291218FC2E7002C5750 /* Main.storyboard */; };
 		231D1295218FC2E9002C5750 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 231D1294218FC2E9002C5750 /* Assets.xcassets */; };
 		231D1298218FC2E9002C5750 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 231D1296218FC2E9002C5750 /* LaunchScreen.storyboard */; };
 		231D12A0218FC338002C5750 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D129F218FC338002C5750 /* PhotoCollectionViewCell.swift */; };
-		231D12A7218FC387002C5750 /* UnsplashPhotoPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 231D12A6218FC37E002C5750 /* UnsplashPhotoPicker.framework */; };
-		231D12A8218FC387002C5750 /* UnsplashPhotoPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 231D12A6218FC37E002C5750 /* UnsplashPhotoPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		231D12A5218FC37E002C5750 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 231D12A1218FC37E002C5750 /* UnsplashPhotoPicker.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 23B683BB216BF83200CAA546;
-			remoteInfo = UnsplashPhotoPicker;
-		};
-		231D12A9218FC387002C5750 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 231D12A1218FC37E002C5750 /* UnsplashPhotoPicker.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 23B683BA216BF83200CAA546;
-			remoteInfo = UnsplashPhotoPicker;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		231D12AB218FC387002C5750 /* Embed Frameworks */ = {
@@ -41,7 +23,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				231D12A8218FC387002C5750 /* UnsplashPhotoPicker.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,6 +30,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		09329CF6234D2D62006BD592 /* iOS Photo Picker */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "iOS Photo Picker"; path = ..; sourceTree = "<group>"; };
 		231D128A218FC2E6002C5750 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		231D128D218FC2E6002C5750 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		231D128F218FC2E6002C5750 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,7 +39,6 @@
 		231D1297218FC2E9002C5750 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		231D1299218FC2E9002C5750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		231D129F218FC338002C5750 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
-		231D12A1218FC37E002C5750 /* UnsplashPhotoPicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UnsplashPhotoPicker.xcodeproj; path = ../UnsplashPhotoPicker/UnsplashPhotoPicker.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				231D12A7218FC387002C5750 /* UnsplashPhotoPicker.framework in Frameworks */,
+				09329CF9234D2D9E006BD592 /* UnsplashPhotoPicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +58,7 @@
 			children = (
 				231D128C218FC2E6002C5750 /* Example */,
 				231D128B218FC2E6002C5750 /* Products */,
-				231D12A1218FC37E002C5750 /* UnsplashPhotoPicker.xcodeproj */,
+				09329CF6234D2D62006BD592 /* iOS Photo Picker */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,14 +84,6 @@
 			path = Example;
 			sourceTree = "<group>";
 		};
-		231D12A2218FC37E002C5750 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				231D12A6218FC37E002C5750 /* UnsplashPhotoPicker.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +99,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				231D12AA218FC387002C5750 /* PBXTargetDependency */,
 			);
 			name = Example;
+			packageProductDependencies = (
+				09329CF8234D2D9E006BD592 /* UnsplashPhotoPicker */,
+			);
 			productName = Example;
 			productReference = 231D128A218FC2E6002C5750 /* Example.app */;
 			productType = "com.apple.product-type.application";
@@ -160,28 +135,12 @@
 			mainGroup = 231D1281218FC2E6002C5750;
 			productRefGroup = 231D128B218FC2E6002C5750 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 231D12A2218FC37E002C5750 /* Products */;
-					ProjectRef = 231D12A1218FC37E002C5750 /* UnsplashPhotoPicker.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				231D1289218FC2E6002C5750 /* Example */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		231D12A6218FC37E002C5750 /* UnsplashPhotoPicker.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = UnsplashPhotoPicker.framework;
-			remoteRef = 231D12A5218FC37E002C5750 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		231D1288218FC2E6002C5750 /* Resources */ = {
@@ -208,14 +167,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		231D12AA218FC387002C5750 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UnsplashPhotoPicker;
-			targetProxy = 231D12A9218FC387002C5750 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		231D1291218FC2E7002C5750 /* Main.storyboard */ = {
@@ -415,6 +366,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		09329CF8234D2D9E006BD592 /* UnsplashPhotoPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UnsplashPhotoPicker;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 231D1282218FC2E6002C5750 /* Project object */;
 }
