@@ -14,7 +14,30 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var photoImageView: UIImageView!
 
     private var imageDataTask: URLSessionDataTask?
-    private static var cache = URLCache(memoryCapacity: 50 * 1024 * 1024, diskCapacity: 100 * 1024 * 1024, diskPath: "unsplash")
+    private static var cache: URLCache = {
+        let memoryCapacity = 50 * 1024 * 1024
+        let diskCapacity = 100 * 1024 * 1024
+        let diskPath = "unsplash"
+        
+        if #available(iOS 13.0, *) {
+            return URLCache(
+                memoryCapacity: memoryCapacity,
+                diskCapacity: diskCapacity,
+                directory: URL(fileURLWithPath: diskPath, isDirectory: true)
+            )
+        }
+        else {
+            #if !targetEnvironment(macCatalyst)
+            return URLCache(
+                memoryCapacity: memoryCapacity,
+                diskCapacity: diskCapacity,
+                diskPath: diskPath
+            )
+            #else
+            fatalError()
+            #endif
+        }
+    }()
 
     func downloadPhoto(_ photo: UnsplashPhoto) {
         guard let url = photo.urls[.regular] else { return }

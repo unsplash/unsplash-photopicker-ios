@@ -10,11 +10,28 @@ import UIKit
 
 class ImageCache {
 
-    static let cache = URLCache(
-        memoryCapacity: Configuration.shared.memoryCapacity,
-        diskCapacity: Configuration.shared.diskCapacity,
-        diskPath: "unsplash"
-    )
+    static let cache: URLCache = {
+        let diskPath = "unsplash"
+        
+        if #available(iOS 13.0, *) {
+            return URLCache(
+                memoryCapacity: Configuration.shared.memoryCapacity,
+                diskCapacity: Configuration.shared.diskCapacity,
+                directory: URL(fileURLWithPath: diskPath, isDirectory: true)
+            )
+        }
+        else {
+            #if !targetEnvironment(macCatalyst)
+            return URLCache(
+                memoryCapacity: Configuration.shared.memoryCapacity,
+                diskCapacity: Configuration.shared.diskCapacity,
+                diskPath: diskPath
+            )
+            #else
+            fatalError()
+            #endif
+        }
+    }()
 
     static let memoryCapacity: Int = 50.megabytes
     static let diskCapacity: Int = 100.megabytes
