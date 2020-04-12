@@ -45,7 +45,7 @@ UnsplashPhotoPicker is a view controller. You present it to offer your users to 
 To integrate UnsplashPhotoPicker into your Xcode project using [Carthage](https://github.com/Carthage/Carthage), specify it in your `Cartfile`:
 
 ```ogdl
-github "unsplash/unsplash-photopicker-ios" ~> 1.1
+github "unsplash/unsplash-photopicker-ios" ~> 1.1.1
 ```
 
 Run `carthage update` to build the framework and drag the built `UnsplashPhotoPicker.framework` into your Xcode project.
@@ -60,7 +60,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'UnsplashPhotoPicker', '~> 1.1'
+    pod 'UnsplashPhotoPicker', '~> 1.1.1'
 end
 ```
 
