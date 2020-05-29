@@ -119,11 +119,11 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
         view.backgroundColor = UIColor.photoPicker.background
         setupNotifications()
-        setupNavigationBar()
+        //setupNavigationBar()
         setupSearchController()
         setupCollectionView()
         setupSpinner()
-        setupPeekAndPop()
+        //setupPeekAndPop()
 
         let trimmedQuery = Configuration.shared.query?.trimmingCharacters(in: .whitespacesAndNewlines)
         setSearchText(trimmedQuery)
@@ -133,7 +133,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         super.viewWillAppear(animated)
 
         if dataSource.items.count == 0 {
-            refresh()
+            //refresh()
         }
     }
 
