@@ -55,7 +55,7 @@ extension UnsplashPhotoItemProvider: NSItemProviderWriting {
             }
 
         case kUTTypeJPEG:
-            guard let url = photo.urls[.full] else {
+            guard let url = photo.urls[.regular] else {
                 completionHandler(nil, ItemProviderError.cannotDecodeLink(key: UnsplashPhoto.LinkKind.download.rawValue, photoIdentifier: photo.identifier))
                 return nil
             }
