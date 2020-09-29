@@ -13,12 +13,7 @@ class ImageDownloader {
     private var imageDataTask: URLSessionDataTask?
     private let cache = ImageCache.cache
 
-    private(set) var isCancelled = false
-
     func downloadPhoto(with url: URL, completion: @escaping ((UIImage?, Bool) -> Void)) {
-        guard imageDataTask == nil else { return }
-
-        isCancelled = false
 
         if let cachedResponse = cache.cachedResponse(for: URLRequest(url: url)),
             let image = UIImage(data: cachedResponse.data) {
@@ -44,7 +39,6 @@ class ImageDownloader {
     }
 
     func cancel() {
-        isCancelled = true
         imageDataTask?.cancel()
     }
 
