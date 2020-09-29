@@ -30,8 +30,12 @@ class ImageDownloader {
             let cachedResponse = CachedURLResponse(response: response, data: data)
             strongSelf.cache.storeCachedResponse(cachedResponse, for: URLRequest(url: url))
 
-            DispatchQueue.main.async {
-                completion(image, false)
+            // Decode the JPEG image in a background thread
+            DispatchQueue.global(qos: .userInteractive).async {
+                let decodedImage = image.preloadedImage()
+                DispatchQueue.main.async {
+                    completion(decodedImage, false)
+                }
             }
         }
 
