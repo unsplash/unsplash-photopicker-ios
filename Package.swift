@@ -4,22 +4,20 @@
 import PackageDescription
 
 let package = Package(
-  name: "UnsplashPhotoPicker",
-  defaultLocalization: "en",
-  platforms: [.iOS(.v11)],
-  products: [
-    .library(
-      name: "UnsplashPhotoPicker",
-      targets: ["UnsplashPhotoPicker"]),
-  ],
-  targets: [
-    .target(
-      name: "UnsplashPhotoPicker",
-      dependencies: [],
-      path: "UnsplashPhotoPicker/UnsplashPhotoPicker/Classes",
-      resources: [
-        .process("UnsplashPhotoPicker/UnsplashPhotoPicker/Resources")
-      ]
-    ),
-  ]
+    name: "UnsplashPhotoPicker",
+    defaultLocalization: "en",
+    platforms: [.iOS(.v11)],
+    products: [
+        .library(
+            name: "UnsplashPhotoPicker",
+            targets: ["UnsplashPhotoPicker"]),
+    ],
+    targets: [
+        .target(
+            name: "UnsplashPhotoPicker",
+            dependencies: [],
+            path: "UnsplashPhotoPicker/UnsplashPhotoPicker",
+            exclude: ["Info.plist", "UnsplashPhotoPicker.h"]
+        )
+    ]
 )
