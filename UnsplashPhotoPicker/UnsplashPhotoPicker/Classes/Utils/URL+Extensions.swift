@@ -26,7 +26,15 @@ extension URL {
         }
 
         var newComponents = components
-        newComponents.queryItems = queryDictionary.map({ URLQueryItem(name: $0.key, value: $0.value) })
+        
+        var queryItems = queryDictionary.map({ URLQueryItem(name: $0.key, value: $0.value) })
+        
+        // make sure url won't change so the url cache will work fine
+        queryItems.sort { (item1, item2) -> Bool in
+            return item1.name > item2.name
+        }
+        
+        newComponents.queryItems = queryItems
 
         return newComponents.url ?? self
     }
