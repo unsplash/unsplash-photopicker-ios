@@ -57,13 +57,13 @@ public struct UnsplashPhoto: Codable {
         identifier = try container.decode(String.self, forKey: .identifier)
         height = try container.decode(Int.self, forKey: .height)
         width = try container.decode(Int.self, forKey: .width)
-        
+
         if let hexString = try? container.decode(String.self, forKey: .color) {
             color = UIColor(hexString: hexString)
         } else {
             color = nil
         }
-        
+
         exif = try? container.decode(UnsplashPhotoExif.self, forKey: .exif)
         user = try container.decode(UnsplashUser.self, forKey: .user)
         urls = try container.decode([URLKind: URL].self, forKey: .urls)

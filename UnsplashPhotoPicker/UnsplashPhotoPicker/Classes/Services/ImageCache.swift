@@ -12,15 +12,14 @@ class ImageCache {
 
     static let cache: URLCache = {
         let diskPath = "unsplash"
-        
+
         if #available(iOS 13.0, *) {
             return URLCache(
                 memoryCapacity: Configuration.shared.memoryCapacity,
                 diskCapacity: Configuration.shared.diskCapacity,
                 directory: URL(fileURLWithPath: diskPath, isDirectory: true)
             )
-        }
-        else {
+        } else {
             #if !targetEnvironment(macCatalyst)
             return URLCache(
                 memoryCapacity: Configuration.shared.memoryCapacity,

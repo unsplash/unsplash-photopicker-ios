@@ -81,7 +81,7 @@ class PhotoView: UIView {
         layoutIfNeeded()
         return url.appending(queryItems: [
             URLQueryItem(name: "w", value: "\(frame.width)"),
-            URLQueryItem(name: "dpr", value: "\(Int(screenScale))"),
+            URLQueryItem(name: "dpr", value: "\(Int(screenScale))")
         ])
     }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol WaterfallLayoutDelegate: class {
+protocol WaterfallLayoutDelegate: AnyObject {
     func waterfallLayout(_ layout: WaterfallLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
 }
 

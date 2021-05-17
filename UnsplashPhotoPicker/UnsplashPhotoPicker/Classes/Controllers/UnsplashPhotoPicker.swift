@@ -9,7 +9,7 @@
 import UIKit
 
 /// A protocol describing an object that can be notified of events from UnsplashPhotoPicker.
-public protocol UnsplashPhotoPickerDelegate: class {
+public protocol UnsplashPhotoPickerDelegate: AnyObject {
 
     /**
      Notifies the delegate that UnsplashPhotoPicker has selected photos.
