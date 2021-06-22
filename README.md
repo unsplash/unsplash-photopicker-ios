@@ -44,7 +44,7 @@ UnsplashPhotoPicker is a view controller. You present it to offer your users to 
 
 ### Swift Package Manager
 
-To integrate UnsplashPhotoPicker into your Xcode project using [Switf Package Manager](https://github.com/apple/swift-package-manager), open dependency manager through `File > Swift Packages > Add Package Dependency...`.
+To integrate UnsplashPhotoPicker into your Xcode project using [Swift Package Manager](https://github.com/apple/swift-package-manager), open dependency manager through `File > Swift Packages > Add Package Dependency...`.
 
 and insert repository URL:
 
