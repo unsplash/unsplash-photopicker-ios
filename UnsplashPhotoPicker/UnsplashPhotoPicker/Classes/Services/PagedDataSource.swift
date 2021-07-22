@@ -120,7 +120,8 @@ class PagedDataSource {
 
     private func fetchDidComplete(withItems items: [UnsplashPhoto]?, error: Error?) {
         self.error = error
-
+        if let items = items, items.count == 0 { return }
+        
         if let error = error {
             delegate?.dataSource(self, fetchDidFailWithError: error)
         } else {
