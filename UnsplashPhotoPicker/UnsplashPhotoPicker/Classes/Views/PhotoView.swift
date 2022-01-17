@@ -53,6 +53,8 @@ class PhotoView: UIView {
     // MARK: - Setup
 
     func configure(with photo: UnsplashPhoto, showsUsername: Bool = true) {
+        layer.cornerRadius = 10
+        layer.masksToBounds = true
         self.showsUsername = showsUsername
         userNameLabel.text = photo.user.displayName
         imageView.backgroundColor = photo.color
