@@ -11,6 +11,13 @@ import Foundation
 /// Encapsulates configuration information for the behavior of UnsplashPhotoPicker.
 public struct UnsplashPhotoPickerConfiguration {
 
+    // MARK: - Enumerations
+    public enum NavigationBarAppearance {
+        case `default`
+        case opaque
+        case translucent
+    }
+    
     /// Your application’s access key.
     public var accessKey = ""
 
@@ -21,8 +28,15 @@ public struct UnsplashPhotoPickerConfiguration {
     public var query: String?
 
     /// Controls whether the picker allows multiple or single selection.
+    public var allowCancelButton = false
     public var allowsMultipleSelection = false
+    
+    /// Controls the navigation bar's appearance.
+    public var navigationBarAppearance: NavigationBarAppearance = .opaque
 
+    /// Controls the navigation bar title.
+    public var title: String? = nil
+    
     /// The memory capacity used by the cache.
     public var memoryCapacity = defaultMemoryCapacity
 
@@ -54,15 +68,22 @@ public struct UnsplashPhotoPickerConfiguration {
     public init(accessKey: String,
                 secretKey: String,
                 query: String? = nil,
+                title: String? = nil,
+                allowCancelButton: Bool = false,
                 allowsMultipleSelection: Bool = false,
                 memoryCapacity: Int = defaultMemoryCapacity,
-                diskCapacity: Int = defaultDiskCapacity) {
+                diskCapacity: Int = defaultDiskCapacity,
+                navigationBarAppearance: NavigationBarAppearance = .opaque
+    ) {
         self.accessKey = accessKey
         self.secretKey = secretKey
         self.query = query
+        self.title = title
+        self.allowCancelButton = allowCancelButton
         self.allowsMultipleSelection = allowsMultipleSelection
         self.memoryCapacity = memoryCapacity
         self.diskCapacity = diskCapacity
+        self.navigationBarAppearance = navigationBarAppearance
     }
 
     init() {}

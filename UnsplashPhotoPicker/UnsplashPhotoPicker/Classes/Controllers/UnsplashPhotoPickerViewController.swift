@@ -161,11 +161,34 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     private func setupNavigationBar() {
         updateTitle()
-        navigationItem.leftBarButtonItem = cancelBarButtonItem
+        
+        if Configuration.shared.allowCancelButton {
+            navigationItem.leftBarButtonItem = cancelBarButtonItem
+        }
 
         if Configuration.shared.allowsMultipleSelection {
             doneBarButtonItem.isEnabled = false
             navigationItem.rightBarButtonItem = doneBarButtonItem
+        }
+        
+        if #available(iOS 13.0, *) {
+            switch Configuration.shared.navigationBarAppearance {
+            case .default:
+                navigationController?
+                    .navigationBar
+                    .standardAppearance
+                    .configureWithDefaultBackground()
+            case .opaque:
+                navigationController?
+                    .navigationBar
+                    .standardAppearance
+                    .configureWithOpaqueBackground()
+            case .translucent:
+                navigationController?
+                    .navigationBar
+                    .standardAppearance
+                    .configureWithTransparentBackground()
+            }
         }
     }
 
@@ -225,7 +248,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
     }
 
     func updateTitle() {
-        title = String.localizedStringWithFormat("title".localized(), numberOfSelectedPhotos)
+        title = Configuration.shared.title
     }
 
     func updateDoneButtonState() {
