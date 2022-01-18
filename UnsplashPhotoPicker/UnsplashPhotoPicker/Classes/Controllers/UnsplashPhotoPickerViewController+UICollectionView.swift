@@ -24,34 +24,54 @@ extension UnsplashPhotoPickerViewController: UICollectionViewDataSource {
         return photoCell
     }
 
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PagingView.reuseIdentifier, for: indexPath)
-
-        guard let pagingView = view as? PagingView else { return view }
-
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
+        let view = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: PagingView.reuseIdentifier,
+            for: indexPath
+        )
+        guard let pagingView = view as? PagingView else {
+            return view
+        }
         pagingView.isLoading = dataSource.isFetching
-
         return pagingView
     }
 }
 
 // MARK: - UICollectionViewDelegate
 extension UnsplashPhotoPickerViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        willDisplay cell: UICollectionViewCell,
+        forItemAt indexPath: IndexPath
+    ) {
         let prefetchCount = 19
         if indexPath.item == dataSource.items.count - prefetchCount {
             fetchNextItems()
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let photo = dataSource.item(at: indexPath.item), collectionView.hasActiveDrag == false else { return }
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        guard
+            let photo = dataSource.item(at: indexPath.item),
+            collectionView.hasActiveDrag == false
+        else { return }
 
         if Configuration.shared.allowsMultipleSelection {
             updateTitle()
             updateDoneButtonState()
         } else {
-            delegate?.unsplashPhotoPickerViewController(self, didSelectPhotos: [photo])
+            delegate?.unsplashPhotoPickerViewController(
+                self,
+                didSelectPhotos: [photo]
+            )
         }
     }
 

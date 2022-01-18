@@ -128,5 +128,4 @@ class PagedDataSource {
             delegate?.dataSource(self, didFetch: items)
         }
     }
-
 }
