@@ -98,7 +98,6 @@ extension UnsplashPhotoPickerViewController: UICollectionViewDelegateFlowLayout 
 extension UnsplashPhotoPickerViewController: WaterfallLayoutDelegate {
     func waterfallLayout(_ layout: WaterfallLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let photo = dataSource.item(at: indexPath.item) else { return .zero }
-
         return CGSize(width: photo.width, height: photo.height)
     }
 }

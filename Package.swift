@@ -4,20 +4,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "PixabayPhotoPicker",
+    name: "UnsplashPhotoPicker",
     defaultLocalization: "en",
     platforms: [.iOS(.v11)],
     products: [
         .library(
-            name: "PixabayPhotoPicker",
-            targets: ["PixabayPhotoPicker"]),
+            name: "UnsplashPhotoPicker",
+            targets: ["UnsplashPhotoPicker"]),
     ],
     targets: [
         .target(
-            name: "PixabayPhotoPicker",
+            name: "UnsplashPhotoPicker",
             dependencies: [],
-            path: "PixabayPhotoPicker/PixabayPhotoPicker",
-            exclude: ["Info.plist", "PixabayPhotoPicker.h"]
+            path: "UnsplashPhotoPicker/UnsplashPhotoPicker",
+            exclude: ["Info.plist", "UnsplashPhotoPicker.h"]
         )
     ]
 )

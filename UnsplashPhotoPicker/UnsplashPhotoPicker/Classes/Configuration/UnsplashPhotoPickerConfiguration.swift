@@ -18,6 +18,10 @@ public struct UnsplashPhotoPickerConfiguration {
         case translucent
     }
     
+    public enum Usage {
+        case picker, wallpaper
+    }
+    
     /// Your application’s access key.
     public var accessKey = ""
 
@@ -49,6 +53,11 @@ public struct UnsplashPhotoPickerConfiguration {
     /// The default disk capacity used by the cache.
     public static let defaultDiskCapacity: Int = ImageCache.diskCapacity
 
+    public var usage: Usage = .picker
+    
+    var selectAction: (UnsplashPhoto) -> Void = { _ in }
+    var downloadAction: (UnsplashPhoto) -> Void = { _ in }
+    
     /// The Unsplash API url.
     let apiURL = "https://api.unsplash.com/"
 
@@ -65,15 +74,19 @@ public struct UnsplashPhotoPickerConfiguration {
      - parameter memoryCapacity:          The memory capacity used by the cache.
      - parameter diskCapacity:            The disk capacity used by the cache.
      */
-    public init(accessKey: String,
-                secretKey: String,
-                query: String? = nil,
-                title: String? = nil,
-                allowCancelButton: Bool = false,
-                allowsMultipleSelection: Bool = false,
-                memoryCapacity: Int = defaultMemoryCapacity,
-                diskCapacity: Int = defaultDiskCapacity,
-                navigationBarAppearance: NavigationBarAppearance = .opaque
+    public init(
+        accessKey: String,
+        secretKey: String,
+        query: String? = nil,
+        title: String? = nil,
+        allowCancelButton: Bool = false,
+        allowsMultipleSelection: Bool = false,
+        memoryCapacity: Int = defaultMemoryCapacity,
+        diskCapacity: Int = defaultDiskCapacity,
+        navigationBarAppearance: NavigationBarAppearance = .opaque,
+        usage: Usage = .picker,
+        selectAction: @escaping (UnsplashPhoto) -> Void = { _ in },
+        downloadAction: @escaping (UnsplashPhoto) -> Void = { _ in }
     ) {
         self.accessKey = accessKey
         self.secretKey = secretKey
@@ -84,6 +97,9 @@ public struct UnsplashPhotoPickerConfiguration {
         self.memoryCapacity = memoryCapacity
         self.diskCapacity = diskCapacity
         self.navigationBarAppearance = navigationBarAppearance
+        self.usage = usage
+        self.selectAction = selectAction
+        self.downloadAction = downloadAction
     }
 
     init() {}

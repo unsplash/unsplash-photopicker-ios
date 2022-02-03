@@ -47,7 +47,7 @@ public class UnsplashPhotoPicker: UINavigationController {
     public init(configuration: UnsplashPhotoPickerConfiguration) {
         Configuration.shared = configuration
 
-        self.photoPickerViewController = UnsplashPhotoPickerViewController()
+        self.photoPickerViewController = UnsplashPhotoPickerViewController(usage: configuration.usage)
 
         super.init(nibName: nil, bundle: nil)
 
@@ -80,14 +80,18 @@ public class UnsplashPhotoPicker: UINavigationController {
 
 // MARK: - UnsplashPhotoPickerViewControllerDelegate
 extension UnsplashPhotoPicker: UnsplashPhotoPickerViewControllerDelegate {
-    func unsplashPhotoPickerViewController(_ viewController: UnsplashPhotoPickerViewController, didSelectPhotos photos: [UnsplashPhoto]) {
+    func unsplashPhotoPickerViewController(
+        _ viewController: UnsplashPhotoPickerViewController,
+        didSelectPhotos photos: [UnsplashPhoto]
+    ) {
         trackDownloads(for: photos)
         photoPickerDelegate?.unsplashPhotoPicker(self, didSelectPhotos: photos)
-        dismiss(animated: true, completion: nil)
+        
+        let photo = photos[0]
+        Configuration.shared.selectAction(photo)
     }
 
     func unsplashPhotoPickerViewControllerDidCancel(_ viewController: UnsplashPhotoPickerViewController) {
         photoPickerDelegate?.unsplashPhotoPickerDidCancel(self)
-        dismiss(animated: true, completion: nil)
     }
 }

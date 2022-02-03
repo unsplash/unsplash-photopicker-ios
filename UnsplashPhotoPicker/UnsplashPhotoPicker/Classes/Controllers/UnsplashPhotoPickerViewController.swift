@@ -79,7 +79,8 @@ class UnsplashPhotoPickerViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
+    
+    // MARK: - Properties
     var dataSource: PagedDataSource {
         didSet {
             oldValue.cancelFetch()
@@ -98,10 +99,12 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     weak var delegate: UnsplashPhotoPickerViewControllerDelegate?
 
+    let usage: UnsplashPhotoPickerConfiguration.Usage
+    
     // MARK: - Lifetime
-
-    init() {
+    init(usage: UnsplashPhotoPickerConfiguration.Usage) {
         self.dataSource = editorialDataSource
+        self.usage = usage
 
         super.init(nibName: nil, bundle: nil)
 
@@ -315,6 +318,87 @@ class UnsplashPhotoPickerViewController: UIViewController {
     private func fetchNextItemsIfNeeded() {
         if dataSource.items.count == 0 {
             fetchNextItems()
+        }
+    }
+    
+    @available(iOS 13.0, *)
+    func collectionView(
+        _ collectionView: UICollectionView,
+        contextMenuConfigurationForItemAt indexPath: IndexPath,
+        point: CGPoint
+    ) -> UIContextMenuConfiguration? {
+        UIContextMenuConfiguration(identifier: "\(indexPath.item)" as NSString, previewProvider: nil) { _ in
+            var children = [UIAction]()
+            
+            switch self.usage {
+            case .picker:
+                let selectAction = UIAction(
+                    title: "Select",
+                    image: UIImage(systemName: "checkmark.circle")
+                ) { _ in
+                    let photo = self.dataSource.items[indexPath.item]
+                    Configuration.shared.selectAction(photo)
+                }
+                children.append(selectAction)
+            case .wallpaper:
+                let downloadAction = UIAction(
+                    title: "Download",
+                    image: UIImage(systemName: "arrow.down.circle")
+                ) { _ in
+                    let photo = self.dataSource.items[indexPath.item]
+                    Configuration.shared.downloadAction(photo)
+                }
+                children.append(downloadAction)
+                let openAction = UIAction(
+                    title: "Open Wallpaper",
+                    image: UIImage(systemName: "doc.text.image")
+                ) { _ in
+                    let photo = self.dataSource.items[indexPath.item]
+                    Configuration.shared.selectAction(photo)
+                }
+                children.append(openAction)
+            }
+            
+            return UIMenu(
+                title: "",
+                image: nil,
+                children: children
+            )
+        }
+    }
+    
+    @available(iOS 13.0, *)
+    func collectionView(
+        _ collectionView: UICollectionView,
+        previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration
+    ) -> UITargetedPreview? {
+        guard
+            let identifier = configuration.identifier as? String,
+            let index = Int(identifier)
+        else {
+            return nil
+        }
+
+        let cell = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as! PhotoCell
+        return UITargetedPreview(view: cell)
+    }
+
+    @available(iOS 13.0, *)
+    func collectionView(
+        _ collectionView: UICollectionView,
+        willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
+        animator: UIContextMenuInteractionCommitAnimating
+    ) {
+        guard
+            let identifier = configuration.identifier as? String,
+            let index = Int(identifier)
+        else { return }
+        animator.addCompletion {
+            let photo = self.dataSource.items[index]
+            self.delegate?.unsplashPhotoPickerViewController(
+                self,
+                didSelectPhotos: [photo]
+            )
         }
     }
 
