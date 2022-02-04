@@ -20,7 +20,7 @@ class PhotoView: UIView {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet var overlayViews: [UIView]!
 
-    var showsUsername = false {
+    var showsUsername = true {
         didSet {
             userNameLabel.alpha = showsUsername ? 1 : 0
             gradientView.alpha = showsUsername ? 1 : 0
@@ -52,7 +52,7 @@ class PhotoView: UIView {
 
     // MARK: - Setup
 
-    func configure(with photo: UnsplashPhoto, showsUsername: Bool = false) {
+    func configure(with photo: UnsplashPhoto, showsUsername: Bool = true) {
         layer.cornerRadius = 10
         layer.masksToBounds = true
         self.showsUsername = showsUsername
