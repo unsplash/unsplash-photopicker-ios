@@ -48,9 +48,10 @@ To integrate UnsplashPhotoPicker into your Xcode project using [Switf Package Ma
 
 and insert repository URL:
 
-` https://github.com/unsplash/unsplash-photopicker-ios.git `
+`https://github.com/unsplash/unsplash-photopicker-ios.git`
 
 To add dependency in your own package, just specify it in dependencies of your `Package.swift`:
+
 ```swift
 .package(
   name: "UnsplashPhotoPicker",
@@ -89,9 +90,9 @@ Then run `pod install`.
 
 If you prefer not to use any of the aforementioned dependency managers, you can integrate UnsplashPhotoPicker into your project manually as a [git submodule](https://git-scm.com/docs/git-submodule) by running the following command in the project's folder:
 
-  ```bash
-  $ git submodule add https://github.com/unsplash/unsplash-photopicker-ios.git
-  ```
+```bash
+$ git submodule add https://github.com/unsplash/unsplash-photopicker-ios.git
+```
 
 Drag the `UnsplashPhotoPicker.xcodeproj` file into your Xcode project, then drag the `UnsplashPhotoPicker.framework` to your target's "Embedded Binaries".
 
@@ -111,14 +112,16 @@ UnsplashPhotoPickerConfiguration(accessKey: String,
                                  memoryCapacity: Int,
                                  diskCapacity: Int)
 ```
-| Property                      | Type     | Optional/Required | Default |
-|-------------------------------|----------|-------------------|---------|
-| **`accessKey`**               | _String_ | Required          | N/A     |
-| **`secretKey`**               | _String_ | Required          | N/A     |
-| **`query`**                   | _String_ | Optional          | `nil`   |
-| **`allowsMultipleSelection`** | _Bool_   | Optional          | `false` |
-| **`memoryCapacity`**          | _Int_    | Optional          | `50`    |
-| **`diskCapacity`**            | _Int_    | Optional          | `100`   |
+
+| Property                      | Type                 | Optional/Required | Default |
+| ----------------------------- | -------------------- | ----------------- | ------- |
+| **`accessKey`**               | _String_             | Required          | N/A     |
+| **`secretKey`**               | _String_             | Required          | N/A     |
+| **`query`**                   | _String_             | Optional          | `nil`   |
+| **`allowsMultipleSelection`** | _Bool_               | Optional          | `false` |
+| **`memoryCapacity`**          | _Int_                | Optional          | `50`    |
+| **`diskCapacity`**            | _Int_                | Optional          | `100`   |
+| **`contentFilterLevel`**      | _ContentFilterLevel_ | Optional          | `.low`  |
 
 ### Presenting
 

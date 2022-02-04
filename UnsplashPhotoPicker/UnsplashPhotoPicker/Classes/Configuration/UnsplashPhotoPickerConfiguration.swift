@@ -8,6 +8,11 @@
 
 import Foundation
 
+public enum ContentFilterLevel: String {
+    case low
+    case high
+}
+
 /// Encapsulates configuration information for the behavior of UnsplashPhotoPicker.
 public struct UnsplashPhotoPickerConfiguration {
 
@@ -28,12 +33,16 @@ public struct UnsplashPhotoPickerConfiguration {
 
     /// The disk capacity used by the cache.
     public var diskCapacity = defaultDiskCapacity
+    
+    public var contentFilterLevel = defaultContentFilterLevel
 
     /// The default memory capacity used by the cache.
     public static let defaultMemoryCapacity: Int = ImageCache.memoryCapacity
 
     /// The default disk capacity used by the cache.
     public static let defaultDiskCapacity: Int = ImageCache.diskCapacity
+    
+    public static let defaultContentFilterLevel: ContentFilterLevel = .low
 
     /// The Unsplash API url.
     let apiURL = "https://api.unsplash.com/"
@@ -56,13 +65,16 @@ public struct UnsplashPhotoPickerConfiguration {
                 query: String? = nil,
                 allowsMultipleSelection: Bool = false,
                 memoryCapacity: Int = defaultMemoryCapacity,
-                diskCapacity: Int = defaultDiskCapacity) {
+                diskCapacity: Int = defaultDiskCapacity,
+                contentFilterLevel: ContentFilterLevel = defaultContentFilterLevel
+    ) {
         self.accessKey = accessKey
         self.secretKey = secretKey
         self.query = query
         self.allowsMultipleSelection = allowsMultipleSelection
         self.memoryCapacity = memoryCapacity
         self.diskCapacity = diskCapacity
+        self.contentFilterLevel = contentFilterLevel
     }
 
     init() {}

@@ -11,7 +11,7 @@ import Foundation
 class SearchPhotosRequest: UnsplashPagedRequest {
 
     static func cursor(with query: String, page: Int = 1, perPage: Int = 10) -> UnsplashPagedRequest.Cursor {
-        let parameters = ["query": query]
+        let parameters = ["query": query, "content_filter": Configuration.shared.contentFilterLevel.rawValue]
         return Cursor(page: page, perPage: perPage, parameters: parameters)
     }
 
