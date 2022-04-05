@@ -13,12 +13,7 @@ class ImageDownloader {
     private var imageDataTask: URLSessionDataTask?
     private let cache = ImageCache.cache
 
-    private(set) var isCancelled = false
-
     func downloadPhoto(with url: URL, completion: @escaping ((UIImage?, Bool) -> Void)) {
-        guard imageDataTask == nil else { return }
-
-        isCancelled = false
 
         if let cachedResponse = cache.cachedResponse(for: URLRequest(url: url)),
             let image = UIImage(data: cachedResponse.data) {
@@ -35,8 +30,12 @@ class ImageDownloader {
             let cachedResponse = CachedURLResponse(response: response, data: data)
             strongSelf.cache.storeCachedResponse(cachedResponse, for: URLRequest(url: url))
 
-            DispatchQueue.main.async {
-                completion(image, false)
+            // Decode the JPEG image in a background thread
+            DispatchQueue.global(qos: .userInteractive).async {
+                let decodedImage = image.preloadedImage()
+                DispatchQueue.main.async {
+                    completion(decodedImage, false)
+                }
             }
         }
 
@@ -44,7 +43,6 @@ class ImageDownloader {
     }
 
     func cancel() {
-        isCancelled = true
         imageDataTask?.cancel()
     }
 

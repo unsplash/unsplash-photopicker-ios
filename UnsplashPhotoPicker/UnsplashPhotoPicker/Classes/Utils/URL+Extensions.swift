@@ -9,33 +9,25 @@
 import Foundation
 
 extension URL {
-    func appending(queryItems: [URLQueryItem]) -> URL {
-        guard let components = URLComponents(url: self, resolvingAgainstBaseURL: true) else {
-            return self
-        }
+    func appending(queryItems newQueryItems: [URLQueryItem]) -> URL {
+        guard var components = URLComponents(url: self, resolvingAgainstBaseURL: true),
+              var queryItems = components.queryItems else { return self }
 
-        var queryDictionary = [String: String]()
-        if let queryItems = components.queryItems {
-            for item in queryItems {
-                queryDictionary[item.name] = item.value
+        for newItem in newQueryItems {
+            if let existingIndex = queryItems.firstIndex(where: { $0.name == newItem.name }) {
+                queryItems[existingIndex].value = newItem.value
+            }
+            else {
+                queryItems.append(newItem)
             }
         }
-
-        for item in queryItems {
-            queryDictionary[item.name] = item.value
-        }
-
-        var newComponents = components
-
-        var queryItems = queryDictionary.map({ URLQueryItem(name: $0.key, value: $0.value) })
 
         // make sure url won't change so the url cache will work fine
         queryItems.sort { (item1, item2) -> Bool in
             return item1.name > item2.name
         }
-
-        newComponents.queryItems = queryItems
-
-        return newComponents.url ?? self
+        
+        components.queryItems = queryItems
+        return components.url ?? self
     }
 }
