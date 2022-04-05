@@ -1,6 +1,7 @@
 # Unsplash Photo Picker for iOS
 
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/UnsplashPhotoPicker.svg?style=flat-square)](https://cocoapods.org/pods/UnsplashPhotoPicker)
+[![SPM Compatible](https://img.shields.io/badge/swiftpm-compatible-brightgreen.svg?style=flat-square)](https://github.com/apple/swift-package-manager)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/UnsplashPhotoPicker.svg?style=flat-square)](https://github.com/unsplash/unsplash-photopicker-ios)
 [![License](https://img.shields.io/github/license/unsplash/unsplash-photopicker-ios.svg?style=flat-square)](https://github.com/unsplash/unsplash-photopicker-ios)
@@ -16,6 +17,7 @@ Android photo picker [here](https://github.com/unsplash/unsplash-photopicker-and
 - [Description](#description)
 - [Requirements](#requirements)
 - [Installation](#installation)
+  - [Swift Package Manager](#swift-package-manager)
   - [Carthage](#carthage)
   - [CocoaPods](#cocoapods)
   - [Git submodule](#git-submodule)
@@ -31,21 +33,38 @@ UnsplashPhotoPicker is a view controller. You present it to offer your users to 
 
 ## Requirements
 
-- iOS 11.0+
-- Xcode 10.2+
-- Swift 5.0+
+- iOS 12.1+
+- Xcode 12.5+
+- Swift 5.3+
 - [Unsplash API Access Key and Secret Key](https://unsplash.com/documentation#registering-your-application)
 
 ⚠️ UnsplashPhotoPicker is not compatible with Objective-C.
 
 ## Installation
 
+### Swift Package Manager
+
+To integrate UnsplashPhotoPicker into your Xcode project using [Switf Package Manager](https://github.com/apple/swift-package-manager), open dependency manager through `File > Swift Packages > Add Package Dependency...`.
+
+and insert repository URL:
+
+` https://github.com/unsplash/unsplash-photopicker-ios.git `
+
+To add dependency in your own package, just specify it in dependencies of your `Package.swift`:
+```swift
+.package(
+  name: "UnsplashPhotoPicker",
+  url: "https://github.com/unsplash/unsplash-photopicker-ios.git",
+  .upToNextMajor(from: "1.2.0")
+)
+```
+
 ### Carthage
 
 To integrate UnsplashPhotoPicker into your Xcode project using [Carthage](https://github.com/Carthage/Carthage), specify it in your `Cartfile`:
 
 ```ogdl
-github "unsplash/unsplash-photopicker-ios" ~> 1.1.1
+github "unsplash/unsplash-photopicker-ios" ~> 1.2
 ```
 
 Run `carthage update` to build the framework and drag the built `UnsplashPhotoPicker.framework` into your Xcode project.
@@ -56,11 +75,11 @@ To integrate UnsplashPhotoPicker into your Xcode project using [CocoaPods](https
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '11.0'
+platform :ios, '12.1'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'UnsplashPhotoPicker', '~> 1.1.1'
+    pod 'UnsplashPhotoPicker', '~> 1.2'
 end
 ```
 

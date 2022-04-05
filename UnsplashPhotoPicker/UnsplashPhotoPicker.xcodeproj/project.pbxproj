@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0628427C25B1BE74006DCC9B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0628427825B1BE74006DCC9B /* Localizable.strings */; };
+		0628427D25B1BE74006DCC9B /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 0628427A25B1BE74006DCC9B /* Localizable.stringsdict */; };
+		0688B9EF25A4B40600D137FD /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0688B9EE25A4B40600D137FD /* Bundle+Extensions.swift */; };
 		09555F9B234BD9A6003CD26E /* UIColor+PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09555F9A234BD9A6003CD26E /* UIColor+PhotoPicker.swift */; };
 		09F278B02193583A000A26A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09F278AF2193583A000A26A4 /* Assets.xcassets */; };
 		09F278B22193589E000A26A4 /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F278B12193589E000A26A4 /* CheckmarkView.swift */; };
-		231D127C218FAEB3002C5750 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 231D127B218FAEB3002C5750 /* Localizable.stringsdict */; };
-		231D127E218FB1DB002C5750 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 231D127D218FB1DB002C5750 /* Localizable.strings */; };
 		231D1280218FB3D7002C5750 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D127F218FB3D7002C5750 /* String+Localization.swift */; };
 		231D12E9218FCD0E002C5750 /* UnsplashPhotoPickerPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D12E8218FCD0E002C5750 /* UnsplashPhotoPickerPreviewViewController.swift */; };
 		2333E0EC21757C52000B1900 /* UnsplashPhotoPickerViewController+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2333E0EB21757C52000B1900 /* UnsplashPhotoPickerViewController+UICollectionView.swift */; };
@@ -52,11 +53,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0628427925B1BE74006DCC9B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0628427B25B1BE74006DCC9B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		0688B9EE25A4B40600D137FD /* Bundle+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		09555F9A234BD9A6003CD26E /* UIColor+PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+PhotoPicker.swift"; sourceTree = "<group>"; };
 		09F278AF2193583A000A26A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09F278B12193589E000A26A4 /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
-		231D127B218FAEB3002C5750 /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
-		231D127D218FB1DB002C5750 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		231D127F218FB3D7002C5750 /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		231D12E8218FCD0E002C5750 /* UnsplashPhotoPickerPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashPhotoPickerPreviewViewController.swift; sourceTree = "<group>"; };
 		2333E0EB21757C52000B1900 /* UnsplashPhotoPickerViewController+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnsplashPhotoPickerViewController+UICollectionView.swift"; sourceTree = "<group>"; };
@@ -128,8 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				09F278AF2193583A000A26A4 /* Assets.xcassets */,
-				231D127B218FAEB3002C5750 /* Localizable.stringsdict */,
-				231D127D218FB1DB002C5750 /* Localizable.strings */,
+				0628427825B1BE74006DCC9B /* Localizable.strings */,
+				0628427A25B1BE74006DCC9B /* Localizable.stringsdict */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -161,6 +163,7 @@
 		23A0D201216D806800BEAE05 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0688B9EE25A4B40600D137FD /* Bundle+Extensions.swift */,
 				23A0D205216D806800BEAE05 /* Dictionary+Extensions.swift */,
 				23A0D202216D806800BEAE05 /* KeyedDecodingContainer+Extensions.swift */,
 				2378D553219A731300D76294 /* NSError+Extensions.swift */,
@@ -295,7 +298,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = Unsplash;
 				TargetAttributes = {
 					23B683BA216BF83200CAA546 = {
@@ -328,9 +331,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				23A0D238216D901400BEAE05 /* PhotoView.xib in Resources */,
-				231D127E218FB1DB002C5750 /* Localizable.strings in Resources */,
+				0628427D25B1BE74006DCC9B /* Localizable.stringsdict in Resources */,
+				0628427C25B1BE74006DCC9B /* Localizable.strings in Resources */,
 				09F278B02193583A000A26A4 /* Assets.xcassets in Resources */,
-				231D127C218FAEB3002C5750 /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +376,7 @@
 				23A0D240216D988600BEAE05 /* PagedDataSource.swift in Sources */,
 				23A0D23F216D988600BEAE05 /* PhotosDataSourceFactory.swift in Sources */,
 				2333E0EC21757C52000B1900 /* UnsplashPhotoPickerViewController+UICollectionView.swift in Sources */,
+				0688B9EF25A4B40600D137FD /* Bundle+Extensions.swift in Sources */,
 				2378D554219A731300D76294 /* NSError+Extensions.swift in Sources */,
 				23A0D235216D901400BEAE05 /* PhotoView.swift in Sources */,
 				23A0D1FE216D7E9B00BEAE05 /* UnsplashUser.swift in Sources */,
@@ -404,6 +408,25 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		0628427825B1BE74006DCC9B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0628427925B1BE74006DCC9B /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		0628427A25B1BE74006DCC9B /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0628427B25B1BE74006DCC9B /* en */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		23B683C1216BF83200CAA546 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -431,6 +454,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -457,7 +481,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -495,6 +519,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -515,7 +540,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -540,7 +565,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = UnsplashPhotoPicker/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -568,7 +593,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = UnsplashPhotoPicker/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="Qdd-JF-Vs1" customClass="PhotoView" customModule="UnsplashPhotoPicker" customModuleProvider="target">
+        <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="Qdd-JF-Vs1" customClass="PhotoView" customModule="UnsplashPhotoPicker">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -20,7 +18,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
-                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Kv-0r-W2S" customClass="GradientView" customModule="UnsplashPhotoPicker" customModuleProvider="target">
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Kv-0r-W2S" customClass="GradientView" customModule="UnsplashPhotoPicker">
                     <rect key="frame" x="0.0" y="333.5" width="375" height="333.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
@@ -32,6 +30,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="eEU-Be-zNb"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="6Kv-0r-W2S" secondAttribute="trailing" id="5eK-oP-CKm"/>
@@ -50,13 +49,13 @@
                     <variation key="widthClass=compact" constant="8"/>
                 </constraint>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="eEU-Be-zNb"/>
             <connections>
                 <outlet property="gradientView" destination="6Kv-0r-W2S" id="ZLq-Zs-Nbl"/>
                 <outlet property="imageView" destination="KxT-2S-csa" id="AjO-gG-2IN"/>
                 <outlet property="userNameLabel" destination="4jb-5S-M9a" id="Stu-4R-WaX"/>
                 <outletCollection property="overlayViews" destination="6Kv-0r-W2S" collectionClass="NSMutableArray" id="J65-is-Pw3"/>
             </connections>
+            <point key="canvasLocation" x="-238" y="125"/>
         </view>
     </objects>
 </document>

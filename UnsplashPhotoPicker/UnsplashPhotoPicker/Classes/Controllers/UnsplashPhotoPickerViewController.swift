@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol UnsplashPhotoPickerViewControllerDelegate: class {
+protocol UnsplashPhotoPickerViewControllerDelegate: AnyObject {
     func unsplashPhotoPickerViewController(_ viewController: UnsplashPhotoPickerViewController, didSelectPhotos photos: [UnsplashPhoto])
     func unsplashPhotoPickerViewControllerDidCancel(_ viewController: UnsplashPhotoPickerViewController)
 }

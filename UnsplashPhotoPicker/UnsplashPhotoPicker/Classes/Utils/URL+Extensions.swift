@@ -21,6 +21,12 @@ extension URL {
                 queryItems.append(newItem)
             }
         }
+
+        // make sure url won't change so the url cache will work fine
+        queryItems.sort { (item1, item2) -> Bool in
+            return item1.name > item2.name
+        }
+        
         components.queryItems = queryItems
         return components.url ?? self
     }
