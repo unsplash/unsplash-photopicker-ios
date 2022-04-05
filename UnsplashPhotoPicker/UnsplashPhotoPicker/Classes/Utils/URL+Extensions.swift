@@ -16,8 +16,7 @@ extension URL {
         for newItem in newQueryItems {
             if let existingIndex = queryItems.firstIndex(where: { $0.name == newItem.name }) {
                 queryItems[existingIndex].value = newItem.value
-            }
-            else {
+            } else {
                 queryItems.append(newItem)
             }
         }
@@ -26,7 +25,7 @@ extension URL {
         queryItems.sort { (item1, item2) -> Bool in
             return item1.name > item2.name
         }
-        
+
         components.queryItems = queryItems
         return components.url ?? self
     }

@@ -11,6 +11,7 @@
 		0628427D25B1BE74006DCC9B /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 0628427A25B1BE74006DCC9B /* Localizable.stringsdict */; };
 		0688B9EF25A4B40600D137FD /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0688B9EE25A4B40600D137FD /* Bundle+Extensions.swift */; };
 		09555F9B234BD9A6003CD26E /* UIColor+PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09555F9A234BD9A6003CD26E /* UIColor+PhotoPicker.swift */; };
+		0972891927FC4EB50084E968 /* UIImage+Preload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0972891827FC4EB50084E968 /* UIImage+Preload.swift */; };
 		09F278B02193583A000A26A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09F278AF2193583A000A26A4 /* Assets.xcassets */; };
 		09F278B22193589E000A26A4 /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F278B12193589E000A26A4 /* CheckmarkView.swift */; };
 		231D1280218FB3D7002C5750 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D127F218FB3D7002C5750 /* String+Localization.swift */; };
@@ -57,6 +58,7 @@
 		0628427B25B1BE74006DCC9B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		0688B9EE25A4B40600D137FD /* Bundle+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		09555F9A234BD9A6003CD26E /* UIColor+PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+PhotoPicker.swift"; sourceTree = "<group>"; };
+		0972891827FC4EB50084E968 /* UIImage+Preload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Preload.swift"; sourceTree = "<group>"; };
 		09F278AF2193583A000A26A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09F278B12193589E000A26A4 /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
 		231D127F218FB3D7002C5750 /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				231D127F218FB3D7002C5750 /* String+Localization.swift */,
 				09555F9A234BD9A6003CD26E /* UIColor+PhotoPicker.swift */,
 				23A0D203216D806800BEAE05 /* UIColor+Extensions.swift */,
+				0972891827FC4EB50084E968 /* UIImage+Preload.swift */,
 				23A0D249216D9D2400BEAE05 /* URL+Extensions.swift */,
 			);
 			path = Utils;
@@ -383,6 +386,7 @@
 				23A0D21C216D825B00BEAE05 /* Configuration.swift in Sources */,
 				23A0D228216D8AD600BEAE05 /* SearchPhotosRequest.swift in Sources */,
 				23A0D22B216D8AD600BEAE05 /* GetCollectionPhotosRequest.swift in Sources */,
+				0972891927FC4EB50084E968 /* UIImage+Preload.swift in Sources */,
 				23C288F421BF450800D97A3B /* UnsplashSearchController.swift in Sources */,
 				23A0D20B216D806800BEAE05 /* Dictionary+Extensions.swift in Sources */,
 				23A0D1F3216D74C800BEAE05 /* UnsplashPhotoPicker.swift in Sources */,

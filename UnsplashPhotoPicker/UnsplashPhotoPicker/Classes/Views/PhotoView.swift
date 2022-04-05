@@ -66,9 +66,9 @@ class PhotoView: UIView {
         guard let regularUrl = photo.urls[.regular] else { return }
 
         let url = sizedImageURL(from: regularUrl)
-        
+
         let downloadPhotoID = photo.identifier
-        
+
         imageDownloader.downloadPhoto(with: url, completion: { [weak self] (image, isCached) in
             guard let strongSelf = self, strongSelf.currentPhotoID == downloadPhotoID else { return }
 
