@@ -8,6 +8,16 @@
 
 import Foundation
 
+/**
+ Content Safety
+
+ By default, endpoints set the `content_filter` to `low`, which guarantees that no content violating our
+ submission guidelines (like images containing nudity or violence) will be returned in results.
+
+ To give you flexibility in filtering content further, set the `content_filter` to `high` (on endpoints that
+ support it) to further remove content that may be unsuitable for younger audiences. Note that we can’t
+ guarantee that all potentially unsuitable content is removed.
+ */
 public enum ContentFilterLevel: String {
     case low
     case high
@@ -33,7 +43,8 @@ public struct UnsplashPhotoPickerConfiguration {
 
     /// The disk capacity used by the cache.
     public var diskCapacity = defaultDiskCapacity
-    
+
+    /// Set the content safety filter.
     public var contentFilterLevel = defaultContentFilterLevel
 
     /// The default memory capacity used by the cache.
@@ -41,7 +52,8 @@ public struct UnsplashPhotoPickerConfiguration {
 
     /// The default disk capacity used by the cache.
     public static let defaultDiskCapacity: Int = ImageCache.diskCapacity
-    
+
+    /// The default content safety filter.
     public static let defaultContentFilterLevel: ContentFilterLevel = .low
 
     /// The Unsplash API url.
