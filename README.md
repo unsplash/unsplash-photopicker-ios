@@ -56,7 +56,7 @@ To add dependency in your own package, just specify it in dependencies of your `
 .package(
   name: "UnsplashPhotoPicker",
   url: "https://github.com/unsplash/unsplash-photopicker-ios.git",
-  .upToNextMajor(from: "1.2.0")
+  .upToNextMajor(from: "1.3.0")
 )
 ```
 
@@ -65,7 +65,7 @@ To add dependency in your own package, just specify it in dependencies of your `
 To integrate UnsplashPhotoPicker into your Xcode project using [Carthage](https://github.com/Carthage/Carthage), specify it in your `Cartfile`:
 
 ```ogdl
-github "unsplash/unsplash-photopicker-ios" ~> 1.2
+github "unsplash/unsplash-photopicker-ios" ~> 1.3
 ```
 
 Run `carthage update` to build the framework and drag the built `UnsplashPhotoPicker.framework` into your Xcode project.
@@ -80,7 +80,7 @@ platform :ios, '12.1'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'UnsplashPhotoPicker', '~> 1.2'
+    pod 'UnsplashPhotoPicker', '~> 1.3'
 end
 ```
 
@@ -142,7 +142,7 @@ protocol UnsplashPhotoPickerDelegate: class {
 
 MIT License
 
-Copyright (c) 2018-2019 Unsplash Inc.
+Copyright (c) 2018-2022 Unsplash Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
