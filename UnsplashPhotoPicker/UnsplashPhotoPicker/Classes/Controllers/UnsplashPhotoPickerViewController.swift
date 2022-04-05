@@ -35,7 +35,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     private lazy var searchController: UISearchController = {
         let searchController = UnsplashSearchController(searchResultsController: nil)
-        searchController.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
@@ -123,7 +122,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
         setupSearchController()
         setupCollectionView()
         setupSpinner()
-        setupPeekAndPop()
 
         let trimmedQuery = Configuration.shared.query?.trimmingCharacters(in: .whitespacesAndNewlines)
         setSearchText(trimmedQuery)
@@ -197,10 +195,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
             spinner.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor)
         ])
-    }
-
-    private func setupPeekAndPop() {
-        previewingContext = registerForPreviewing(with: self, sourceView: collectionView)
     }
 
     private func showEmptyView(with state: EmptyViewState) {
@@ -320,24 +314,6 @@ class UnsplashPhotoPickerViewController: UIViewController {
             self?.collectionView.scrollIndicatorInsets = .zero
         }
     }
-
-}
-
-// MARK: - UISearchControllerDelegate
-extension UnsplashPhotoPickerViewController: UISearchControllerDelegate {
-    func didPresentSearchController(_ searchController: UISearchController) {
-        if let context = previewingContext {
-            unregisterForPreviewing(withContext: context)
-            previewingContext = searchController.registerForPreviewing(with: self, sourceView: collectionView)
-        }
-    }
-
-    func didDismissSearchController(_ searchController: UISearchController) {
-        if let context = previewingContext {
-            searchController.unregisterForPreviewing(withContext: context)
-            previewingContext = registerForPreviewing(with: self, sourceView: collectionView)
-        }
-    }
 }
 
 // MARK: - UISearchBarDelegate
@@ -422,24 +398,5 @@ extension UnsplashPhotoPickerViewController: PagedDataSourceDelegate {
         DispatchQueue.main.async {
             self.showEmptyView(with: state)
         }
-    }
-}
-
-// MARK: - UIViewControllerPreviewingDelegate
-extension UnsplashPhotoPickerViewController: UIViewControllerPreviewingDelegate {
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard let indexPath = collectionView.indexPathForItem(at: location),
-            let cellAttributes = collectionView.layoutAttributesForItem(at: indexPath),
-            let cell = collectionView.cellForItem(at: indexPath) as? PhotoCell,
-            let image = cell.photoView.imageView.image else {
-                return nil
-        }
-
-        previewingContext.sourceRect = cellAttributes.frame
-
-        return UnsplashPhotoPickerPreviewViewController(image: image)
-    }
-
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
     }
 }
