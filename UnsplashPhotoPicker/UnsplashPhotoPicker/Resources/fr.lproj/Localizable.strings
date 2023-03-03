@@ -1,0 +1,25 @@
+/* (No Comment) */
+"error.noInternetConnection.description" = "Veuillez vous connecter à un réseau Wi-Fi ou de données mobiles pour accéder à Unsplash.";
+
+/* (No Comment) */
+"error.noInternetConnection.title" = "Pas de connexion Internet";
+
+/* (No Comment) */
+"error.noResults.description" = "Veuillez mettre à jour votre demande de recherche et réessayer.";
+
+/* (No Comment) */
+"error.noResults.title" = "Aucun résultat trouvé pour votre demande";
+
+/* (No Comment) */
+"error.serverError.description" = "Oups! Quelque chose s’est mal passé. Veuillez réessayer.";
+
+/* (No Comment) */
+"error.serverError.title" = "Erreur du serveur";
+
+/* Localizable.strings
+  UnsplashPhotoPicker
+
+  Created by Bichon, Nicolas on 2018-11-04.
+  Copyright © 2018 Unsplash. All rights reserved. */
+"search.placeholder" = "Recherche";
+

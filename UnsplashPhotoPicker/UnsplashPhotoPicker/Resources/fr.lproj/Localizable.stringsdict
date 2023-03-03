@@ -13,9 +13,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d file selected</string>
+			<string>%d fichier sélectionné</string>
 			<key>other</key>
-			<string>%d files selected</string>
+			<string>%d fichiers sélectionnés</string>
 			<key>zero</key>
 			<string>Unsplash</string>
 		</dict>

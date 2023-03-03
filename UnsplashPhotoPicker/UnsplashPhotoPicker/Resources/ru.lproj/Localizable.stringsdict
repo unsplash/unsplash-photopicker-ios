@@ -12,10 +12,14 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>few</key>
+			<string>%d файла выбрано</string>
+			<key>many</key>
+			<string>%d файлов выбрано</string>
 			<key>one</key>
-			<string>%d file selected</string>
+			<string>%d файл выбран</string>
 			<key>other</key>
-			<string>%d files selected</string>
+			<string>%d файлов выбрано</string>
 			<key>zero</key>
 			<string>Unsplash</string>
 		</dict>

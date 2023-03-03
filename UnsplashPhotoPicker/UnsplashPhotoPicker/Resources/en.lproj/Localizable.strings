@@ -1,16 +1,25 @@
-/* 
-  Localizable.strings
+/* (No Comment) */
+"error.noInternetConnection.description" = "Please connect to a Wi-Fi or mobile data network to access Unsplash.";
+
+/* (No Comment) */
+"error.noInternetConnection.title" = "No internet connection";
+
+/* (No Comment) */
+"error.noResults.description" = "Please update your search request and try again.";
+
+/* (No Comment) */
+"error.noResults.title" = "No results found for your request";
+
+/* (No Comment) */
+"error.serverError.description" = "Oops! Something went wrong. Please try again.";
+
+/* (No Comment) */
+"error.serverError.title" = "Server error";
+
+/* Localizable.strings
   UnsplashPhotoPicker
 
   Created by Bichon, Nicolas on 2018-11-04.
-  Copyright © 2018 Unsplash. All rights reserved.
-*/
+  Copyright © 2018 Unsplash. All rights reserved. */
+"search.placeholder" = "Search";
 
-"search.placeholder" = "Search photos";
-
-"error.noResults.title" = "No results";
-"error.noResults.description" = "Please update your search and try again.";
-"error.noInternetConnection.title" = "No Internet Connection";
-"error.noInternetConnection.description" = "You must connect to a Wi-Fi or cellular data network to access Unsplash.";
-"error.serverError.title" = "Server error";
-"error.serverError.description" = "Oops! Something's wrong. Please try again.";
